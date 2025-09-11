@@ -1,14 +1,23 @@
-# AYSO Region 779 Website Content Repository
+# AYSO Region 779 Website
 
-Welcome to the content hub for [AYSO Region 779](https://www.ayso779.org/) This repository serves as a central staging ground for website updates, branding assets, and communication workflows used on our Sports Connect-hosted site.
+Welcome to the official public-facing site for AYSO Region 779, serving the Chino Hills community through youth soccer.
 
-## 📌 Purpose
+## 📁 Repo Structure
 
-This repo is designed to:
-- Testing and Experimenting is main purpose now. Aiming for a Fall 2026 push
-- Organize and version-control HTML pages for Sports Connect
-- Maintain consistent branding across digital materials
-- Document board feedback and site improvement ideas
-- Serve as a future-ready foundation for redesigns or migrations
+- `/assets` — Logos, stylesheets, scripts
+- `/pages` — Individual HTML pages
+- `/includes` — Shared components (nav, footer)
+- `/drafts` — In-progress content
+- `index.html` — Homepage
 
+## 🌐 Live Site
 
+Hosted via GitHub Pages at [ayso779.dev](https://ayso779.dev)
+
+## 🤝 Contributions
+
+Board members and volunteers are welcome to suggest edits via Issues or Pull Requests. For staging and testing, please use the [`ayso779-staging`](https://github.com/YOURUSERNAME/ayso779-staging) repo.
+
+## 📬 Contact
+
+For questions or suggestions, reach out via the contact page or email the webmaster.
