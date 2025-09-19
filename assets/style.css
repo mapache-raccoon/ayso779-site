@@ -132,16 +132,16 @@ p {
 
 /* Hero */
 .hero {
-  background: radial-gradient(
-      1200px 400px at 20% -10%,
-      var(--green-300) 0%,
-      transparent 60%
-    ),
-    linear-gradient(160deg, var(--primary-green), var(--green-500));
+  background: linear-gradient(
+    135deg,
+    var(--primary-black) 0%,
+    var(--primary-black) 45%,
+    var(--primary-green) 100%
+  );
   color: var(--primary-white);
 }
 .hero__content {
-  padding: var(--space-8) 0 var(--space-7);
+  padding: var(--space-5) 0 var(--space-4);
   text-align: left;
 }
 .hero h1 {
@@ -229,11 +229,18 @@ p {
 .btn--primary {
   background: var(--primary-white);
   color: var(--primary-green);
-  border-color: var(--primary-white);
+  border: 2px solid var(--primary-green);
+  box-shadow: none;
+  padding: 2px 18px;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.15s;
 }
-.btn--primary:hover {
-  background: #f2fff9;
-  border-color: #e2f7ec;
+.btn--primary:hover,
+.btn--primary:focus {
+  background: var(--primary-green);
+  color: var(--primary-white);
+  box-shadow: none;
+  transform: none;
+  outline: none;
 }
 
 .btn--outline {
@@ -295,10 +302,124 @@ p {
     display: none;
   } /* keep simple for now; can add a toggle later */
   .hero__content {
-    padding: var(--space-7) 0;
+    padding: var(--space-5) 0 var(--space-4);
+    text-align: center;
+  }
+  .hero__content img {
+    height: 96px !important;
+    width: 96px !important;
+    margin-bottom: 1.2rem !important;
+  }
+  .hero__actions {
+    flex-direction: column;
+    gap: var(--space-3);
+    align-items: center;
   }
   .callout {
     flex-direction: column;
     align-items: stretch;
   }
+  .board-card-grid {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-4);
+  }
+  .board-card {
+    min-width: 0;
+    width: 100%;
+  }
+  #member-modal > div {
+    max-width: 98vw !important;
+    padding: 1.2rem !important;
+  }
+}
+
+/* Board page modern styles */
+.board-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-5);
+}
+.board-group {
+  background: var(--surface-alt);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-sm);
+}
+.card-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+.board-card {
+  background: var(--primary-white);
+  border: 1px solid var(--neutral-200);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-4) var(--space-4) var(--space-3);
+  margin-bottom: var(--space-3);
+  min-width: 220px;
+  flex: 1 1 220px;
+  cursor: pointer;
+  transition: box-shadow 0.2s, transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.board-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px) scale(1.02);
+}
+.board-card.open {
+  border-left: 6px solid #ff9d42;
+}
+.card-title {
+  font-weight: 700;
+  font-size: 1.08rem;
+  margin-bottom: 2px;
+  color: var(--primary-green);
+}
+.card-role {
+  font-size: 0.98rem;
+  color: var(--neutral-700);
+  margin-bottom: 2px;
+}
+
+/* Modal styles */
+#member-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(26, 26, 26, 0.55);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+#member-modal > div {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: 2rem 2.5rem;
+  max-width: 400px;
+  width: 90%;
+}
+#modal-name {
+  margin-top: 0;
+  color: var(--primary-green);
+}
+#modal-role {
+  color: var(--neutral-700);
+  font-weight: 500;
+}
+#modal-desc {
+  color: var(--neutral-700);
+}
+#modal-email {
+  margin-top: 1rem;
+  display: inline-block;
+}
+#close-modal {
+  margin-left: 1rem;
 }
