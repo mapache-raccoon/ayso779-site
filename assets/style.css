@@ -197,18 +197,48 @@ p {
   color: var(--primary-white);
 }
 .hero__content {
-  padding: var(--space-5) 0 var(--space-4);
+  padding: 8px 0 8px; /* reduce vertical padding */
   text-align: left;
 }
 .hero h1 {
-  font-size: clamp(2rem, 4vw, 3rem);
-  margin-bottom: var(--space-3);
+  font-size: clamp(1.5rem, 3vw, 2.2rem); /* slightly smaller heading */
+  margin-bottom: var(--space-2); /* less space below heading */
   letter-spacing: -0.02em;
 }
 .hero p {
   color: rgba(255, 255, 255, 0.9);
   max-width: 62ch;
-  margin-bottom: var(--space-5);
+  margin-bottom: var(--space-3); /* less space below paragraph */
+}
+.hero__logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 0.5rem; /* reduce space below logos */
+}
+.hero__logo {
+  height: 100px; /* reduce logo height further */
+  width: auto;
+  display: block;
+}
+.hero__text {
+  text-align: center;
+  color: var(--primary-white);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 600px) {
+  .hero__logos {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .hero__logo {
+    height: 120px;
+  }
 }
 
 /* Sections */

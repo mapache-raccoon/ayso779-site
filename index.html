@@ -44,48 +44,34 @@
           <span class="hamburger"></span>
         </button>
         <nav class="nav">
-          <a href="pages/board.html">Board</a>
-          <a href="pages/fields.html">Fields</a>
-          <a href="pages/coaches.html">Coaches</a>
-          <a href="pages/referees.html">Referees</a>
-          <a href="pages/volunteer.html" class="btn btn--sm btn--primary"
-            >Volunteer</a
-          >
+          <a href="index.html">Home</a>
           <a href="pages/about.html">About Us</a>
+          <a href="pages/programs.html">Programs</a>
+          <a href="https://teamwebsite.example.com" target="_blank">Team Hub</a>
+          <a href="pages/calendar.html">Calendar</a>
         </nav>
       </div>
     </header>
 
     <main>
       <section class="hero">
-        <div
-          class="container hero__content"
-          style="
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-          "
-        >
+        <div class="container hero__content hero__logos">
+          <img
+            src="assets/images/logos/AYSO_TRAD_white_600x600.png"
+            alt="AYSO National Logo"
+            class="hero__logo"
+            style="height: 160px; width: auto"
+          />
           <img
             src="assets/images/logos/ayso779crest.png"
             alt="AYSO 779 Crest"
-            style="height: 160px; width: 160px; margin-bottom: 1.5rem"
+            class="hero__logo"
+            style="height: 160px; width: auto"
           />
-          <h1
-            style="
-              color: var(--primary-white);
-              font-size: 2.2rem;
-              font-weight: 700;
-              margin-bottom: 1rem;
-              text-align: center;
-              letter-spacing: -0.01em;
-            "
-          >
-            Soccer. Community. Excellence.
-          </h1>
-      
-          </div>
+        </div>
+        <div class="container hero__text">
+          <h1>Soccer. Community. Excellence.</h1>
+          <p>AYSO Region 779 • Chino Hills, CA • EST. 1991</p>
         </div>
       </section>
 
@@ -127,6 +113,21 @@
               <p>Schedules, field info, and division details for families.</p>
               <a class="btn btn--ghost" href="pages/parents.html"
                 >Parent Guide</a
+              >
+            </article>
+            <article class="card">
+              <img
+                src="assets/images/icons/volunteer.svg"
+                alt="Volunteer icon"
+                style="height: 40px; width: 40px; margin-bottom: 0.5rem"
+              />
+              <h3>Volunteers</h3>
+              <p>
+                Help out on the field or behind the scenes—AYSO runs on
+                volunteers!
+              </p>
+              <a class="btn btn--ghost" href="pages/volunteer.html"
+                >Volunteer Info</a
               >
             </article>
           </div>
@@ -175,10 +176,10 @@
       document.getElementById("year").textContent = new Date().getFullYear();
 
       // Hamburger menu toggle
-      const navToggle = document.querySelector('.nav-toggle');
-      const nav = document.querySelector('.nav');
-      navToggle.addEventListener('click', () => {
-        nav.classList.toggle('open');
+      const navToggle = document.querySelector(".nav-toggle");
+      const nav = document.querySelector(".nav");
+      navToggle.addEventListener("click", () => {
+        nav.classList.toggle("open");
       });
     </script>
   </body>
