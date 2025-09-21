@@ -40,6 +40,9 @@
             >Register</a
           >
         </div>
+        <button class="nav-toggle" aria-label="Open menu">
+          <span class="hamburger"></span>
+        </button>
         <nav class="nav">
           <a href="pages/board.html">Board</a>
           <a href="pages/fields.html">Fields</a>
@@ -180,6 +183,13 @@
     <script>
       // Set year in footer
       document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Hamburger menu toggle
+      const navToggle = document.querySelector('.nav-toggle');
+      const nav = document.querySelector('.nav');
+      navToggle.addEventListener('click', () => {
+        nav.classList.toggle('open');
+      });
     </script>
   </body>
 </html>
