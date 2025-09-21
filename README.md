@@ -15,7 +15,7 @@ Hosted via GitHub Pages at [ayso779.dev](https://ayso779.dev)
 
 ## 🤝 Contributions
 
-Board members and volunteers are welcome to suggest edits via Issues or Pull Requests. .
+Board members and volunteers are welcome to suggest edits via Issues or Pull Requests.
 
 ## 📬 Contact
 
