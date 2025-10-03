@@ -762,7 +762,6 @@
         </div>
       </section>
     </main>
-    <!-- Footer -->
     <footer class="footer">
       <div class="container footer__inner">
         <p>© <span id="year"></span> AYSO Region 779</p>
@@ -773,25 +772,7 @@
         </nav>
       </div>
     </footer>
-    <script>
-      // Load navbar
-      fetch("../includes/nav.html")
-        .then((res) => res.text())
-        .then((html) => {
-          document.getElementById("navbar").innerHTML = html;
-        });
-
-      // Set year in footer
-      document.getElementById("year").textContent = new Date().getFullYear();
-
-      // Hamburger menu toggle (ensure it runs after nav loads)
-      document.addEventListener("click", function (e) {
-        const navToggle = document.querySelector(".nav__toggle");
-        const navMenu = document.getElementById("nav-menu");
-        if (navToggle && e.target === navToggle) {
-          navMenu.classList.toggle("open");
-        }
-      });
-    </script>
+    <!-- Only this script tag is needed now -->
+    <script src="../assets/scripts/main.js"></script>
   </body>
 </html>

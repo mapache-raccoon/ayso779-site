@@ -129,24 +129,31 @@
     </footer>
 
     <script>
-      // Load navbar
+      // Load navbar HTML into the #navbar div
       fetch("includes/nav.html")
         .then((res) => res.text())
         .then((html) => {
           document.getElementById("navbar").innerHTML = html;
+
+          // Hamburger menu toggle: runs after nav is loaded
+          const navToggle = document.querySelector(".nav__toggle");
+          const navMenu = document.getElementById("nav-menu");
+          if (navToggle && navMenu) {
+            navToggle.addEventListener("click", function () {
+              navMenu.classList.toggle("open");
+              // Update aria-expanded for accessibility
+              navToggle.setAttribute(
+                "aria-expanded",
+                navMenu.classList.contains("open")
+              );
+            });
+          }
         });
 
       // Set year in footer
       document.getElementById("year").textContent = new Date().getFullYear();
-
-      // Hamburger menu toggle (move this into nav.html or ensure it runs after nav loads)
-      document.addEventListener("click", function (e) {
-        const navToggle = document.querySelector(".nav__toggle");
-        const navMenu = document.getElementById("nav-menu");
-        if (navToggle && e.target === navToggle) {
-          navMenu.classList.toggle("open");
-        }
-      });
     </script>
+    <!-- For root pages like index.html -->
+    <script src="assets/scripts/main.js"></script>
   </body>
 </html>
