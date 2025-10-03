@@ -36,11 +36,13 @@ function setupNavToggle() {
 // ===============================
 function setupDropdownToggles() {
    // Only enable click-to-toggle on mobile widths
-   if (window.innerWidth <= 900) {
+   function enableDropdowns() {
       document.querySelectorAll('.nav__dropdown-trigger').forEach(trigger => {
          trigger.addEventListener('click', function (e) {
+            // Only on mobile
+            if (window.innerWidth > 900) return;
             e.preventDefault();
-            const parent = trigger.parentElement;
+            const parent = trigger.closest('.nav__dropdown');
             // Close other open dropdowns
             document.querySelectorAll('.nav__dropdown.open').forEach(openDropdown => {
                if (openDropdown !== parent) openDropdown.classList.remove('open');
@@ -53,7 +55,10 @@ function setupDropdownToggles() {
       });
       // Close dropdowns when clicking outside
       document.addEventListener('click', function (e) {
-         if (!e.target.closest('.nav__dropdown')) {
+         if (
+            window.innerWidth <= 900 &&
+            !e.target.closest('.nav__dropdown')
+         ) {
             document.querySelectorAll('.nav__dropdown.open').forEach(openDropdown => {
                openDropdown.classList.remove('open');
                const trigger = openDropdown.querySelector('.nav__dropdown-trigger');
@@ -62,6 +67,11 @@ function setupDropdownToggles() {
          }
       });
    }
+   enableDropdowns();
+   // Re-enable on resize (for SPA-like behavior)
+   window.addEventListener('resize', () => {
+      enableDropdowns();
+   });
 }
 
 // ===============================
