@@ -1,15 +1,16 @@
-/* Design tokens */
+/* ===============================
+   Design Tokens & Core Variables
+   =============================== */
 :root {
-  /* Core palette (provided) */
+  /* Core palette */
   --primary-green: #0b3d2e;
   --primary-black: #1a1a1a;
   --primary-white: #ffffff;
 
-  /* Derived accents and neutrals */
-  --green-500: #0f5b44; /* lighter accent from primary green */
+  /* Accents & Neutrals */
+  --green-500: #0f5b44;
   --green-400: #147259;
   --green-300: #1a8a6d;
-
   --neutral-900: #0f1111;
   --neutral-800: #1a1a1a;
   --neutral-700: #2a2a2a;
@@ -40,7 +41,9 @@
   --space-8: 64px;
 }
 
-/* Reset-ish */
+/* ===============================
+   Reset & Base Styles
+   =============================== */
 *,
 *::before,
 *::after {
@@ -78,43 +81,18 @@ p {
   margin: 0 0 var(--space-4);
 }
 
-/* Layout helpers */
+/* ===============================
+   Layout Helpers
+   =============================== */
 .container {
   max-width: var(--container);
   margin-inline: auto;
   padding-inline: var(--space-5);
 }
 
-/* Header/Nav */
-.header {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: saturate(180%) blur(8px);
-  border-bottom: 1px solid var(--neutral-200);
-}
-.header__inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: var(--space-4) 0;
-}
-.brand {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-3);
-}
-.brand__logo {
-  height: 36px;
-  width: 36px;
-  object-fit: contain;
-}
-.brand__name {
-  font-weight: 700;
-  font-size: 1.05rem;
-}
-
+/* ===============================
+   Navigation Bar
+   =============================== */
 .nav {
   background: #fff;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
@@ -167,6 +145,7 @@ p {
 .nav__menu a:focus {
   background: #f0f4f8;
   color: #007a4d;
+  font-weight: bold;
 }
 .nav__dropdown > a::after {
   content: " ▼";
@@ -215,32 +194,50 @@ p {
   padding: 0.5rem 0.75rem;
 }
 
+/* ===============================
+   Responsive Navigation
+   =============================== */
 @media (max-width: 900px) {
   .nav__inner {
     flex-direction: row;
     padding: 0.5rem 1rem;
   }
+
+  .nav__toggle {
+    display: none;
+    /* ...other styles... */
+  }
+
+  @media (max-width: 900px) {
+    .nav__toggle {
+      display: block;
+    }
+  }
   .nav__menu {
+    display: none;
+    flex-direction: column;
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
-    flex-direction: column;
     background: #fff;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-    display: none;
-    gap: 0;
     padding: 1rem 0;
+    gap: 0;
   }
   .nav__menu.open {
     display: flex;
   }
-  .nav__toggle {
-    display: block;
-  }
+}
+/* Remove background and color change on hover for mobile */
+.nav__menu a:hover,
+.nav__menu a:focus {
+  background: none;
+  color: #222;
+  font-weight: bold;
 }
 
-/* Optional: Smooth dropdown animation */
+/* Dropdown animation */
 .nav__submenu {
   transition: opacity 0.2s;
   opacity: 0;
@@ -252,7 +249,9 @@ p {
   pointer-events: auto;
 }
 
-/* Hero */
+/* ===============================
+   Hero Section
+   =============================== */
 .hero {
   background: linear-gradient(
     135deg,
@@ -263,32 +262,32 @@ p {
   color: var(--primary-white);
 }
 .hero__content {
-  padding: 8px 0 8px; /* reduce vertical padding */
+  padding: 8px 0 8px;
   text-align: left;
 }
 .hero h1 {
-  font-size: clamp(1.5rem, 3vw, 2.2rem); /* slightly smaller heading */
-  margin-bottom: var(--space-2); /* less space below heading */
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  margin-bottom: var(--space-2);
   letter-spacing: -0.02em;
 }
 .hero p {
   color: rgba(255, 255, 255, 0.9);
   max-width: 62ch;
-  margin-bottom: var(--space-3); /* less space below paragraph */
+  margin-bottom: var(--space-3);
 }
 .hero__logos {
   display: flex;
-  flex-direction: row; /* always side-by-side */
+  flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 1rem; /* slightly less gap for tighter fit */
+  gap: 1rem;
   margin-bottom: 0.5rem;
 }
 .hero__logo {
-  height: 72px; /* smaller for all screens */
+  height: 72px;
   width: auto;
   display: block;
-  max-width: 40vw; /* prevent overflow on small screens */
+  max-width: 40vw;
 }
 .hero__text {
   text-align: center;
@@ -299,15 +298,17 @@ p {
   align-items: center;
   justify-content: center;
 }
+
+/* Responsive hero */
 @media (max-width: 600px) {
   .hero__logos {
-    flex-direction: row !important; /* force side-by-side */
+    flex-direction: row !important;
     align-items: center;
     gap: 0.5rem;
     margin-bottom: 0.5rem;
   }
   .hero__logo {
-    height: 40px !important; /* smaller logos for mobile */
+    height: 40px !important;
     max-width: 38vw;
   }
   .hero__text {
@@ -324,7 +325,9 @@ p {
   }
 }
 
-/* Sections */
+/* ===============================
+   Section Layouts
+   =============================== */
 .section {
   padding: var(--space-7) 0;
   background: var(--surface);
@@ -337,7 +340,9 @@ p {
   margin-bottom: var(--space-5);
 }
 
-/* Grid and cards */
+/* ===============================
+   Grid & Cards
+   =============================== */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -362,7 +367,9 @@ p {
   color: var(--neutral-700);
 }
 
-/* Callout row */
+/* ===============================
+   Callout Row
+   =============================== */
 .callout {
   display: flex;
   gap: var(--space-5);
@@ -374,7 +381,9 @@ p {
   border-radius: var(--radius-lg);
 }
 
-/* Buttons */
+/* ===============================
+   Buttons
+   =============================== */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -394,7 +403,6 @@ p {
   padding: 8px 12px;
   font-size: 0.9rem;
 }
-
 .btn--primary {
   background: var(--primary-white);
   color: var(--primary-green);
@@ -411,7 +419,6 @@ p {
   transform: none;
   outline: none;
 }
-
 .btn--outline {
   background: transparent;
   color: var(--primary-white);
@@ -421,7 +428,6 @@ p {
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(255, 255, 255, 0.75);
 }
-
 .btn--ghost {
   background: transparent;
   color: var(--primary-green);
@@ -432,7 +438,6 @@ p {
 .btn--ghost:hover {
   background: var(--neutral-100);
 }
-
 .btn--inverse {
   background: var(--primary-white);
   color: var(--primary-green);
@@ -442,7 +447,9 @@ p {
   background: #f2fff9;
 }
 
-/* Footer */
+/* ===============================
+   Footer
+   =============================== */
 .footer {
   border-top: 1px solid var(--neutral-200);
   background: var(--surface);
@@ -465,44 +472,44 @@ p {
   color: var(--neutral-900);
 }
 
-/* Responsive tweaks */
-@media (max-width: 720px) {
-  .nav {
-    display: none;
-  } /* keep simple for now; can add a toggle later */
-  .hero__content {
-    padding: var(--space-5) 0 var(--space-4);
-    text-align: center;
-  }
-  .hero__content img {
-    height: 96px !important;
-    width: 96px !important;
-    margin-bottom: 1.2rem !important;
-  }
-  .hero__actions {
-    flex-direction: column;
-    gap: var(--space-3);
-    align-items: center;
-  }
-  .callout {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .board-card-grid {
-    grid-template-columns: 1fr !important;
-    gap: var(--space-4);
-  }
-  .board-card {
-    min-width: 0;
-    width: 100%;
-  }
-  #member-modal > div {
-    max-width: 98vw !important;
-    padding: 1.2rem !important;
-  }
+/* ===============================
+   Responsive Tweaks
+   =============================== */
+
+.hero__content {
+  padding: var(--space-5) 0 var(--space-4);
+  text-align: center;
+}
+.hero__content img {
+  height: 96px !important;
+  width: 96px !important;
+  margin-bottom: 1.2rem !important;
+}
+.hero__actions {
+  flex-direction: column;
+  gap: var(--space-3);
+  align-items: center;
+}
+.callout {
+  flex-direction: column;
+  align-items: stretch;
+}
+.board-card-grid {
+  grid-template-columns: 1fr !important;
+  gap: var(--space-4);
+}
+.board-card {
+  min-width: 0;
+  width: 100%;
+}
+#member-modal > div {
+  max-width: 98vw !important;
+  padding: 1.2rem !important;
 }
 
-/* Board page modern styles */
+/* ===============================
+   Board Page Styles
+   =============================== */
 .board-card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -553,7 +560,9 @@ p {
   margin-bottom: 2px;
 }
 
-/* Modal styles */
+/* ===============================
+   Modal Styles
+   =============================== */
 #member-modal {
   display: none;
   position: fixed;

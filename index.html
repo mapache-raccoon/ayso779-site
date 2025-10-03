@@ -8,7 +8,14 @@
     <link rel="icon" href="assets/images/logos/ayso779crest.png" />
   </head>
   <body>
+    <!-- ===============================
+         Navbar (loaded dynamically)
+    ================================ -->
     <div id="navbar"></div>
+
+    <!-- ===============================
+         Main Content
+    ================================ -->
 
     <main>
       <section class="hero">
@@ -117,6 +124,9 @@
       </section>
     </main>
 
+    <!-- ===============================
+         Footer
+    ================================ -->
     <footer class="footer">
       <div class="container footer__inner">
         <p>© <span id="year"></span> AYSO Region 779</p>
@@ -128,32 +138,10 @@
       </div>
     </footer>
 
-    <script>
-      // Load navbar HTML into the #navbar div
-      fetch("includes/nav.html")
-        .then((res) => res.text())
-        .then((html) => {
-          document.getElementById("navbar").innerHTML = html;
-
-          // Hamburger menu toggle: runs after nav is loaded
-          const navToggle = document.querySelector(".nav__toggle");
-          const navMenu = document.getElementById("nav-menu");
-          if (navToggle && navMenu) {
-            navToggle.addEventListener("click", function () {
-              navMenu.classList.toggle("open");
-              // Update aria-expanded for accessibility
-              navToggle.setAttribute(
-                "aria-expanded",
-                navMenu.classList.contains("open")
-              );
-            });
-          }
-        });
-
-      // Set year in footer
-      document.getElementById("year").textContent = new Date().getFullYear();
-    </script>
-    <!-- For root pages like index.html -->
+    <!-- ===============================
+         Scripts
+         - main.js loads navbar and sets footer year
+    ================================ -->
     <script src="assets/scripts/main.js"></script>
   </body>
 </html>
