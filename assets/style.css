@@ -130,6 +130,14 @@ p {
   margin: 0;
   padding: 0;
 }
+@media (max-width: 900px) {
+  .nav__menu > li {
+    margin-bottom: 6px;
+  }
+  .nav__menu > li:last-child {
+    margin-bottom: 0;
+  }
+}
 .nav__menu > li {
   position: relative;
 }
