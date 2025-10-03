@@ -279,9 +279,21 @@ p {
   pointer-events: none;
 }
 .nav__dropdown:hover > .nav__submenu,
-.nav__dropdown:focus-within > .nav__submenu {
+.nav__dropdown:focus-within > .nav__submenu,
+.nav__dropdown.open > .nav__submenu {
+  display: block;
   opacity: 1;
   pointer-events: auto;
+}
+
+/* Show pointer cursor for dropdown triggers */
+.nav__dropdown-trigger {
+  cursor: pointer;
+}
+
+/* Prevent accidental closing on hover for submenu */
+.nav__dropdown {
+  position: relative;
 }
 
 /* ===============================

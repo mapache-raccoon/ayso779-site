@@ -35,43 +35,69 @@ function setupNavToggle() {
 // Dropdown toggle for mobile nav
 // ===============================
 function setupDropdownToggles() {
-   // Only enable click-to-toggle on mobile widths
-   function enableDropdowns() {
-      document.querySelectorAll('.nav__dropdown-trigger').forEach(trigger => {
-         trigger.addEventListener('click', function (e) {
-            // Only on mobile
-            if (window.innerWidth > 900) return;
-            e.preventDefault();
-            const parent = trigger.closest('.nav__dropdown');
-            // Close other open dropdowns
-            document.querySelectorAll('.nav__dropdown.open').forEach(openDropdown => {
-               if (openDropdown !== parent) openDropdown.classList.remove('open');
-            });
-            // Toggle this dropdown
-            parent.classList.toggle('open');
-            // Update aria-expanded
-            trigger.setAttribute('aria-expanded', parent.classList.contains('open'));
-         });
-      });
-      // Close dropdowns when clicking outside
-      document.addEventListener('click', function (e) {
-         if (
-            window.innerWidth <= 900 &&
-            !e.target.closest('.nav__dropdown')
-         ) {
-            document.querySelectorAll('.nav__dropdown.open').forEach(openDropdown => {
-               openDropdown.classList.remove('open');
-               const trigger = openDropdown.querySelector('.nav__dropdown-trigger');
-               if (trigger) trigger.setAttribute('aria-expanded', 'false');
-            });
-         }
-      });
-   }
-   enableDropdowns();
-   // Re-enable on resize (for SPA-like behavior)
-   window.addEventListener('resize', () => {
-      enableDropdowns();
+   const isMobile = () => window.innerWidth <= 900;
+   // Remove all previous event listeners (for SPA-like reloads)
+   document.querySelectorAll('.nav__dropdown').forEach(dropdown => {
+      dropdown.onmouseenter = null;
+      dropdown.onmouseleave = null;
+      dropdown.querySelector('.nav__dropdown-trigger').onclick = null;
    });
+
+   document.querySelectorAll('.nav__dropdown').forEach(dropdown => {
+      const trigger = dropdown.querySelector('.nav__dropdown-trigger');
+      // Desktop: open on hover or click
+      if (!isMobile()) {
+         dropdown.onmouseenter = () => {
+            dropdown.classList.add('open');
+            trigger.setAttribute('aria-expanded', 'true');
+         };
+         dropdown.onmouseleave = () => {
+            dropdown.classList.remove('open');
+            trigger.setAttribute('aria-expanded', 'false');
+         };
+         trigger.onclick = (e) => {
+            e.preventDefault();
+            // Toggle open on click
+            const isOpen = dropdown.classList.contains('open');
+            document.querySelectorAll('.nav__dropdown.open').forEach(d => {
+               d.classList.remove('open');
+               d.querySelector('.nav__dropdown-trigger').setAttribute('aria-expanded', 'false');
+            });
+            if (!isOpen) {
+               dropdown.classList.add('open');
+               trigger.setAttribute('aria-expanded', 'true');
+            }
+         };
+      } else {
+         // Mobile: open on click only
+         trigger.onclick = (e) => {
+            e.preventDefault();
+            const isOpen = dropdown.classList.contains('open');
+            document.querySelectorAll('.nav__dropdown.open').forEach(d => {
+               d.classList.remove('open');
+               d.querySelector('.nav__dropdown-trigger').setAttribute('aria-expanded', 'false');
+            });
+            if (!isOpen) {
+               dropdown.classList.add('open');
+               trigger.setAttribute('aria-expanded', 'true');
+            }
+         };
+      }
+   });
+   // Close dropdowns when clicking outside
+   document.addEventListener('click', function (e) {
+      if (!e.target.closest('.nav__dropdown')) {
+         document.querySelectorAll('.nav__dropdown.open').forEach(openDropdown => {
+            openDropdown.classList.remove('open');
+            const trigger = openDropdown.querySelector('.nav__dropdown-trigger');
+            if (trigger) trigger.setAttribute('aria-expanded', 'false');
+         });
+      }
+   });
+   // Re-enable on resize
+   window.addEventListener('resize', () => {
+      setupDropdownToggles();
+   }, { once: true });
 }
 
 // ===============================
