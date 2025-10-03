@@ -228,6 +228,25 @@ p {
   .nav__menu.open {
     display: flex;
   }
+  /* Make nav links and submenu items larger and more touch-friendly on mobile */
+  .nav__menu a,
+  .nav__submenu a {
+    padding: 16px 20px;
+    font-size: 1.1rem;
+    min-height: 48px;
+    min-width: 100px;
+    line-height: 1.3;
+    /* Optional: make the tap area fill the width */
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .nav__submenu {
+    padding: 0.5rem 0;
+  }
+  .nav__menu > li {
+    margin-bottom: 2px;
+  }
 }
 /* Remove background and color change on hover for mobile */
 .nav__menu a:hover,
