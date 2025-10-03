@@ -32,6 +32,39 @@ function setupNavToggle() {
 }
 
 // ===============================
+// Dropdown toggle for mobile nav
+// ===============================
+function setupDropdownToggles() {
+   // Only enable click-to-toggle on mobile widths
+   if (window.innerWidth <= 900) {
+      document.querySelectorAll('.nav__dropdown-trigger').forEach(trigger => {
+         trigger.addEventListener('click', function (e) {
+            e.preventDefault();
+            const parent = trigger.parentElement;
+            // Close other open dropdowns
+            document.querySelectorAll('.nav__dropdown.open').forEach(openDropdown => {
+               if (openDropdown !== parent) openDropdown.classList.remove('open');
+            });
+            // Toggle this dropdown
+            parent.classList.toggle('open');
+            // Update aria-expanded
+            trigger.setAttribute('aria-expanded', parent.classList.contains('open'));
+         });
+      });
+      // Close dropdowns when clicking outside
+      document.addEventListener('click', function (e) {
+         if (!e.target.closest('.nav__dropdown')) {
+            document.querySelectorAll('.nav__dropdown.open').forEach(openDropdown => {
+               openDropdown.classList.remove('open');
+               const trigger = openDropdown.querySelector('.nav__dropdown-trigger');
+               if (trigger) trigger.setAttribute('aria-expanded', 'false');
+            });
+         }
+      });
+   }
+}
+
+// ===============================
 // Load navbar HTML into the #navbar div
 // ===============================
 function loadNavbar() {
@@ -45,6 +78,7 @@ function loadNavbar() {
       .then((html) => {
          document.getElementById("navbar").innerHTML = html;
          setupNavToggle(); // Setup hamburger menu after nav is loaded
+         setupDropdownToggles(); // Dropdowns on mobile
       });
 }
 

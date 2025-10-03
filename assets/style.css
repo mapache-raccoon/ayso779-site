@@ -163,6 +163,15 @@ p {
   min-width: 180px;
   z-index: 10;
   padding: 0.5rem 0;
+  list-style: none;
+  margin: 0;
+}
+
+/* Remove bullets from nav submenu items on all screen sizes */
+.nav__submenu li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 .nav__dropdown:hover > .nav__submenu,
 .nav__dropdown:focus-within > .nav__submenu {
