@@ -137,9 +137,10 @@ p {
   color: #222;
   text-decoration: none;
   font-weight: 500;
-  padding: 0.5rem 0.75rem;
+  padding: 0.85rem 1.25rem;
   border-radius: 4px;
   transition: background 0.15s, color 0.15s;
+  font-size: 1.15rem;
 }
 .nav__menu a:hover,
 .nav__menu a:focus {
@@ -157,14 +158,16 @@ p {
   position: absolute;
   top: 110%;
   left: 0;
+  right: 0;
+  margin: 0 auto;
   background: #fff;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   border-radius: 6px;
-  min-width: 180px;
+  min-width: 190px;
   z-index: 10;
-  padding: 0.5rem 0;
+  padding: 0.35rem 0;
   list-style: none;
-  margin: 0;
+  text-align: center;
 }
 
 /* Remove bullets from nav submenu items on all screen sizes */
@@ -182,10 +185,11 @@ p {
 }
 .nav__submenu a {
   display: block;
-  padding: 0.5rem 1rem;
+  padding: 0.6rem 1.1rem;
   color: #222;
   border-radius: 0;
-  font-size: 1rem;
+  font-size: 1.01rem;
+  text-align: center;
 }
 .nav__submenu a:hover,
 .nav__submenu a:focus {
@@ -231,11 +235,17 @@ p {
     display: flex;
   }
   /* Make nav links and submenu items larger and more touch-friendly on mobile */
-  .nav__menu a,
+  .nav__menu > li > a {
+    padding: 1.1rem 1.25rem;
+    font-size: 1.18rem;
+    min-height: 54px;
+    width: 100%;
+    box-sizing: border-box;
+  }
   .nav__submenu a {
-    padding: 16px 20px;
-    font-size: 1.1rem;
-    min-height: 48px;
+    padding: 0.6rem 1.1rem;
+    font-size: 1.01rem;
+    min-height: 36px;
     width: 100%;
     box-sizing: border-box;
   }
