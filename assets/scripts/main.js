@@ -20,6 +20,14 @@ function setupNavToggle() {
          navToggle.setAttribute("aria-expanded", String(!expanded));
          navMenu.classList.toggle("open", !expanded);
       });
+
+      // Close the menu when a link is clicked
+      document.querySelectorAll('.nav__menu a').forEach(link => {
+         link.addEventListener('click', () => {
+            navMenu.classList.remove('open');
+            navToggle.setAttribute('aria-expanded', 'false');
+         });
+      });
    }
 }
 
