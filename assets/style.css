@@ -304,6 +304,15 @@ p {
   pointer-events: auto;
 }
 
+@media (max-width: 900px) {
+  .nav__dropdown:hover > .nav__submenu,
+  .nav__dropdown:focus-within > .nav__submenu {
+    display: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+}
+
 /* Show pointer cursor for dropdown triggers */
 .nav__dropdown-trigger {
   cursor: pointer;
