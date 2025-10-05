@@ -74,14 +74,9 @@ function setupDropdownToggles() {
             };
          }
       } else {
-         // Mobile: open on click anywhere in the dropdown parent (not just text)
-         dropdown.onclick = (e) => {
-            // Only trigger if clicking the dropdown or its trigger, not submenu links
-            if (
-               e.target.classList.contains('nav__dropdown-trigger') ||
-               e.target === dropdown ||
-               e.target.parentElement === dropdown
-            ) {
+         // Mobile: open on click of the trigger only
+         if (trigger) {
+            trigger.onclick = (e) => {
                e.preventDefault();
                const isOpen = dropdown.classList.contains('open');
                document.querySelectorAll('.nav__dropdown.open').forEach(d => {
@@ -91,10 +86,10 @@ function setupDropdownToggles() {
                });
                if (!isOpen) {
                   dropdown.classList.add('open');
-                  if (trigger) trigger.setAttribute('aria-expanded', 'true');
+                  trigger.setAttribute('aria-expanded', 'true');
                }
-            }
-         };
+            };
+         }
       }
    });
    // Close dropdowns when clicking outside (but not when clicking inside submenu)
