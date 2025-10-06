@@ -19,11 +19,11 @@ function setFooterYear() {
  */
 function setupNavigation() {
    console.log('Setting up navigation with event delegation');
-   
+
    // Use event delegation on document to catch all navigation clicks
-   document.addEventListener('click', function(e) {
+   document.addEventListener('click', function (e) {
       console.log('Document click detected:', e.target.className);
-      
+
       // Handle hamburger menu toggle
       if (e.target.closest('.navbar-toggle')) {
          console.log('Hamburger clicked');
@@ -34,7 +34,7 @@ function setupNavigation() {
          }
          return;
       }
-      
+
       // Handle close button
       if (e.target.closest('.navbar-close')) {
          console.log('Close button clicked');
@@ -48,21 +48,21 @@ function setupNavigation() {
          }
          return;
       }
-      
+
       // Handle dropdown toggles
       if (e.target.closest('.dropdown-toggle')) {
          e.preventDefault();
          console.log('Dropdown toggle clicked');
-         
+
          const dropdown = e.target.closest('.dropdown');
          if (dropdown) {
             const isOpen = dropdown.classList.contains('open');
-            
+
             // Close all dropdowns first
             document.querySelectorAll('.dropdown').forEach(other => {
                other.classList.remove('open');
             });
-            
+
             // If this one wasn't open, open it
             if (!isOpen) {
                dropdown.classList.add('open');
@@ -73,7 +73,7 @@ function setupNavigation() {
          }
          return;
       }
-      
+
       // Handle regular nav links (close menu)
       if (e.target.closest('.navbar-menu a') && !e.target.closest('.dropdown-toggle')) {
          console.log('Regular nav link clicked');
@@ -83,7 +83,7 @@ function setupNavigation() {
          }
          return;
       }
-      
+
       // Handle clicks outside navbar (close everything)
       if (!e.target.closest('.navbar')) {
          const menu = document.querySelector('.navbar-menu');
@@ -208,10 +208,10 @@ function toggleMobileDropdown(element) {
 document.addEventListener("DOMContentLoaded", function () {
    // Set up navigation event delegation immediately
    setupNavigation();
-   
+
    // Load navigation content
    loadNavigation();
-   
+
    // Set footer year
    setFooterYear();
 });
