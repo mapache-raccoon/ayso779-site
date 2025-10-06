@@ -253,6 +253,15 @@ p {
     padding: 0;
   }
 
+  /* Force dropdowns to work on mobile regardless of JS detection */
+  .dropdown.open .dropdown-menu {
+    display: block !important;
+    position: static !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+  }
+
   .navbar-menu.open {
     display: flex;
   }

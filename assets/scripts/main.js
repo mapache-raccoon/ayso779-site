@@ -15,63 +15,84 @@ function setFooterYear() {
 // Simple Navigation Toggle
 // ===============================
 /**
- * Sets up simple navigation toggle for mobile.
+ * Sets up simple navigation using event delegation - works even if elements don't exist yet
  */
 function setupNavigation() {
-   const toggle = document.querySelector('.navbar-toggle');
-   const menu = document.querySelector('.navbar-menu');
-   const closeBtn = document.querySelector('.navbar-close');
-   const dropdowns = document.querySelectorAll('.dropdown');
-
-   // Mobile menu toggle
-   if (toggle && menu) {
-      toggle.addEventListener('click', function () {
-         menu.classList.toggle('open');
-      });
-
-      // Close button functionality
-      if (closeBtn) {
-         closeBtn.addEventListener('click', function () {
+   console.log('Setting up navigation with event delegation');
+   
+   // Use event delegation on document to catch all navigation clicks
+   document.addEventListener('click', function(e) {
+      console.log('Document click detected:', e.target.className);
+      
+      // Handle hamburger menu toggle
+      if (e.target.closest('.navbar-toggle')) {
+         console.log('Hamburger clicked');
+         const menu = document.querySelector('.navbar-menu');
+         if (menu) {
+            menu.classList.toggle('open');
+            console.log('Menu toggled, open:', menu.classList.contains('open'));
+         }
+         return;
+      }
+      
+      // Handle close button
+      if (e.target.closest('.navbar-close')) {
+         console.log('Close button clicked');
+         const menu = document.querySelector('.navbar-menu');
+         if (menu) {
             menu.classList.remove('open');
-            // Close all dropdowns when closing menu
-            dropdowns.forEach(dropdown => {
+            // Close all dropdowns too
+            document.querySelectorAll('.dropdown').forEach(dropdown => {
                dropdown.classList.remove('open');
             });
-         });
+         }
+         return;
       }
-
-      // Close menu when clicking a regular link (not dropdown toggle)
-      menu.addEventListener('click', function (e) {
-         if (e.target.tagName === 'A' && !e.target.classList.contains('dropdown-toggle')) {
+      
+      // Handle dropdown toggles
+      if (e.target.closest('.dropdown-toggle')) {
+         e.preventDefault();
+         console.log('Dropdown toggle clicked');
+         
+         const dropdown = e.target.closest('.dropdown');
+         if (dropdown) {
+            const isOpen = dropdown.classList.contains('open');
+            
+            // Close all dropdowns first
+            document.querySelectorAll('.dropdown').forEach(other => {
+               other.classList.remove('open');
+            });
+            
+            // If this one wasn't open, open it
+            if (!isOpen) {
+               dropdown.classList.add('open');
+               console.log('Dropdown opened');
+            } else {
+               console.log('Dropdown closed');
+            }
+         }
+         return;
+      }
+      
+      // Handle regular nav links (close menu)
+      if (e.target.closest('.navbar-menu a') && !e.target.closest('.dropdown-toggle')) {
+         console.log('Regular nav link clicked');
+         const menu = document.querySelector('.navbar-menu');
+         if (menu) {
             menu.classList.remove('open');
          }
-      });
-   }
-
-   // Ultra-fast mobile dropdown handling
-   dropdowns.forEach(dropdown => {
-      const toggleLink = dropdown.querySelector('.dropdown-toggle');
-      if (toggleLink) {
-         toggleLink.addEventListener('click', function (e) {
-            e.preventDefault();
-
-            // Check mobile once and cache result for speed
-            const isMobile = window.innerWidth <= 900;
-            if (isMobile) {
-               // Instant toggle with no delays
-               dropdown.classList.toggle('open');
-            }
-         }, { passive: false }); // Optimize event listener
+         return;
       }
-   });
-
-   // Close mobile menu when clicking outside
-   document.addEventListener('click', function (e) {
-      if (!e.target.closest('.navbar') && menu) {
-         menu.classList.remove('open');
-         dropdowns.forEach(dropdown => {
-            dropdown.classList.remove('open');
-         });
+      
+      // Handle clicks outside navbar (close everything)
+      if (!e.target.closest('.navbar')) {
+         const menu = document.querySelector('.navbar-menu');
+         if (menu && menu.classList.contains('open')) {
+            menu.classList.remove('open');
+            document.querySelectorAll('.dropdown').forEach(dropdown => {
+               dropdown.classList.remove('open');
+            });
+         }
       }
    });
 }
@@ -109,7 +130,6 @@ function loadNavigation() {
          }
 
          navContainer.innerHTML = html;
-         setupNavigation(); // Initialize navigation after loading
       })
       .catch(error => {
          console.error('Error loading navigation:', error);
@@ -153,17 +173,45 @@ function loadNavigation() {
            </div>
          </nav>`;
          navContainer.innerHTML = fallbackNav;
-         setupNavigation();
       });
+}
+
+// ===============================
+// Global function for mobile dropdown toggle (fallback)
+// ===============================
+function toggleMobileDropdown(element) {
+   console.log('toggleMobileDropdown called');
+   const dropdown = element.closest('.dropdown');
+   if (dropdown) {
+      console.log('Dropdown found, toggling');
+
+      // Close all other dropdowns
+      document.querySelectorAll('.dropdown').forEach(other => {
+         if (other !== dropdown) {
+            other.classList.remove('open');
+         }
+      });
+
+      // Toggle this dropdown
+      dropdown.classList.toggle('open');
+      console.log('Dropdown is now open:', dropdown.classList.contains('open'));
+   }
+   return false; // Prevent default link behavior
 }
 
 // ===============================
 // DOMContentLoaded: Run on page load
 // ===============================
 /**
- * On DOMContentLoaded, load navigation and set the footer year.
+ * On DOMContentLoaded, set up navigation immediately and load navigation content.
  */
 document.addEventListener("DOMContentLoaded", function () {
+   // Set up navigation event delegation immediately
+   setupNavigation();
+   
+   // Load navigation content
    loadNavigation();
+   
+   // Set footer year
    setFooterYear();
 });
