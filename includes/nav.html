@@ -1,76 +1,106 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AYSO Region 779</title>
-    <link rel="stylesheet" href="assets/styles/main.css" />
-  </head>
-  <body>
-    <nav class="nav">
-      <div class="container nav__inner">
-        <a class="nav__brand" href="index.html">
-          <img
-            src="assets/images/logos/ayso779crest.png"
-            alt="AYSO 779"
-            height="32"
-          />
-          <span>AYSO Region 779</span>
-        </a>
-        <button
-          class="nav__toggle"
-          aria-expanded="false"
-          aria-controls="nav-menu"
-          aria-label="Open navigation menu"
+<nav class="nav">
+  <div class="container nav__inner">
+    <a class="nav__brand" href="index.html">
+      <img
+        src="assets/images/logos/ayso779crest.png"
+        alt="AYSO 779"
+        height="32"
+      />
+      <span>AYSO Region 779</span>
+    </a>
+    <button
+      class="nav__toggle"
+      aria-expanded="false"
+      aria-controls="nav-menu"
+      aria-label="Open navigation menu"
+    >
+      <!-- Hamburger icon SVG -->
+      <svg
+        width="28"
+        height="28"
+        viewBox="0 0 28 28"
+        fill="none"
+        aria-hidden="true"
+      >
+        <rect y="6" width="28" height="2.5" rx="1.25" fill="#222" />
+        <rect y="13" width="28" height="2.5" rx="1.25" fill="#222" />
+        <rect y="20" width="28" height="2.5" rx="1.25" fill="#222" />
+      </svg>
+    </button>
+    <ul id="nav-menu" class="nav__menu">
+      <button
+        class="nav__close"
+        aria-label="Close navigation menu"
+        tabindex="0"
+        type="button"
+      >
+        <!-- Close (X) icon SVG -->
+        <svg
+          width="28"
+          height="28"
+          viewBox="0 0 28 28"
+          fill="none"
+          aria-hidden="true"
         >
-          <!-- Hamburger icon SVG -->
-          <svg
-            width="28"
-            height="28"
-            viewBox="0 0 28 28"
-            fill="none"
-            aria-hidden="true"
-          >
-            <rect y="6" width="28" height="2.5" rx="1.25" fill="#222" />
-            <rect y="13" width="28" height="2.5" rx="1.25" fill="#222" />
-            <rect y="20" width="28" height="2.5" rx="1.25" fill="#222" />
-          </svg>
-        </button>
-        <ul id="nav-menu" class="nav__menu">
-          <li><a href="/index.html">Home</a></li>
-          <li class="nav__dropdown">
-            <a
-              href="#"
-              class="nav__dropdown-trigger"
-              aria-haspopup="true"
-              aria-expanded="false"
-              >About</a
-            >
-            <ul class="nav__submenu">
-              <li><a href="pages/about.html">About Region 779</a></li>
-              <li><a href="pages/board.html">AYSO Board</a></li>
-            </ul>
-          </li>
-          <li class="nav__dropdown">
-            <a
-              href="#"
-              class="nav__dropdown-trigger"
-              aria-haspopup="true"
-              aria-expanded="false"
-              >Programs</a
-            >
-            <ul class="nav__submenu">
-              <li><a href="pages/playground.html">Playground</a></li>
-              <li><a href="pages/core.html">Core</a></li>
-              <li><a href="pages/extra.html">EXTRA</a></li>
-              <li><a href="pages/alliance.html">Alliance</a></li>
-              <li><a href="pages/epic.html">EPIC</a></li>
-            </ul>
-          </li>
-          <li><a href="pages/volunteer.html">Volunteers</a></li>
+          <line
+            x1="7"
+            y1="7"
+            x2="21"
+            y2="21"
+            stroke="#222"
+            stroke-width="2.5"
+            stroke-linecap="round"
+          />
+          <line
+            x1="21"
+            y1="7"
+            x2="7"
+            y2="21"
+            stroke="#222"
+            stroke-width="2.5"
+            stroke-linecap="round"
+          />
+        </svg>
+      </button>
+      <li class="nav__item"><a href="/index.html" tabindex="0">Home</a></li>
+      <li class="nav__dropdown nav__item">
+        <a
+          href="#"
+          class="nav__dropdown-trigger"
+          aria-haspopup="true"
+          aria-expanded="false"
+          tabindex="0"
+        >
+          <span>About</span>
+          <span class="nav__dropdown-arrow" aria-hidden="true"></span>
+        </a>
+        <ul class="nav__submenu">
+          <li><a href="pages/about.html" tabindex="0">About Region 779</a></li>
+          <li><a href="pages/board.html" tabindex="0">AYSO Board</a></li>
         </ul>
-      </div>
-    </nav>
-    <script src="assets/scripts/main.js"></script>
-  </body>
-</html>
+      </li>
+      <li class="nav__dropdown nav__item">
+        <a
+          href="#"
+          class="nav__dropdown-trigger"
+          aria-haspopup="true"
+          aria-expanded="false"
+          tabindex="0"
+        >
+          <span>Programs</span>
+          <span class="nav__dropdown-arrow" aria-hidden="true"></span>
+        </a>
+        <ul class="nav__submenu">
+          <li><a href="pages/playground.html" tabindex="0">Playground</a></li>
+          <li><a href="pages/core.html" tabindex="0">Core</a></li>
+          <li><a href="pages/extra.html" tabindex="0">EXTRA</a></li>
+          <li><a href="pages/alliance.html" tabindex="0">Alliance</a></li>
+          <li><a href="pages/epic.html" tabindex="0">EPIC</a></li>
+        </ul>
+      </li>
+      <li class="nav__item">
+        <a href="pages/volunteer.html" tabindex="0">Volunteers</a>
+      </li>
+    </ul>
+  </div>
+</nav>
