@@ -48,26 +48,20 @@ function setupNavigation() {
       });
    }
 
-   // Mobile dropdown toggles - improved for better stability
+   // Ultra-fast mobile dropdown handling
    dropdowns.forEach(dropdown => {
       const toggleLink = dropdown.querySelector('.dropdown-toggle');
       if (toggleLink) {
          toggleLink.addEventListener('click', function (e) {
             e.preventDefault();
-            e.stopPropagation();
 
-            if (window.innerWidth <= 900) {
-               // Close other open dropdowns
-               dropdowns.forEach(otherDropdown => {
-                  if (otherDropdown !== dropdown) {
-                     otherDropdown.classList.remove('open');
-                  }
-               });
-
-               // Toggle current dropdown
+            // Check mobile once and cache result for speed
+            const isMobile = window.innerWidth <= 900;
+            if (isMobile) {
+               // Instant toggle with no delays
                dropdown.classList.toggle('open');
             }
-         });
+         }, { passive: false }); // Optimize event listener
       }
    });
 
@@ -90,14 +84,22 @@ function setupNavigation() {
  */
 function loadNavigation() {
    const navContainer = document.getElementById('navigation');
-   if (!navContainer) return;
+   if (!navContainer) {
+      console.error('Navigation container not found!');
+      return;
+   }
 
    // Determine if we're in a subdirectory
    const isSubpage = window.location.pathname.includes('/pages/');
    const navPath = isSubpage ? '../includes/nav.html' : 'includes/nav.html';
 
    fetch(navPath)
-      .then(response => response.text())
+      .then(response => {
+         if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+         }
+         return response.text();
+      })
       .then(html => {
          // Fix asset paths for subpages
          if (isSubpage) {
@@ -111,6 +113,47 @@ function loadNavigation() {
       })
       .catch(error => {
          console.error('Error loading navigation:', error);
+         // Fallback: insert navigation directly if fetch fails
+         const fallbackNav = `
+         <nav class="navbar">
+           <div class="container">
+             <a href="${isSubpage ? '../' : ''}index.html" class="navbar-brand">
+               <img src="${isSubpage ? '../' : ''}assets/images/logos/ayso779crest.png" alt="AYSO 779" />
+               <span>AYSO Region 779</span>
+             </a>
+             <button class="navbar-toggle" aria-label="Toggle navigation">
+               <span></span>
+               <span></span>
+               <span></span>
+             </button>
+             <ul class="navbar-menu">
+               <li class="navbar-close-container">
+                 <button class="navbar-close" aria-label="Close navigation">×</button>
+               </li>
+               <li><a href="${isSubpage ? '../' : ''}index.html">Home</a></li>
+               <li class="dropdown">
+                 <a href="#" class="dropdown-toggle">About <span class="dropdown-arrow">▼</span></a>
+                 <ul class="dropdown-menu">
+                   <li><a href="${isSubpage ? '' : 'pages/'}about.html">About Region 779</a></li>
+                   <li><a href="${isSubpage ? '' : 'pages/'}board.html">AYSO Board</a></li>
+                 </ul>
+               </li>
+               <li class="dropdown">
+                 <a href="#" class="dropdown-toggle">Programs <span class="dropdown-arrow">▼</span></a>
+                 <ul class="dropdown-menu">
+                   <li><a href="${isSubpage ? '' : 'pages/'}playground.html">Playground</a></li>
+                   <li><a href="${isSubpage ? '' : 'pages/'}core.html">Core</a></li>
+                   <li><a href="${isSubpage ? '' : 'pages/'}extra.html">EXTRA</a></li>
+                   <li><a href="${isSubpage ? '' : 'pages/'}alliance.html">Alliance</a></li>
+                   <li><a href="${isSubpage ? '' : 'pages/'}epic.html">EPIC</a></li>
+                 </ul>
+               </li>
+               <li><a href="${isSubpage ? '' : 'pages/'}volunteer.html">Volunteers</a></li>
+             </ul>
+           </div>
+         </nav>`;
+         navContainer.innerHTML = fallbackNav;
+         setupNavigation();
       });
 }
 

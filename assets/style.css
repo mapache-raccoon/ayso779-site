@@ -166,8 +166,10 @@ p {
   transition: transform 0.2s ease;
 }
 
-.dropdown:hover .dropdown-arrow {
-  transform: rotate(180deg);
+@media (min-width: 901px) {
+  .dropdown:hover .dropdown-arrow {
+    transform: rotate(180deg);
+  }
 }
 
 .dropdown-menu {
@@ -185,8 +187,10 @@ p {
   z-index: 200;
 }
 
-.dropdown:hover .dropdown-menu {
-  display: block;
+@media (min-width: 901px) {
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }
 }
 
 .dropdown-menu a {
@@ -269,8 +273,28 @@ p {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 1rem 1.5rem !important;
+    border-bottom: 1px solid var(--neutral-200);
   }
 
+  .dropdown.open .dropdown-arrow {
+    transform: rotate(180deg);
+    transition: none !important; /* Instant arrow rotation */
+  }
+
+  /* Remove all transitions from dropdown arrows on mobile */
+  .dropdown-arrow {
+    transition: none !important;
+  }
+
+  /* Optimize touch responsiveness */
+  .dropdown-toggle {
+    touch-action: manipulation; /* Faster touch response */
+    -webkit-tap-highlight-color: transparent; /* Remove tap highlight delay */
+  }
+
+  /* Completely disable hover effects on mobile */
+  /* Mobile dropdown menu styles - optimized for speed */
   .dropdown-menu {
     position: static;
     display: none;
@@ -279,14 +303,22 @@ p {
     border-radius: 0;
     margin: 0;
     padding: 0;
+    transition: none !important; /* Remove all transitions for instant response */
+    animation: none !important; /* Remove all animations */
   }
 
+  /* When dropdown is open, show the menu instantly */
   .dropdown.open .dropdown-menu {
-    display: block;
+    display: block !important;
   }
 
+  /* Completely disable hover on mobile */
   .dropdown:hover .dropdown-menu {
     display: none !important;
+  }
+
+  .dropdown:hover .dropdown-arrow {
+    transform: none !important;
   }
 
   .dropdown-menu a {
