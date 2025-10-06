@@ -12,255 +12,115 @@ function setFooterYear() {
 }
 
 // ===============================
-// Utility: Setup hamburger menu toggle for mobile nav
+// Simple Navigation Toggle
 // ===============================
 /**
- * Sets up the hamburger menu toggle for mobile navigation.
- * - Toggles the nav menu open/closed on click.
- * - Closes the menu when a nav link is clicked.
+ * Sets up simple navigation toggle for mobile.
  */
-function setupNavToggle() {
-   const navToggle = document.querySelector(".nav__toggle");
-   const navMenu = document.getElementById("nav-menu");
-   if (navToggle && navMenu) {
-      // Toggle menu open/close on hamburger click
-      navToggle.addEventListener("click", function () {
-         const expanded = navToggle.getAttribute("aria-expanded") === "true";
-         navToggle.setAttribute("aria-expanded", String(!expanded));
-         navMenu.classList.toggle("open", !expanded);
-         if (!expanded) {
-            // Focus first nav link for accessibility
-            setTimeout(() => {
-               const firstLink = navMenu.querySelector('a');
-               if (firstLink) firstLink.focus();
-            }, 200);
-         }
+function setupNavigation() {
+   const toggle = document.querySelector('.navbar-toggle');
+   const menu = document.querySelector('.navbar-menu');
+   const closeBtn = document.querySelector('.navbar-close');
+   const dropdowns = document.querySelectorAll('.dropdown');
+
+   // Mobile menu toggle
+   if (toggle && menu) {
+      toggle.addEventListener('click', function () {
+         menu.classList.toggle('open');
       });
 
-      // Close the menu when a link is clicked
-      document.querySelectorAll('.nav__menu a').forEach(link => {
-         link.addEventListener('click', () => {
-            navMenu.classList.remove('open');
-            navToggle.setAttribute('aria-expanded', 'false');
-         });
-      });
-
-      // Close the menu when the close button is clicked
-      const closeBtn = navMenu.querySelector('.nav__close');
+      // Close button functionality
       if (closeBtn) {
-         closeBtn.addEventListener('click', () => {
-            navMenu.classList.remove('open');
-            navToggle.setAttribute('aria-expanded', 'false');
-            navToggle.focus();
+         closeBtn.addEventListener('click', function () {
+            menu.classList.remove('open');
+            // Close all dropdowns when closing menu
+            dropdowns.forEach(dropdown => {
+               dropdown.classList.remove('open');
+            });
          });
       }
 
-      // Optional: close menu with Escape key
-      document.addEventListener('keydown', (e) => {
-         if (navMenu.classList.contains('open') && e.key === 'Escape') {
-            navMenu.classList.remove('open');
-            navToggle.setAttribute('aria-expanded', 'false');
-            navToggle.focus();
+      // Close menu when clicking a regular link (not dropdown toggle)
+      menu.addEventListener('click', function (e) {
+         if (e.target.tagName === 'A' && !e.target.classList.contains('dropdown-toggle')) {
+            menu.classList.remove('open');
          }
       });
    }
-}
 
-// ===============================
-// Dropdown toggle for mobile nav
-// ===============================
-/**
- * Sets up dropdown toggles for navigation.
- * - Handles both desktop (hover/click) and mobile (click) behaviors.
- * - Ensures accessibility with keyboard support.
- */
-function setupDropdownToggles() {
-   const isMobile = () => window.innerWidth <= 900;
-   // Remove all previous event listeners and handlers
-   document.querySelectorAll('.nav__dropdown').forEach(dropdown => {
-      dropdown.onmouseenter = null;
-      dropdown.onmouseleave = null;
-      dropdown.onclick = null;
-      const trigger = dropdown.querySelector('.nav__dropdown-trigger');
-      if (trigger) {
-         trigger.onclick = null;
-         trigger.onkeydown = null;
-         // Remove any previous mobile click handler
-         trigger.removeEventListener('click', trigger._mobileClickHandler || (() => { }));
-         delete trigger._mobileClickHandler;
-      }
-   });
-
-   document.querySelectorAll('.nav__dropdown').forEach(dropdown => {
-      const trigger = dropdown.querySelector('.nav__dropdown-trigger');
-      if (!trigger) return;
-      if (!isMobile()) {
-         // Desktop: open on hover or click
-         dropdown.onmouseenter = () => {
-            dropdown.classList.add('open');
-            trigger.setAttribute('aria-expanded', 'true');
-         };
-         dropdown.onmouseleave = () => {
-            dropdown.classList.remove('open');
-            trigger.setAttribute('aria-expanded', 'false');
-         };
-         trigger.onclick = (e) => {
-            e.preventDefault();
-            const isOpen = dropdown.classList.contains('open');
-            // Only one open at a time
-            document.querySelectorAll('.nav__dropdown.open').forEach(d => {
-               if (d !== dropdown) {
-                  d.classList.remove('open');
-                  const t = d.querySelector('.nav__dropdown-trigger');
-                  if (t) t.setAttribute('aria-expanded', 'false');
-               }
-            });
-            if (!isOpen) {
-               dropdown.classList.add('open');
-               trigger.setAttribute('aria-expanded', 'true');
-            }
-         };
-         trigger.onkeydown = (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-               e.preventDefault();
-               trigger.click();
-            }
-         };
-      } else {
-         // Mobile: open/close only this submenu, allow multiple open
-         const mobileClickHandler = function (e) {
+   // Mobile dropdown toggles - improved for better stability
+   dropdowns.forEach(dropdown => {
+      const toggleLink = dropdown.querySelector('.dropdown-toggle');
+      if (toggleLink) {
+         toggleLink.addEventListener('click', function (e) {
             e.preventDefault();
             e.stopPropagation();
 
-            // Add small delay to prevent quick toggling
-            setTimeout(() => {
-               const isOpen = dropdown.classList.contains('open');
-               if (isOpen) {
-                  dropdown.classList.remove('open');
-                  trigger.setAttribute('aria-expanded', 'false');
-               } else {
-                  dropdown.classList.add('open');
-                  trigger.setAttribute('aria-expanded', 'true');
-               }
-            }, 10);
-         };
-         trigger._mobileClickHandler = mobileClickHandler;
-         trigger.addEventListener('click', mobileClickHandler);
-         trigger.onkeydown = (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-               e.preventDefault();
-               trigger.click();
+            if (window.innerWidth <= 900) {
+               // Close other open dropdowns
+               dropdowns.forEach(otherDropdown => {
+                  if (otherDropdown !== dropdown) {
+                     otherDropdown.classList.remove('open');
+                  }
+               });
+
+               // Toggle current dropdown
+               dropdown.classList.toggle('open');
             }
-         };
-      }
-
-      // Close submenu when a submenu link is clicked
-      const submenuLinks = dropdown.querySelectorAll('.nav__submenu a');
-      submenuLinks.forEach(link => {
-         link.addEventListener('click', () => {
-            dropdown.classList.remove('open');
-            trigger.setAttribute('aria-expanded', 'false');
          });
-      });
-   });
-
-   // Close all open dropdowns if clicking outside any dropdown
-   document.addEventListener('click', function (e) {
-      // Only close dropdowns on outside clicks if not on mobile or if clicking outside the nav entirely
-      if (!e.target.closest('.nav__dropdown') && !e.target.closest('.nav__submenu')) {
-         // Add small delay for mobile to prevent immediate closing
-         const delay = isMobile() ? 100 : 0;
-         setTimeout(() => {
-            document.querySelectorAll('.nav__dropdown.open').forEach(openDropdown => {
-               openDropdown.classList.remove('open');
-               const trigger = openDropdown.querySelector('.nav__dropdown-trigger');
-               if (trigger) trigger.setAttribute('aria-expanded', 'false');
-            });
-         }, delay);
       }
    });
 
-   // When the nav menu closes, close all open dropdowns (for mobile)
-   const navMenu = document.getElementById('nav-menu');
-   if (navMenu) {
-      navMenu.addEventListener('transitionend', function () {
-         if (!navMenu.classList.contains('open')) {
-            document.querySelectorAll('.nav__dropdown.open').forEach(openDropdown => {
-               openDropdown.classList.remove('open');
-               const trigger = openDropdown.querySelector('.nav__dropdown-trigger');
-               if (trigger) trigger.setAttribute('aria-expanded', 'false');
-            });
-         }
-      });
-   }
-
-   // Re-enable on resize
-   window.addEventListener('resize', () => {
-      setupDropdownToggles();
-   }, { once: true });
+   // Close mobile menu when clicking outside
+   document.addEventListener('click', function (e) {
+      if (!e.target.closest('.navbar') && menu) {
+         menu.classList.remove('open');
+         dropdowns.forEach(dropdown => {
+            dropdown.classList.remove('open');
+         });
+      }
+   });
 }
 
 // ===============================
-// Load navbar HTML into the #navbar div
+// Load Navigation
 // ===============================
 /**
- * Loads the navbar HTML into the #navbar div and initializes nav behaviors.
+ * Loads navigation HTML and fixes paths for different directory levels.
  */
-function loadNavbar() {
-   console.log('loadNavbar called');
-   // Determine correct path to nav.html based on current location
-   let navPath = "includes/nav.html";
-   let assetPath = "assets/";
+function loadNavigation() {
+   const navContainer = document.getElementById('navigation');
+   if (!navContainer) return;
 
-   // Check if we're in the pages directory (more robust detection)
-   const currentPath = window.location.pathname.toLowerCase();
-   if (currentPath.includes("/pages/") || currentPath.endsWith(".html") && currentPath !== "/" && currentPath !== "/index.html") {
-      navPath = "../includes/nav.html";
-      assetPath = "../assets/";
-   }
-
-   console.log('Loading nav from:', navPath);
+   // Determine if we're in a subdirectory
+   const isSubpage = window.location.pathname.includes('/pages/');
+   const navPath = isSubpage ? '../includes/nav.html' : 'includes/nav.html';
 
    fetch(navPath)
-      .then((res) => {
-         console.log('Nav fetch response:', res.status);
-         return res.text();
-      })
-      .then((html) => {
-         console.log('Nav HTML loaded, length:', html.length);
-         // Fix asset paths in the navigation HTML
-         html = html.replace(/src="assets\//g, `src="${assetPath}`);
-         html = html.replace(/href="index\.html"/g, assetPath === "../assets/" ? 'href="../index.html"' : 'href="index.html"');
-
-         const navbarElement = document.getElementById("navbar");
-         if (navbarElement) {
-            navbarElement.innerHTML = html;
-            console.log('Nav HTML inserted');
-            setupNavToggle(); // Setup hamburger menu after nav is loaded
-            setupDropdownToggles(); // Dropdowns on mobile
-         } else {
-            console.error('navbar element not found!');
+      .then(response => response.text())
+      .then(html => {
+         // Fix asset paths for subpages
+         if (isSubpage) {
+            html = html.replace(/src="assets\//g, 'src="../assets/');
+            html = html.replace(/href="index\.html"/g, 'href="../index.html"');
+            html = html.replace(/href="pages\//g, 'href="');
          }
+
+         navContainer.innerHTML = html;
+         setupNavigation(); // Initialize navigation after loading
       })
-      .catch((error) => {
+      .catch(error => {
          console.error('Error loading navigation:', error);
       });
-}// ===============================
+}
+
+// ===============================
 // DOMContentLoaded: Run on page load
 // ===============================
 /**
- * On DOMContentLoaded, load the navbar and set the footer year.
+ * On DOMContentLoaded, load navigation and set the footer year.
  */
 document.addEventListener("DOMContentLoaded", function () {
-   console.log('DOM loaded, calling loadNavbar');
-   loadNavbar();
+   loadNavigation();
    setFooterYear();
 });
-
-// Also try loading after a short delay as fallback
-setTimeout(() => {
-   console.log('Fallback navbar load');
-   if (!document.getElementById('navbar').innerHTML.trim()) {
-      loadNavbar();
-   }
-}, 500);
