@@ -248,6 +248,32 @@ p {
     overflow: auto;
   }
 
+  /* Emergency fallback: always show menu and submenus on mobile so links are accessible */
+  .navbar-menu {
+    display: block !important;
+    position: static !important;
+    background: var(--primary-white) !important;
+    box-shadow: none !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .navbar-menu li {
+    display: block !important;
+  }
+
+  .dropdown-menu {
+    display: block !important;
+    position: static !important;
+    box-shadow: none !important;
+    background: var(--neutral-100) !important;
+    padding: 0 !important;
+  }
+
+  .dropdown-toggle {
+    cursor: default !important;
+  }
+
   /* Force dropdowns to work on mobile regardless of JS detection */
   .dropdown.open .dropdown-menu {
     display: block !important;
