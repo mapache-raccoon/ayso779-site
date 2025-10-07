@@ -51,6 +51,15 @@ function setupNavigation() {
 
    // Toggle main menu on mobile
    if (toggle && menu) {
+      // Prevent tap-through on touch devices by intercepting pointerdown
+      toggle.addEventListener('pointerdown', (ev) => {
+         try {
+            if (ev.pointerType === 'touch') {
+               ev.preventDefault();
+            }
+         } catch (e) { }
+      });
+
       toggle.addEventListener('click', () => {
          console.debug('navbar-toggle clicked');
          const expanded = toggle.getAttribute('aria-expanded') === 'true';
@@ -71,6 +80,16 @@ function setupNavigation() {
       el.setAttribute('aria-expanded', 'false');
 
       // Ensure clicking the toggle uses our JS (prevents default navigation)
+      // Prevent tap-through on touch devices
+      el.addEventListener('pointerdown', (ev) => {
+         try {
+            if (ev.pointerType === 'touch') {
+               // Prevent the browser from following any link under the toggle on the same tap
+               ev.preventDefault();
+            }
+         } catch (e) { }
+      });
+
       el.addEventListener('click', (ev) => {
          console.debug('dropdown-toggle clicked:', el.textContent && el.textContent.trim());
          ev.preventDefault();
