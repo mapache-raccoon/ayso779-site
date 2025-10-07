@@ -151,6 +151,20 @@ p {
   transition: color 0.2s;
 }
 
+/* Larger touch targets and visible focus for accessibility */
+.navbar-menu a,
+.dropdown-toggle {
+  padding: 0.85rem 1rem;
+}
+
+.navbar-menu a:focus,
+.dropdown-toggle:focus,
+.navbar-toggle:focus {
+  outline: 3px solid rgba(16, 185, 129, 0.25);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
 .navbar-menu a:hover {
   color: var(--primary-green);
 }
@@ -187,6 +201,11 @@ p {
   z-index: 200;
 }
 
+/* Allow JS-driven open state to show menus regardless of hover state */
+.dropdown.open > .dropdown-menu {
+  display: block;
+}
+
 @media (min-width: 901px) {
   .dropdown:hover .dropdown-menu {
     display: block;
@@ -206,27 +225,6 @@ p {
   color: var(--primary-white);
 }
 
-/* Close button styles */
-.navbar-close-container {
-  display: none;
-}
-
-.navbar-close {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  padding: 0.5rem 1rem;
-  color: var(--neutral-500);
-  transition: color 0.2s;
-  float: right;
-  margin-right: 1rem;
-  margin-top: 0.5rem;
-}
-
-.navbar-close:hover {
-  color: var(--primary-black);
-}
 
 /* Mobile styles */
 @media (max-width: 900px) {
@@ -234,11 +232,6 @@ p {
     display: flex;
   }
 
-  .navbar-close-container {
-    display: block;
-    text-align: right;
-    border-bottom: 1px solid var(--neutral-200);
-  }
 
   .navbar-menu {
     display: none;
@@ -251,6 +244,8 @@ p {
     flex-direction: column;
     gap: 0;
     padding: 0;
+    max-height: 80vh; /* prevent overscroll */
+    overflow: auto;
   }
 
   /* Force dropdowns to work on mobile regardless of JS detection */
@@ -264,6 +259,17 @@ p {
 
   .navbar-menu.open {
     display: flex;
+  }
+
+  /* Make the toggle visually indicate open state */
+  .navbar-toggle[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+  }
+  .navbar-toggle[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+  }
+  .navbar-toggle[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
   }
 
   .navbar-menu li {
@@ -319,6 +325,29 @@ p {
   /* When dropdown is open, show the menu instantly */
   .dropdown.open .dropdown-menu {
     display: block !important;
+  }
+
+  /* Strong override: ensure dropdown menus are visible on mobile when .open is present */
+  .navbar .navbar-menu .dropdown.open > .dropdown-menu {
+    display: block !important;
+    position: static !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    z-index: 9999 !important;
+    pointer-events: auto !important;
+    background: var(--neutral-100) !important;
+  }
+
+  /* Make sure toggles and menu are above potential overlays */
+  .navbar .navbar-menu,
+  .navbar .container {
+    z-index: 9998;
+  }
+
+  .navbar .dropdown-toggle {
+    z-index: 10000;
+    pointer-events: auto;
   }
 
   /* Completely disable hover on mobile */
@@ -721,4 +750,6 @@ p {
 .nav__menu.open {
   display: flex; /* Instant show */
 }
+
+
 

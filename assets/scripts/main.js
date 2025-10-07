@@ -11,193 +11,9 @@ function setFooterYear() {
    }
 }
 
-// ===============================
-// Simple Navigation Toggle
-// ===============================
-/**
- * Sets up simple navigation using event delegation - works even if elements don't exist yet
- */
-function setupNavigation() {
-   console.log('Setting up navigation with event delegation');
 
-   // Use event delegation on document to catch all navigation clicks
-   document.addEventListener('click', function (e) {
-      console.log('Document click detected:', e.target.className);
 
-      // Handle hamburger menu toggle
-      if (e.target.closest('.navbar-toggle')) {
-         console.log('Hamburger clicked');
-         const menu = document.querySelector('.navbar-menu');
-         if (menu) {
-            menu.classList.toggle('open');
-            console.log('Menu toggled, open:', menu.classList.contains('open'));
-         }
-         return;
-      }
 
-      // Handle close button
-      if (e.target.closest('.navbar-close')) {
-         console.log('Close button clicked');
-         const menu = document.querySelector('.navbar-menu');
-         if (menu) {
-            menu.classList.remove('open');
-            // Close all dropdowns too
-            document.querySelectorAll('.dropdown').forEach(dropdown => {
-               dropdown.classList.remove('open');
-            });
-         }
-         return;
-      }
-
-      // Handle dropdown toggles
-      if (e.target.closest('.dropdown-toggle')) {
-         e.preventDefault();
-         console.log('Dropdown toggle clicked');
-
-         const dropdown = e.target.closest('.dropdown');
-         if (dropdown) {
-            const isOpen = dropdown.classList.contains('open');
-
-            // Close all dropdowns first
-            document.querySelectorAll('.dropdown').forEach(other => {
-               other.classList.remove('open');
-            });
-
-            // If this one wasn't open, open it
-            if (!isOpen) {
-               dropdown.classList.add('open');
-               console.log('Dropdown opened');
-            } else {
-               console.log('Dropdown closed');
-            }
-         }
-         return;
-      }
-
-      // Handle regular nav links (close menu)
-      if (e.target.closest('.navbar-menu a') && !e.target.closest('.dropdown-toggle')) {
-         console.log('Regular nav link clicked');
-         const menu = document.querySelector('.navbar-menu');
-         if (menu) {
-            menu.classList.remove('open');
-         }
-         return;
-      }
-
-      // Handle clicks outside navbar (close everything)
-      if (!e.target.closest('.navbar')) {
-         const menu = document.querySelector('.navbar-menu');
-         if (menu && menu.classList.contains('open')) {
-            menu.classList.remove('open');
-            document.querySelectorAll('.dropdown').forEach(dropdown => {
-               dropdown.classList.remove('open');
-            });
-         }
-      }
-   });
-}
-
-// ===============================
-// Load Navigation
-// ===============================
-/**
- * Loads navigation HTML and fixes paths for different directory levels.
- */
-function loadNavigation() {
-   const navContainer = document.getElementById('navigation');
-   if (!navContainer) {
-      console.error('Navigation container not found!');
-      return;
-   }
-
-   // Determine if we're in a subdirectory
-   const isSubpage = window.location.pathname.includes('/pages/');
-   const navPath = isSubpage ? '../includes/nav.html' : 'includes/nav.html';
-
-   fetch(navPath)
-      .then(response => {
-         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-         }
-         return response.text();
-      })
-      .then(html => {
-         // Fix asset paths for subpages
-         if (isSubpage) {
-            html = html.replace(/src="assets\//g, 'src="../assets/');
-            html = html.replace(/href="index\.html"/g, 'href="../index.html"');
-            html = html.replace(/href="pages\//g, 'href="');
-         }
-
-         navContainer.innerHTML = html;
-      })
-      .catch(error => {
-         console.error('Error loading navigation:', error);
-         // Fallback: insert navigation directly if fetch fails
-         const fallbackNav = `
-         <nav class="navbar">
-           <div class="container">
-             <a href="${isSubpage ? '../' : ''}index.html" class="navbar-brand">
-               <img src="${isSubpage ? '../' : ''}assets/images/logos/ayso779crest.png" alt="AYSO 779" />
-               <span>AYSO Region 779</span>
-             </a>
-             <button class="navbar-toggle" aria-label="Toggle navigation">
-               <span></span>
-               <span></span>
-               <span></span>
-             </button>
-             <ul class="navbar-menu">
-               <li class="navbar-close-container">
-                 <button class="navbar-close" aria-label="Close navigation">×</button>
-               </li>
-               <li><a href="${isSubpage ? '../' : ''}index.html">Home</a></li>
-               <li class="dropdown">
-                 <a href="#" class="dropdown-toggle">About <span class="dropdown-arrow">▼</span></a>
-                 <ul class="dropdown-menu">
-                   <li><a href="${isSubpage ? '' : 'pages/'}about.html">About Region 779</a></li>
-                   <li><a href="${isSubpage ? '' : 'pages/'}board.html">AYSO Board</a></li>
-                 </ul>
-               </li>
-               <li class="dropdown">
-                 <a href="#" class="dropdown-toggle">Programs <span class="dropdown-arrow">▼</span></a>
-                 <ul class="dropdown-menu">
-                   <li><a href="${isSubpage ? '' : 'pages/'}playground.html">Playground</a></li>
-                   <li><a href="${isSubpage ? '' : 'pages/'}core.html">Core</a></li>
-                   <li><a href="${isSubpage ? '' : 'pages/'}extra.html">EXTRA</a></li>
-                   <li><a href="${isSubpage ? '' : 'pages/'}alliance.html">Alliance</a></li>
-                   <li><a href="${isSubpage ? '' : 'pages/'}epic.html">EPIC</a></li>
-                 </ul>
-               </li>
-               <li><a href="${isSubpage ? '' : 'pages/'}volunteer.html">Volunteers</a></li>
-             </ul>
-           </div>
-         </nav>`;
-         navContainer.innerHTML = fallbackNav;
-      });
-}
-
-// ===============================
-// Global function for mobile dropdown toggle (fallback)
-// ===============================
-function toggleMobileDropdown(element) {
-   console.log('toggleMobileDropdown called');
-   const dropdown = element.closest('.dropdown');
-   if (dropdown) {
-      console.log('Dropdown found, toggling');
-
-      // Close all other dropdowns
-      document.querySelectorAll('.dropdown').forEach(other => {
-         if (other !== dropdown) {
-            other.classList.remove('open');
-         }
-      });
-
-      // Toggle this dropdown
-      dropdown.classList.toggle('open');
-      console.log('Dropdown is now open:', dropdown.classList.contains('open'));
-   }
-   return false; // Prevent default link behavior
-}
 
 // ===============================
 // DOMContentLoaded: Run on page load
@@ -206,12 +22,188 @@ function toggleMobileDropdown(element) {
  * On DOMContentLoaded, set up navigation immediately and load navigation content.
  */
 document.addEventListener("DOMContentLoaded", function () {
-   // Set up navigation event delegation immediately
-   setupNavigation();
-
-   // Load navigation content
-   loadNavigation();
-
-   // Set footer year
-   setFooterYear();
+   // Load navigation content first, then initialize behaviours that expect DOM nodes
+   loadNavigation()
+      .catch((err) => {
+         // If nav fails to load, still attempt to initialize (no-op inside will return early)
+         console.warn('loadNavigation failed:', err);
+      })
+      .finally(() => {
+         setupNavigation();
+         setFooterYear();
+      });
 });
+
+
+// ===============================
+// Navigation: Mobile behaviour
+// ===============================
+/**
+ * Initialize navigation interactivity: toggle button, dropdowns, keyboard support.
+ */
+function setupNavigation() {
+   const nav = document.querySelector('.navbar');
+   console.debug('setupNavigation: found nav?', !!nav);
+   if (!nav) return;
+
+   const toggle = nav.querySelector('.navbar-toggle');
+   const menu = nav.querySelector('.navbar-menu');
+
+   // Toggle main menu on mobile
+   if (toggle && menu) {
+      toggle.addEventListener('click', () => {
+         console.debug('navbar-toggle clicked');
+         const expanded = toggle.getAttribute('aria-expanded') === 'true';
+         toggle.setAttribute('aria-expanded', String(!expanded));
+         menu.classList.toggle('open');
+         // When opening, move focus to first link for keyboard users
+         if (!expanded) {
+            const firstLink = menu.querySelector('a');
+            if (firstLink) firstLink.focus();
+         }
+      });
+   }
+
+   // Wire up dropdown toggles
+   const dropdownToggles = nav.querySelectorAll('.dropdown-toggle');
+   dropdownToggles.forEach((el) => {
+      // Ensure ARIA defaults
+      el.setAttribute('aria-expanded', 'false');
+
+      // Ensure clicking the toggle uses our JS (prevents default navigation)
+      el.addEventListener('click', (ev) => {
+         console.debug('dropdown-toggle clicked:', el.textContent && el.textContent.trim());
+         ev.preventDefault();
+         toggleMobileDropdown(el);
+      });
+
+      // Click handler already present in markup calling toggleMobileDropdown; keep for compatibility
+      el.addEventListener('keydown', (ev) => {
+         // Space or Enter should toggle
+         if (ev.key === ' ' || ev.key === 'Enter') {
+            ev.preventDefault();
+            toggleMobileDropdown(el);
+         }
+         // Arrow keys: allow small navigation inside menu when open
+      });
+   });
+
+   // Close menus when clicking outside or pressing Escape
+   document.addEventListener('click', (ev) => {
+      const target = ev.target;
+      // debug: where did the click happen
+      // console.debug('document click, target:', target && (target.className || target.tagName));
+      // If click is inside nav, ignore
+      if (nav.contains(target)) return;
+
+      // Close mobile menu
+      if (menu && menu.classList.contains('open')) {
+         menu.classList.remove('open');
+         if (toggle) toggle.setAttribute('aria-expanded', 'false');
+      }
+
+      // Close any open dropdowns
+      const openDropdowns = nav.querySelectorAll('.dropdown.open');
+      openDropdowns.forEach((dd) => dd.classList.remove('open'));
+   });
+
+   document.addEventListener('keydown', (ev) => {
+      if (ev.key === 'Escape') {
+         console.debug('Escape pressed - closing menus');
+         // Close everything
+         if (menu && menu.classList.contains('open')) {
+            menu.classList.remove('open');
+            if (toggle) toggle.setAttribute('aria-expanded', 'false');
+         }
+         const openDropdowns = nav.querySelectorAll('.dropdown.open');
+         openDropdowns.forEach((dd) => dd.classList.remove('open'));
+      }
+   });
+
+   // Close dropdowns on resize above mobile breakpoint
+   let resizeTimer = null;
+   window.addEventListener('resize', () => {
+      // Debounce
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+         if (window.matchMedia('(min-width: 901px)').matches) {
+            // Ensure mobile-only classes removed
+            if (menu) menu.classList.remove('open');
+            if (toggle) toggle.setAttribute('aria-expanded', 'false');
+            const openDropdowns = nav.querySelectorAll('.dropdown.open');
+            openDropdowns.forEach((dd) => dd.classList.remove('open'));
+         }
+      }, 150);
+   });
+}
+
+
+/**
+ * Toggle a mobile dropdown. Designed to be callable from inline onclick="toggleMobileDropdown(this)"
+ * Accepts the anchor element inside the .dropdown element.
+ */
+function toggleMobileDropdown(anchor) {
+   if (!anchor) return false;
+
+   // Find the parent .dropdown element
+   const dropdown = anchor.closest('.dropdown');
+   if (!dropdown) return false;
+
+   const isOpen = dropdown.classList.contains('open');
+   // Toggle class
+   if (isOpen) {
+      dropdown.classList.remove('open');
+      anchor.setAttribute('aria-expanded', 'false');
+   } else {
+      // Close other dropdowns at same level for single-open behaviour
+      const siblings = dropdown.parentElement.querySelectorAll('.dropdown.open');
+      siblings.forEach((sib) => sib !== dropdown && sib.classList.remove('open'));
+
+      dropdown.classList.add('open');
+      anchor.setAttribute('aria-expanded', 'true');
+      // Move focus to first submenu link for a11y
+      const firstSubLink = dropdown.querySelector('.dropdown-menu a');
+      if (firstSubLink) firstSubLink.focus();
+   }
+
+   // Prevent default navigation when href="#"
+   return false;
+}
+
+
+// Provide a safe stub for loadNavigation if it's intended to do dynamic loading
+async function loadNavigation() {
+   // Populate #navigation with the shared include. Try several relative paths to
+   // support pages at different nesting levels (/, /pages/, etc.).
+   const container = document.getElementById('navigation');
+   if (!container) return Promise.resolve();
+
+   const candidates = [
+      'includes/nav.html',
+      './includes/nav.html',
+      '../includes/nav.html',
+      '../../includes/nav.html',
+      '/includes/nav.html'
+   ];
+
+   for (const path of candidates) {
+      try {
+         const resp = await fetch(path, { cache: 'no-store' });
+         if (!resp.ok) continue;
+         const html = await resp.text();
+         container.innerHTML = html;
+         return Promise.resolve();
+      } catch (e) {
+         // try next candidate
+      }
+   }
+
+   return Promise.reject(new Error('Unable to load navigation from includes/nav.html'));
+}
+
+// Expose for inline handlers to avoid issues if script is loaded as a module in some setups
+try {
+   window.toggleMobileDropdown = toggleMobileDropdown;
+} catch (e) {
+   // ignore (non-browser environment)
+}
