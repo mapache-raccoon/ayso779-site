@@ -5,27 +5,19 @@
  * Sets the current year in the footer element with id="year".
  */
 function setFooterYear() {
-   const yearSpan = document.getElementById("year");
+   const yearSpan = document.getElementById('year');
    if (yearSpan) {
       yearSpan.textContent = new Date().getFullYear();
    }
 }
 
-
-
-
-
 // ===============================
 // DOMContentLoaded: Run on page load
 // ===============================
-/**
- * On DOMContentLoaded, set up navigation immediately and load navigation content.
- */
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener('DOMContentLoaded', function () {
    // Load navigation content first, then initialize behaviours that expect DOM nodes
    loadNavigation()
       .catch((err) => {
-         // If nav fails to load, still attempt to initialize (no-op inside will return early)
          console.warn('loadNavigation failed:', err);
       })
       .finally(() => {
@@ -34,102 +26,94 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 });
 
-
 // ===============================
-// Navigation: Mobile behaviour
+// Navigation: Delegated mobile behaviour
 // ===============================
-/**
- * Initialize navigation interactivity: toggle button, dropdowns, keyboard support.
- */
 function setupNavigation() {
    const nav = document.querySelector('.navbar');
-   console.debug('setupNavigation: found nav?', !!nav);
    if (!nav) return;
 
    const toggle = nav.querySelector('.navbar-toggle');
    const menu = nav.querySelector('.navbar-menu');
 
-   // Toggle main menu on mobile
-   if (toggle && menu) {
-      // Prevent tap-through on touch devices by intercepting pointerdown
-      toggle.addEventListener('pointerdown', (ev) => {
-         try {
-            if (ev.pointerType === 'touch') {
-               ev.preventDefault();
-            }
-         } catch (e) { }
-      });
+   console.debug('setupNavigation delegated init', { toggle: !!toggle, menu: !!menu });
 
-      toggle.addEventListener('click', () => {
-         console.debug('navbar-toggle clicked');
+   // Delegated pointerdown to prevent tap-through on toggles
+   nav.addEventListener('pointerdown', (ev) => {
+      const t = ev.target.closest && ev.target.closest('[data-dropdown-toggle], .navbar-toggle');
+      if (!t) return;
+      try {
+         if (ev.pointerType === 'touch') ev.preventDefault();
+      } catch (e) { }
+   });
+
+   // Delegated click handling within nav
+   nav.addEventListener('click', (ev) => {
+      const target = ev.target;
+
+      // If hamburger clicked
+      const isToggle = target.closest && target.closest('.navbar-toggle');
+      if (isToggle) {
+         ev.preventDefault();
          const expanded = toggle.getAttribute('aria-expanded') === 'true';
          toggle.setAttribute('aria-expanded', String(!expanded));
          menu.classList.toggle('open');
-         // When opening, move focus to first link for keyboard users
          if (!expanded) {
             const firstLink = menu.querySelector('a');
             if (firstLink) firstLink.focus();
          }
-      });
-   }
-
-   // Wire up dropdown toggles
-   const dropdownToggles = nav.querySelectorAll('.dropdown-toggle');
-   dropdownToggles.forEach((el) => {
-      // Ensure ARIA defaults
-      el.setAttribute('aria-expanded', 'false');
-
-      // Ensure clicking the toggle uses our JS (prevents default navigation)
-      // Prevent tap-through on touch devices
-      el.addEventListener('pointerdown', (ev) => {
-         try {
-            if (ev.pointerType === 'touch') {
-               // Prevent the browser from following any link under the toggle on the same tap
-               ev.preventDefault();
-            }
-         } catch (e) { }
-      });
-
-      el.addEventListener('click', (ev) => {
-         console.debug('dropdown-toggle clicked:', el.textContent && el.textContent.trim());
-         ev.preventDefault();
-         toggleMobileDropdown(el);
-      });
-
-      // Click handler already present in markup calling toggleMobileDropdown; keep for compatibility
-      el.addEventListener('keydown', (ev) => {
-         // Space or Enter should toggle
-         if (ev.key === ' ' || ev.key === 'Enter') {
-            ev.preventDefault();
-            toggleMobileDropdown(el);
-         }
-         // Arrow keys: allow small navigation inside menu when open
-      });
-   });
-
-   // Close menus when clicking outside or pressing Escape
-   document.addEventListener('click', (ev) => {
-      const target = ev.target;
-      // debug: where did the click happen
-      // console.debug('document click, target:', target && (target.className || target.tagName));
-      // If click is inside nav, ignore
-      if (nav.contains(target)) return;
-
-      // Close mobile menu
-      if (menu && menu.classList.contains('open')) {
-         menu.classList.remove('open');
-         if (toggle) toggle.setAttribute('aria-expanded', 'false');
+         return;
       }
 
-      // Close any open dropdowns
-      const openDropdowns = nav.querySelectorAll('.dropdown.open');
-      openDropdowns.forEach((dd) => dd.classList.remove('open'));
+      // If dropdown toggle clicked
+      const ddToggle = target.closest && target.closest('[data-dropdown-toggle]');
+      if (ddToggle) {
+         ev.preventDefault();
+         console.debug('delegated dropdown click', ddToggle.textContent && ddToggle.textContent.trim());
+         const dropdown = ddToggle.closest('.dropdown');
+         if (!dropdown) return;
+         const isOpen = dropdown.classList.contains('open');
+         if (isOpen) {
+            dropdown.classList.remove('open');
+            ddToggle.setAttribute('aria-expanded', 'false');
+         } else {
+            // close siblings
+            const siblings = dropdown.parentElement.querySelectorAll('.dropdown.open');
+            siblings.forEach((s) => s !== dropdown && s.classList.remove('open'));
+            dropdown.classList.add('open');
+            ddToggle.setAttribute('aria-expanded', 'true');
+         }
+         return;
+      }
+
+      // Allow normal link behaviour otherwise
    });
 
-   document.addEventListener('keydown', (ev) => {
+   // Keyboard handling
+   nav.addEventListener('keydown', (ev) => {
       if (ev.key === 'Escape') {
-         console.debug('Escape pressed - closing menus');
-         // Close everything
+         // Close mobile menu and dropdowns
+         if (menu && menu.classList.contains('open')) {
+            menu.classList.remove('open');
+            if (toggle) toggle.setAttribute('aria-expanded', 'false');
+         }
+         const openDropdowns = nav.querySelectorAll('.dropdown.open');
+         openDropdowns.forEach((dd) => dd.classList.remove('open'));
+      }
+
+      // Space/Enter on focused dropdown toggles
+      if (ev.key === ' ' || ev.key === 'Enter') {
+         const focused = document.activeElement;
+         if (focused && focused.matches && focused.matches('[data-dropdown-toggle]')) {
+            ev.preventDefault();
+            focused.click();
+         }
+      }
+   });
+
+   // Click outside to close
+   document.addEventListener('click', (ev) => {
+      if (!nav.contains(ev.target)) {
          if (menu && menu.classList.contains('open')) {
             menu.classList.remove('open');
             if (toggle) toggle.setAttribute('aria-expanded', 'false');
@@ -139,14 +123,12 @@ function setupNavigation() {
       }
    });
 
-   // Close dropdowns on resize above mobile breakpoint
+   // Close on resize beyond mobile
    let resizeTimer = null;
    window.addEventListener('resize', () => {
-      // Debounce
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(() => {
          if (window.matchMedia('(min-width: 901px)').matches) {
-            // Ensure mobile-only classes removed
             if (menu) menu.classList.remove('open');
             if (toggle) toggle.setAttribute('aria-expanded', 'false');
             const openDropdowns = nav.querySelectorAll('.dropdown.open');
@@ -155,7 +137,6 @@ function setupNavigation() {
       }, 150);
    });
 }
-
 
 /**
  * Toggle a mobile dropdown. Designed to be callable from inline onclick="toggleMobileDropdown(this)"
@@ -190,10 +171,8 @@ function toggleMobileDropdown(anchor) {
 }
 
 
-// Provide a safe stub for loadNavigation if it's intended to do dynamic loading
+// Provide a safe loader for navigation include
 async function loadNavigation() {
-   // Populate #navigation with the shared include. Try several relative paths to
-   // support pages at different nesting levels (/, /pages/, etc.).
    const container = document.getElementById('navigation');
    if (!container) return Promise.resolve();
 
@@ -211,6 +190,7 @@ async function loadNavigation() {
          if (!resp.ok) continue;
          const html = await resp.text();
          container.innerHTML = html;
+         console.debug('loadNavigation: injected from', path);
          return Promise.resolve();
       } catch (e) {
          // try next candidate
