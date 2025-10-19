@@ -39,6 +39,7 @@
   --space-6: 32px;
   --space-7: 48px;
   --space-8: 64px;
+}
 *,
 *::before,
 *::after {
@@ -225,13 +226,11 @@ p {
   color: var(--primary-white);
 }
 
-
 /* Mobile styles */
 @media (max-width: 900px) {
   .navbar-toggle {
     display: flex;
   }
-
 
   .navbar-menu {
     display: none;
@@ -247,8 +246,6 @@ p {
     max-height: 80vh; /* prevent overscroll */
     overflow: auto;
   }
-
-  
 
   /* Force dropdowns to work on mobile regardless of JS detection */
   .dropdown.open .dropdown-menu {
@@ -416,7 +413,6 @@ p {
 }
 
 @media (max-width: 1200px) {
- 
   .hero__logo {
     height: 176px !important;
     max-width: 48vw !important;
@@ -754,6 +750,3 @@ p {
 .nav__menu.open {
   display: flex; /* Instant show */
 }
-
-
-
