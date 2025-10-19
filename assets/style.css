@@ -386,7 +386,7 @@ p {
   color: var(--primary-white);
 }
 .hero__content {
-  padding: 8px 0 8px;
+  padding: 6px 0 6px;
   text-align: left;
 }
 .hero h1 {
@@ -408,7 +408,7 @@ p {
   margin-bottom: 0.5rem;
 }
 .hero__logo {
-  height: 300px !important;
+  height: 240px !important;
   width: auto;
   display: block;
   max-width: 40vw !important;
@@ -416,22 +416,24 @@ p {
 }
 
 @media (max-width: 1200px) {
+ 
   .hero__logo {
-    height: 220px !important;
+    height: 176px !important;
     max-width: 48vw !important;
   }
 }
 
 @media (max-width: 900px) {
   .hero__logo {
-    height: 140px !important;
+    height: 112px !important;
     max-width: 48vw !important;
   }
 }
 
 @media (max-width: 600px) {
+  /* Reduced from 90px -> 72px */
   .hero__logo {
-    height: 90px !important;
+    height: 72px !important;
     max-width: 48vw;
   }
 }
