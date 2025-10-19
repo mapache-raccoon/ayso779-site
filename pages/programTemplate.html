@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title><!-- PAGE_TITLE -->Program Name — AYSO Region 779</title>
+    <meta
+      name="description"
+      content="<!-- PAGE_DESCRIPTION -->Short description for this program."
+    />
+    <!-- Open Graph / social image (optional) -->
+    <meta
+      property="og:image"
+      content="<!-- OG_IMAGE -->../assets/images/programs/placeholder.jpg"
+    />
+    <!-- Stylesheet: use page-relative path (same convention as other pages in /pages/) -->
+    <link rel="stylesheet" href="../assets/style.css" />
+
+    <!-- Page overrides moved to ../assets/style.css — no inline CSS here -->
+  </head>
+  <body>
+    <!-- Navigation is injected by assets/scripts/main.js into #navigation -->
+    <div id="navigation"></div>
+
+    <main>
+      <!-- HERO: prominent title, optional image and short lead -->
+      <header class="hero" role="banner" aria-label="Program hero">
+        <div class="container hero__content">
+          <!-- Replace with page title -->
+          <h1><!-- PAGE_TITLE -->Program Name</h1>
+
+          <!-- Short lead/intro text for the hero -->
+          <p class="hero__text">
+            <!-- HERO_LEAD -->One-sentence program summary goes here.
+          </p>
+
+          <!-- Optional hero image (logo or program photo). Use a sensible alt text. -->
+          <!-- If you don't want an image, remove the <img> element. -->
+          <div class="hero__logos" aria-hidden="false">
+            <img
+              src="../assets/images/programs/placeholder.jpg"
+              alt="<!-- IMAGE_ALT -->Program logo or photo"
+              class="hero__logo"
+            />
+          </div>
+        </div>
+      </header>
+
+      <!-- OVERVIEW SECTION -->
+      <section class="section" aria-labelledby="overview-heading">
+        <div class="container">
+          <h2 id="overview-heading" class="section__title">Overview</h2>
+          <!-- Paragraph overview with optional image. Set image position by adding class overview--image-right to the .overview-row container if you want the image on the right. -->
+          <div class="overview-row overview--image-right">
+            <div class="overview-text">
+              <p>
+                <!-- OVERVIEW_PARAGRAPH -->A short, useful overview of the
+                program. Describe what parents and players should expect in one
+                or two paragraphs. Keep copy scannable and friendly.
+              </p>
+              <p>
+                <!-- OVERVIEW_MORE -->Optional second paragraph for highlights,
+                links, or a brief mission statement.
+              </p>
+            </div>
+            <figure class="overview-image">
+              <img
+                src="<!-- OVERVIEW_IMAGE -->../assets/images/programs/overview.jpg"
+                alt="<!-- OVERVIEW_IMAGE_ALT -->Program on the field"
+              />
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROGRAM INFORMATION: main content area with details, registration, and resources -->
+      <section
+        class="section section--emphasis"
+        aria-labelledby="program-info-heading"
+      >
+        <div class="container">
+          <h2 id="program-info-heading" class="section__title">
+            Program Information
+          </h2>
+
+          <!-- Generic 6 Feature Cards (replace placeholders when creating a page) -->
+          <div class="grid" style="margin-bottom: 1.25rem">
+            <a
+              class="card"
+              href="<!-- CARD_1_LINK -->"
+              title="<!-- CARD_1_TITLE -->"
+            >
+              <h3><!-- CARD_1_TITLE -->Card 1 Title</h3>
+              <p><!-- CARD_1_DESC -->Short description for card 1.</p>
+            </a>
+
+            <a
+              class="card"
+              href="<!-- CARD_2_LINK -->"
+              title="<!-- CARD_2_TITLE -->"
+            >
+              <h3><!-- CARD_2_TITLE -->Card 2 Title</h3>
+              <p><!-- CARD_2_DESC -->Short description for card 2.</p>
+            </a>
+
+            <a
+              class="card"
+              href="<!-- CARD_3_LINK -->"
+              title="<!-- CARD_3_TITLE -->"
+            >
+              <h3><!-- CARD_3_TITLE -->Card 3 Title</h3>
+              <p><!-- CARD_3_DESC -->Short description for card 3.</p>
+            </a>
+
+            <a
+              class="card"
+              href="<!-- CARD_4_LINK -->"
+              title="<!-- CARD_4_TITLE -->"
+            >
+              <h3><!-- CARD_4_TITLE -->Card 4 Title</h3>
+              <p><!-- CARD_4_DESC -->Short description for card 4.</p>
+            </a>
+
+            <a
+              class="card"
+              href="<!-- CARD_5_LINK -->"
+              title="<!-- CARD_5_TITLE -->"
+            >
+              <h3><!-- CARD_5_TITLE -->Card 5 Title</h3>
+              <p><!-- CARD_5_DESC -->Short description for card 5.</p>
+            </a>
+
+            <a
+              class="card"
+              href="<!-- CARD_6_LINK -->"
+              title="<!-- CARD_6_TITLE -->"
+            >
+              <h3><!-- CARD_6_TITLE -->Card 6 Title</h3>
+              <p><!-- CARD_6_DESC -->Short description for card 6.</p>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- HELP BANNER / CALL TO ACTION -->
+      <section class="section">
+        <div class="container">
+          <div class="callout" role="region" aria-label="Need help">
+            <div>
+              <h3>Need help or have questions?</h3>
+              <p>
+                <!-- HELP_COPY -->Reach out to us — we're happy to help you find
+                the right program.
+              </p>
+            </div>
+            <div>
+              <a class="btn btn--primary" href="mailto:info@ayso779.org"
+                >Contact Us</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER: mirrors other pages in the site for consistency -->
+    <footer class="footer">
+      <div class="container footer__inner">
+        <p>&copy; <span id="year"></span> AYSO Region 779</p>
+        <nav class="footer__nav">
+          <a href="../contact.html">Contact</a>
+          <a href="../safety.html">Safety</a>
+          <a href="../policies.html">Policies</a>
+        </nav>
+      </div>
+    </footer>
+
+    <script src="../assets/scripts/main.js"></script>
+    <!-- Navigation height is measured and exposed as --top-nav-offset by main.js -->
+  </body>
+</html>

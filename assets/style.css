@@ -11,6 +11,80 @@
   --green-500: #0f5b44;
   --green-400: #147259;
   --green-300: #1a8a6d;
+
+  /* ====================================================================
+   Program page overrides (moved from inline template to global CSS)
+   These rules are intentionally scoped to present a compact, modern
+   program page layout but can be reused across program-type pages.
+   Keep values consistent with design tokens defined earlier.
+   ==================================================================== */
+
+  /* Make the injected navbar fixed at the top so it's always visible */
+  .navbar {
+    position: fixed;
+    inset: 0 0 auto 0; /* top/left/right set; bottom auto */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    background: var(--primary-white);
+  }
+
+  /* Ensure main content is pushed down by the navbar height (set via JS) */
+  main {
+    padding-top: var(--top-nav-offset, 72px);
+  }
+
+  /* Overview: paragraph with optional image beside it (left or right) */
+  .overview-row {
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+    margin-top: 1rem;
+  }
+  .overview-text {
+    flex: 1 1 60%;
+  }
+  .overview-image {
+    flex: 0 0 320px;
+  }
+  .overview-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+  }
+
+  /* Option to place the image on the right */
+  .overview--image-right {
+    flex-direction: row-reverse;
+  }
+
+  @media (max-width: 900px) {
+    .overview-row {
+      flex-direction: column;
+    }
+    .overview-image {
+      flex-basis: auto;
+      width: 100%;
+    }
+  }
+
+  /* Slightly shorten the hero on program pages (10% reduction) */
+  .hero .hero__content {
+    padding-top: calc(var(--space-5, 24px) * 0.9);
+    padding-bottom: calc(var(--space-4, 16px) * 0.9);
+  }
+  .hero .hero__logo {
+    height: calc(240px * 0.9) !important; /* 216px */
+    max-width: calc(40vw * 0.9) !important;
+  }
+
+  /* Cards grid spacing override for program pages (consistent look) */
+  .program-cards.grid {
+    gap: var(--space-4);
+  }
+
   --neutral-900: #0f1111;
   --neutral-800: #1a1a1a;
   --neutral-700: #2a2a2a;

@@ -11,6 +11,23 @@ function setFooterYear() {
    }
 }
 
+// Measure the injected navigation and set a CSS variable so pages can
+// reserve space for a fixed navbar. Debounced on resize.
+function setNavOffset() {
+   const nav = document.querySelector('.navbar');
+   if (!nav) return;
+   const set = () => {
+      const h = nav.getBoundingClientRect().height;
+      document.documentElement.style.setProperty('--top-nav-offset', h + 'px');
+   };
+   set();
+   let resizeTimer;
+   window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(set, 120);
+   });
+}
+
 // ===============================
 // DOMContentLoaded: Run on page load
 // ===============================
@@ -32,6 +49,9 @@ document.addEventListener('DOMContentLoaded', function () {
 function setupNavigation() {
    const nav = document.querySelector('.navbar');
    if (!nav) return;
+
+   // Once the nav exists, ensure other parts of the page know its height
+   try { setNavOffset(); } catch (e) { /* ignore */ }
 
    const toggle = nav.querySelector('.navbar-toggle');
    const menu = nav.querySelector('.navbar-menu');
