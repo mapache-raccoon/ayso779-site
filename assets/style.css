@@ -113,6 +113,8 @@
   --space-6: 32px;
   --space-7: 48px;
   --space-8: 64px;
+  /* Height used to offset the fixed navbar so main content isn't hidden */
+  --top-nav-offset: 104px;
 }
 *,
 *::before,
@@ -125,8 +127,16 @@ body {
 }
 body {
   margin: 0;
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
-    Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Helvetica,
+    Arial,
+    "Apple Color Emoji",
+    "Segoe UI Emoji";
   color: var(--on-surface);
   background: var(--surface);
   line-height: 1.55;
@@ -175,8 +185,8 @@ p {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
+  padding-top: 1.25rem; /* increased vertical spacing */
+  padding-bottom: 1.25rem; /* increased vertical spacing */
 }
 
 .navbar-brand {
@@ -186,11 +196,11 @@ p {
   text-decoration: none;
   color: var(--primary-black);
   font-weight: 700;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 }
 
 .navbar-brand img {
-  height: 36px;
+  height: 52px;
   width: auto;
 }
 
@@ -216,7 +226,7 @@ p {
   list-style: none;
   margin: 0;
   padding: 0;
-  gap: 1.5rem;
+  gap: 2.5rem; /* more breathing room between items */
 }
 
 .navbar-menu a {
@@ -229,7 +239,18 @@ p {
 /* Larger touch targets and visible focus for accessibility */
 .navbar-menu a,
 .dropdown-toggle {
-  padding: 0.85rem 1rem;
+  padding: 1.1rem 1.5rem; /* larger touch targets and horizontal padding */
+}
+
+/* Site preview alert box styling */
+.site-preview-alert {
+  background: #fff3cd; /* light yellow */
+  color: #856404; /* dark yellow/brown text */
+  border: 1px solid #ffeeba;
+  padding: 12px 16px;
+  border-radius: 6px;
+  text-align: center;
+  margin: 12px 0;
 }
 
 .navbar-menu a:focus,
@@ -483,7 +504,9 @@ p {
   width: auto;
   display: block;
   max-width: 40vw !important;
-  transition: height 0.2s, max-width 0.2s;
+  transition:
+    height 0.2s,
+    max-width 0.2s;
 }
 
 @media (max-width: 1200px) {
@@ -572,7 +595,9 @@ p {
   border-radius: var(--radius-lg);
   padding: var(--space-5);
   box-shadow: var(--shadow-sm);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 .card:hover {
   transform: translateY(-2px);
@@ -610,8 +635,11 @@ p {
   border-radius: 999px;
   font-weight: 600;
   border: 1px solid transparent;
-  transition: background-color 0.2s ease, color 0.2s ease,
-    border-color 0.2s ease, transform 0.05s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.05s ease;
   will-change: transform;
 }
 .btn:active {
@@ -627,7 +655,11 @@ p {
   border: 2px solid var(--primary-green);
   box-shadow: none;
   padding: 2px 18px;
-  transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.15s;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    box-shadow 0.2s,
+    transform 0.15s;
 }
 .btn--primary:hover,
 .btn--primary:focus {
@@ -725,7 +757,9 @@ p {
   align-items: center;
   gap: 0.3em;
   padding: 1.1em 0.5em;
-  transition: background 0.15s, color 0.15s;
+  transition:
+    background 0.15s,
+    color 0.15s;
   font-size: 1.15em;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: var(--space-5);
@@ -751,7 +785,9 @@ p {
   min-width: 220px;
   flex: 1 1 220px;
   cursor: pointer;
-  transition: box-shadow 0.2s, transform 0.2s;
+  transition:
+    box-shadow 0.2s,
+    transform 0.2s;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
