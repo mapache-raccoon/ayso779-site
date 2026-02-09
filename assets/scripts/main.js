@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
       .finally(() => {
          setupNavigation();
          setFooterYear();
+         try { setupAnnouncements(); } catch (e) { /* ignore if feature missing */ }
       });
 });
 
@@ -225,4 +226,25 @@ try {
    window.toggleMobileDropdown = toggleMobileDropdown;
 } catch (e) {
    // ignore (non-browser environment)
+}
+
+// ===============================
+// Announcements: limit visible items and provide a 'show all' toggle
+// ===============================
+function setupAnnouncements() {
+   const annList = document.querySelector('.ann-list');
+   if (!annList) return;
+
+   const toggle = document.getElementById('ann-toggle');
+   if (!toggle) return;
+
+   // Ensure initial aria state matches the visual state
+   toggle.setAttribute('aria-expanded', 'false');
+
+   toggle.addEventListener('click', (ev) => {
+      ev.preventDefault();
+      const isExpanded = annList.classList.toggle('show-all');
+      toggle.setAttribute('aria-expanded', String(isExpanded));
+      toggle.textContent = isExpanded ? 'Show fewer announcements' : 'Show all announcements';
+   });
 }
