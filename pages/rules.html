@@ -70,6 +70,11 @@
         font-size: 3rem;
         margin: 0;
       }
+      /* Ensure the mini hero is pushed below the fixed navbar (overrides site-wide rule) */
+      .hero.hero--mini {
+        padding-top: calc(var(--top-nav-offset, 72px) + 8px) !important;
+        padding-bottom: 1rem;
+      }
       /* Nudge the crest toward the center a bit */
       .hero--mini .hero__logo {
         margin-right: 10px;

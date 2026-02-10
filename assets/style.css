@@ -80,6 +80,23 @@
     max-width: calc(40vw * 0.9) !important;
   }
 
+  /* Reduce overall hero height when using the smaller 'hero--mini' variant */
+  .hero.hero--mini {
+    padding-top: 1.5rem; /* much smaller top gap than the default offset */
+    padding-bottom: 1.25rem;
+  }
+
+  @media (min-width: 900px) {
+    .hero.hero--mini .hero__content {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+    .hero.hero--mini .hero__logo {
+      height: 160px !important;
+      max-width: 28vw !important;
+    }
+  }
+
   /* Cards grid spacing override for program pages (consistent look) */
   .program-cards.grid {
     gap: var(--space-4);
