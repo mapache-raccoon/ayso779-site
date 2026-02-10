@@ -219,7 +219,7 @@ p {
 }
 
 /* Limit announcements to first 3 by default, allow reveal via .show-all */
-.ann-list details:nth-of-type(n+4) {
+.ann-list details:nth-of-type(n + 4) {
   display: none;
 }
 .ann-list.show-all details {
@@ -232,7 +232,7 @@ p {
 .ann-controls .btn {
   background: transparent;
   color: var(--primary-green);
-  border: 1px solid rgba(11,61,46,0.12);
+  border: 1px solid rgba(11, 61, 46, 0.12);
   padding: 0.45rem 0.8rem;
   border-radius: 8px;
   cursor: pointer;
@@ -361,7 +361,7 @@ p {
     display: inline-block;
     position: relative;
     font-weight: 600;
-    transition: color .18s ease;
+    transition: color 0.18s ease;
   }
 
   .navbar-menu a::after {
@@ -374,7 +374,7 @@ p {
     background: #3b3b3b;
     transform: scaleX(0);
     transform-origin: left;
-    transition: transform .25s ease;
+    transition: transform 0.25s ease;
   }
 
   .navbar-menu a:hover::after,
@@ -434,7 +434,6 @@ p {
     justify-content: flex-start;
   }
 }
-
 
 .navbar-brand img {
   height: 44px;
@@ -526,7 +525,6 @@ p {
     max-width: 80%;
     justify-content: center; /* center items */
   }
-  }
 
   .navbar-menu li {
     display: inline-flex;
@@ -542,7 +540,9 @@ p {
   }
 
   /* Reduce chance of single-word hanging by slightly increasing gap */
-  .navbar-menu { column-gap: 1rem; }
+  .navbar-menu {
+    column-gap: 1rem;
+  }
 
   /* Make the final menu item stand out as a subtle CTA */
   /* Subtle CTA for contact link: outlined pill that matches nav tone */
@@ -552,9 +552,12 @@ p {
     color: var(--primary-green);
     padding: 0.35rem 0.7rem;
     border-radius: 999px;
-    border: 2px solid rgba(15,61,46,0.08);
+    border: 2px solid rgba(15, 61, 46, 0.08);
     box-shadow: none;
-    transition: background 180ms, color 180ms, border-color 180ms;
+    transition:
+      background 180ms,
+      color 180ms,
+      border-color 180ms;
     display: inline-block;
   }
 
@@ -588,19 +591,24 @@ p {
     border-radius: 999px;
     border: none;
     font-weight: 700;
-    box-shadow: 0 6px 18px rgba(11,61,46,0.12);
-    transition: transform 120ms ease, box-shadow 120ms ease, background 120ms;
+    box-shadow: 0 6px 18px rgba(11, 61, 46, 0.12);
+    transition:
+      transform 120ms ease,
+      box-shadow 120ms ease,
+      background 120ms;
   }
 
   .navbar-actions .nav-cta:hover,
   .navbar-actions .nav-cta:focus {
     transform: translateY(-1px);
-    box-shadow: 0 10px 26px rgba(11,61,46,0.16);
+    box-shadow: 0 10px 26px rgba(11, 61, 46, 0.16);
     background: color-mix(in srgb, var(--primary-green) 90%, black 10%);
   }
 
   /* hide the mobile menu CTA when desktop CTA is visible */
-  .navbar-menu a.nav-cta-mobile { display: none; }
+  .navbar-menu a.nav-cta-mobile {
+    display: none;
+  }
 }
 
 /* Dropdown styles */
@@ -845,7 +853,9 @@ p {
   max-width: 40vw;
   display: block;
   object-fit: contain;
-  transition: max-height 0.2s, max-width 0.2s;
+  transition:
+    max-height 0.2s,
+    max-width 0.2s;
   flex: 0 0 auto;
 }
 
