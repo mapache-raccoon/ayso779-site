@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Rules & Guides — AYSO Region 779</title>
+    <link rel="stylesheet" href="../assets/style.css" />
+    <link rel="icon" href="../assets/images/logos/ayso779crest.png" />
+    <style>
+      .rules-container {
+        max-width: 900px;
+        margin: 2rem auto;
+        padding: 1rem;
+      }
+      details {
+        border-bottom: 1px solid #ddd;
+        padding: 0.5rem 0;
+      }
+      summary {
+        cursor: pointer;
+        font-weight: 600;
+        padding: 0.4rem 0;
+      }
+      .section-content {
+        padding: 0.5rem 0 1rem 0;
+      }
+      .subheading {
+        font-weight: 700;
+        margin: 0.5rem 0;
+      }
+      .field-placeholder {
+        width: 100%;
+        max-width: 880px;
+        height: 220px;
+        background: #e8f5e9;
+        border: 2px dashed #9e9e9e;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #666;
+        margin: 0.5rem 0;
+      }
+      .meta {
+        color: #444;
+        font-size: 0.95rem;
+      }
+      /* Mini hero styles (copied/simplified from index) */
+      .hero--mini {
+        padding: 0.75rem 0 1rem 0;
+      }
+      /* Prevent the fixed navbar from overlapping the full-bleed hero */
+      .hero {
+        padding-top: calc(var(--top-nav-offset, 72px) + 8px);
+      }
+      .hero--mini .hero__content {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .hero--mini .hero__content {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      .hero--mini .hero__text {
+        display: block;
+      }
+      /* Increase heading size for prominence */
+      .hero--mini .hero__text h1 {
+        font-size: 3rem;
+        margin: 0;
+      }
+      /* Nudge the crest toward the center a bit */
+      .hero--mini .hero__logo {
+        margin-right: 10px;
+      }
+      @media (max-width: 900px) {
+        .hero--mini .hero__content {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+        .hero--mini .hero__text {
+          margin-top: 0.5rem;
+        }
+        /* Slightly smaller hero heading on mobile */
+        .hero--mini .hero__text h1 {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation will be injected here by `main.js` -->
+    <div id="navigation"></div>
+
+    <!-- Full-bleed hero: background spans side-to-side, content centered by .container -->
+    <section class="hero hero--mini">
+      <div class="container hero__content">
+        <img
+          src="../assets/images/logos/ayso779crest.png"
+          alt="AYSO 779 Crest"
+          class="hero__logo"
+        />
+        <div class="hero__text">
+          <h1>Rules & Guidelines</h1>
+          <p style="margin: 0.25rem 0 0; color: #444; font-size: 0.95rem">
+            Quick reference for divisions and field setup
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <main class="rules-container">
+      <p class="meta">
+        Six division pages below are expandable. Each contains a brief rules
+        section and a field setup placeholder (soccer field image rectangle).
+      </p>
+
+      <!-- Reusable template for each division -->
+      <details>
+        <summary>Playground</summary>
+        <div class="section-content">
+          <h3 class="subheading">Rules</h3>
+          <p>
+            Placeholder: playground rules go here (short-sided, emphasis on fun
+            and participation).
+          </p>
+
+          <h3 class="subheading">Field setup</h3>
+          <div class="field-placeholder">
+            Soccer field image placeholder (rectangle)
+          </div>
+          <p>
+            Placeholder: describe field layout, goals, cones, and recommended
+            dimensions for Playground.
+          </p>
+        </div>
+      </details>
+
+      <details>
+        <summary>6U</summary>
+        <div class="section-content">
+          <h3 class="subheading">Rules</h3>
+          <p>
+            Placeholder: 6U rules (coach/parent guidance, substitutions,
+            simplified laws).
+          </p>
+
+          <h3 class="subheading">Field setup</h3>
+          <div class="field-placeholder">
+            Soccer field image placeholder (rectangle)
+          </div>
+          <p>
+            Placeholder: recommended field dimensions, goal size, and markings
+            for 6U.
+          </p>
+        </div>
+      </details>
+
+      <details>
+        <summary>8U</summary>
+        <div class="section-content">
+          <h3 class="subheading">Rules</h3>
+          <p>
+            Placeholder: 8U rules (offside guidance, throw-ins, game length).
+          </p>
+
+          <h3 class="subheading">Field setup</h3>
+          <div class="field-placeholder">
+            Soccer field image placeholder (rectangle)
+          </div>
+          <p>
+            Placeholder: recommended field dimensions, goal size, and markings
+            for 8U.
+          </p>
+        </div>
+      </details>
+
+      <details>
+        <summary>10U</summary>
+        <div class="section-content">
+          <h3 class="subheading">Rules</h3>
+          <p>
+            Placeholder: 10U rules (progression toward full laws, match length,
+            substitutions).
+          </p>
+
+          <h3 class="subheading">Field setup</h3>
+          <div class="field-placeholder">
+            Soccer field image placeholder (rectangle)
+          </div>
+          <p>
+            Placeholder: recommended field dimensions, goal size, and markings
+            for 10U.
+          </p>
+        </div>
+      </details>
+
+      <details>
+        <summary>12U</summary>
+        <div class="section-content">
+          <h3 class="subheading">Rules</h3>
+          <p>
+            Placeholder: 12U rules (more advanced laws, offside enforcement,
+            restart details).
+          </p>
+
+          <h3 class="subheading">Field setup</h3>
+          <div class="field-placeholder">
+            Soccer field image placeholder (rectangle)
+          </div>
+          <p>
+            Placeholder: recommended field dimensions, goal size, and markings
+            for 12U.
+          </p>
+        </div>
+      </details>
+
+      <details>
+        <summary>14U</summary>
+        <div class="section-content">
+          <h3 class="subheading">Rules</h3>
+          <p>
+            Placeholder: 14U rules (near-adult laws, match management,
+            cautions).
+          </p>
+
+          <h3 class="subheading">Field setup</h3>
+          <div class="field-placeholder">
+            Soccer field image placeholder (rectangle)
+          </div>
+          <p>
+            Placeholder: recommended field dimensions, goal size, and markings
+            for 14U.
+          </p>
+        </div>
+      </details>
+    </main>
+
+    <!-- Footer (matches site) -->
+    <footer class="footer">
+      <div class="container footer__inner">
+        <p>© <span id="year"></span> AYSO Region 779</p>
+        <nav class="footer__nav">
+          <a href="/pages/contact.html">Contact</a>
+          <a href="/pages/safety.html">Safety</a>
+          <a href="/pages/policies.html">Policies</a>
+        </nav>
+      </div>
+    </footer>
+
+    <!-- Scripts: main.js injects the navbar and sets footer year -->
+    <script src="../assets/scripts/main.js"></script>
+  </body>
+</html>
