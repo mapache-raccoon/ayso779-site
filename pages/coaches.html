@@ -46,6 +46,44 @@
           font-size: 1.4rem;
         }
       }
+      /* Rules-like details styles (mirrors pages/rules.html look & feel) */
+      .rules-container {
+        max-width: 900px;
+        margin: 1rem auto;
+        padding: 1rem;
+      }
+      details {
+        border-bottom: 1px solid #ddd;
+        padding: 0.5rem 0;
+      }
+      summary {
+        cursor: pointer;
+        font-weight: 600;
+        padding: 0.4rem 0;
+      }
+      .section-content {
+        padding: 0.5rem 0 1rem 0;
+      }
+      .subheading {
+        font-weight: 700;
+        margin: 0.5rem 0;
+      }
+      .field-placeholder {
+        width: 100%;
+        max-width: 880px;
+        height: 220px;
+        background: #e8f5e9;
+        border: 2px dashed #9e9e9e;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #666;
+        margin: 0.5rem 0;
+      }
+      .meta {
+        color: #444;
+        font-size: 0.95rem;
+      }
     </style>
   </head>
   <body>
@@ -113,96 +151,84 @@
             </a>
           </div>
 
-          <div
-            class="grid"
-            style="
-              grid-template-columns: 1fr 1fr;
-              gap: 1.5rem;
-              align-items: start;
-            "
-          >
-            <div class="panel">
-              <h3>Supplies</h3>
-              <p><strong>Standard Gear (Provided by AYSO)</strong></p>
-              <ul>
-                <li>Cones / Markers (12)</li>
-                <li>Extra Balls</li>
-                <li>Pinnies</li>
-                <li>First-Aid Kit</li>
-                <li>Ball Bag</li>
-                <li>
-                  Player Registration Forms (must have at all practices &amp;
-                  games) - <strong class="must-print">COACHES PRINT OUT</strong>
-                </li>
-              </ul>
+          <div class="rules-container">
+            <details open>
+              <summary>Supplies</summary>
+              <div class="section-content">
+                <h3 class="subheading">Standard Gear (Provided by AYSO)</h3>
+                <ul>
+                  <li>Cones / Markers (12)</li>
+                  <li>Extra Balls</li>
+                  <li>Pinnies</li>
+                  <li>First-Aid Kit</li>
+                  <li>Ball Bag</li>
+                  <li>
+                    Player Registration Forms (must have at all practices &amp;
+                    games) -
+                    <strong class="must-print">COACHES PRINT OUT</strong>
+                  </li>
+                </ul>
 
-              <p><strong>Coach-Provided Suggested Items</strong></p>
-              <ul>
-                <li>Stopwatch / Timer</li>
-                <li>Trash Bags</li>
-                <li>Dry-Erase Board + Marker</li>
-                <li>Whistle</li>
-                <li>Clipboard / Practice Plan</li>
-                <li>Ball Pump + Needles</li>
-              </ul>
-            </div>
+                <h3 class="subheading">Coach-Provided Suggested Items</h3>
+                <ul>
+                  <li>Stopwatch / Timer</li>
+                  <li>Trash Bags</li>
+                  <li>Dry-Erase Board + Marker</li>
+                  <li>Whistle</li>
+                  <li>Clipboard / Practice Plan</li>
+                  <li>Ball Pump + Needles</li>
+                </ul>
+              </div>
+            </details>
 
-            <div class="panel">
-              <h3>Coach Conduct</h3>
-              <ul>
-                <li>
-                  <strong>POSITIVE COACHING</strong> - Bring encouragement,
-                  patience, and praise to every player. Help them grow, try new
-                  things, and feel proud of their effort.
-                </li>
-                <li>
-                  <strong>BE PREPARED &amp; ORGANIZED</strong> - Have a plan for
-                  each practice, bring the right equipment, and keep rosters and
-                  registration forms handy.
-                </li>
-                <li>
-                  <strong>POSITIVE SIDELINE CONDUCT</strong> - Set the tone.
-                  Keep comments supportive, stay calm, and model the behavior we
-                  want our players and parents to follow.
-                </li>
-                <li>
-                  <strong>RESPECT THE REFEREES</strong> - Our refs—youth and
-                  adult—deserve kindness and support. Their calls stand. We
-                  teach our players to play on, not argue.
-                </li>
-                <li>
-                  <strong>ZERO TOLERANCE POLICY</strong> - No yelling at refs,
-                  no negative comments toward players, coaches, or parents. We
-                  protect the fun and safety of the game.
-                </li>
-                <li>
-                  <strong>GOOD COMMUNICATION</strong> - Keep parents and your
-                  division coordinator in the loop about schedules, changes, and
-                  expectations. Clear communication makes the season smoother
-                  for everyone.
-                </li>
-                <li>
-                  <strong>EXPECTATIONS FOR YOU, PLAYERS &amp; PARENTS</strong> -
-                  Set simple, shared expectations early: effort, respect,
-                  teamwork, and positivity from all sides.
-                </li>
-                <li>
-                  <strong>ALWAYS HAVE PLAYER FORMS</strong> - Bring player
-                  registration and emergency forms to every practice and game.
-                  Safety first.
-                </li>
-                <li>
-                  <strong>GET YOUR PARENTS INVOLVED</strong> - Ask for help!
-                  Team parents, snack schedules, field setup, cleanup—AYSO works
-                  best when everyone pitches in.
-                </li>
-                <li>
-                  <strong>REMEMBER: THE KIDS ARE HERE TO HAVE FUN!</strong> -
-                  Winning is optional. Joy, confidence, friendships, and a love
-                  for the game are the real goals.
-                </li>
-              </ul>
-            </div>
+            <details open>
+              <summary>Coach Conduct</summary>
+              <div class="section-content">
+                <h3 class="subheading">Principles</h3>
+                <ul>
+                  <li>
+                    <strong>POSITIVE COACHING</strong> - Bring encouragement,
+                    patience, and praise to every player.
+                  </li>
+                  <li>
+                    <strong>BE PREPARED &amp; ORGANIZED</strong> - Have a plan
+                    for each practice and keep rosters handy.
+                  </li>
+                  <li>
+                    <strong>POSITIVE SIDELINE CONDUCT</strong> - Keep comments
+                    supportive and model good behavior.
+                  </li>
+                  <li>
+                    <strong>RESPECT THE REFEREES</strong> - Treat referees with
+                    kindness and support their calls.
+                  </li>
+                  <li>
+                    <strong>ZERO TOLERANCE POLICY</strong> - No yelling at refs
+                    or negative comments toward players, coaches, or parents.
+                  </li>
+                  <li>
+                    <strong>GOOD COMMUNICATION</strong> - Keep parents and
+                    coordinators informed about schedules and changes.
+                  </li>
+                  <li>
+                    <strong>EXPECTATIONS</strong> - Set simple expectations:
+                    effort, respect, teamwork, and positivity.
+                  </li>
+                  <li>
+                    <strong>ALWAYS HAVE PLAYER FORMS</strong> - Bring
+                    registration and emergency forms to every session.
+                  </li>
+                  <li>
+                    <strong>GET YOUR PARENTS INVOLVED</strong> - Ask for help
+                    with setup, snacks, and cleanup.
+                  </li>
+                  <li>
+                    <strong>REMEMBER: THE KIDS ARE HERE TO HAVE FUN!</strong> -
+                    Focus on joy, confidence, and friendships over winning.
+                  </li>
+                </ul>
+              </div>
+            </details>
           </div>
         </div>
       </section>

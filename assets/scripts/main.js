@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
          setupNavigation();
          setFooterYear();
          try { setupAnnouncements(); } catch (e) { /* ignore if feature missing */ }
+         try { setupMobileCollapsibles(); } catch (e) { /* ignore if feature missing */ }
       });
 });
 
@@ -226,6 +227,31 @@ try {
    window.toggleMobileDropdown = toggleMobileDropdown;
 } catch (e) {
    // ignore (non-browser environment)
+}
+
+/**
+ * Ensure .mobile-collapsible <details> elements are open on desktop
+ * and collapsed on mobile. This provides graceful behaviour if JS
+ * is available; details remain open by default in the markup for
+ * non-JS fallback.
+ */
+function setupMobileCollapsibles() {
+   const els = Array.from(document.querySelectorAll('.mobile-collapsible'));
+   if (!els.length) return;
+
+   const apply = () => {
+      const isDesktop = window.matchMedia('(min-width: 901px)').matches;
+      els.forEach((d) => {
+         try { d.open = Boolean(isDesktop); } catch (e) { /* ignore */ }
+      });
+   };
+
+   apply();
+   let debounce;
+   window.addEventListener('resize', () => {
+      clearTimeout(debounce);
+      debounce = setTimeout(apply, 120);
+   });
 }
 
 // ===============================

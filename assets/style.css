@@ -1256,3 +1256,77 @@ p {
 .nav__menu.open {
   display: flex; /* Instant show */
 }
+
+/* ===============================
+   Coaches page: mobile stacking & collapsible panels
+   =============================== */
+
+/* Keep default grid behavior on larger screens */
+.info-pair {
+  display: grid;
+}
+
+/* Replace the two-column grid with a vertical stack on mobile
+   and reverse the order so 'Coach Conduct' (second column) appears
+   above 'Supplies' when viewport is 900px or less. */
+@media (max-width: 900px) {
+  .info-pair {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 1.25rem;
+  }
+
+  /* Style details/summary for a clean collapsible appearance */
+  .mobile-collapsible {
+    background: transparent;
+    border: none; /* remove border entirely on mobile per request */
+    border-radius: 0;
+    padding: 0;
+  }
+
+  .mobile-collapsible summary {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* arrow to the right */
+    gap: 0.75rem;
+    list-style: none;
+    padding: 0.5rem 0;
+    margin: 0;
+  }
+
+  .mobile-collapsible summary h3 {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 700;
+  }
+
+  /* Hide native marker for consistent cross-browser look */
+  .mobile-collapsible summary::-webkit-details-marker {
+    display: none;
+  }
+  .mobile-collapsible summary::marker {
+    display: none;
+  }
+
+  .mobile-collapsible .details-body {
+    margin-top: 0.6rem;
+    color: var(--neutral-700);
+    padding: 0 0 0.6rem 0;
+  }
+
+  /* Arrow placed on the summary itself for consistent alignment */
+  .mobile-collapsible summary::after {
+    content: "▾";
+    display: inline-block;
+    margin-left: 0.5rem;
+    font-size: 0.95rem;
+    color: var(--neutral-500);
+    transition: transform 0.15s ease;
+  }
+  .mobile-collapsible[open] summary::after {
+    content: "▴";
+    color: var(--neutral-700);
+    transform: rotate(0deg);
+  }
+}
