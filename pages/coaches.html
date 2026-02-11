@@ -9,38 +9,205 @@
       content="Volunteer to coach a team with AYSO Region 779."
     />
     <link rel="stylesheet" href="../assets/style.css" />
+    <style>
+      .hero--mini {
+        padding: 0.25rem 0 0.5rem 0;
+      }
+      .hero {
+        padding-top: calc(var(--top-nav-offset, 72px) + 8px);
+      }
+      .hero--mini .hero__content {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .hero--mini .hero__text {
+        display: block;
+      }
+      .hero--mini .hero__text h1 {
+        font-size: 1.9rem;
+        margin: 0;
+      }
+      .hero--mini .hero__logo {
+        margin-right: 8px;
+        width: 216px;
+        height: auto;
+      }
+      @media (max-width: 900px) {
+        .hero--mini .hero__content {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+        .hero--mini .hero__text {
+          margin-top: 0.5rem;
+        }
+        .hero--mini .hero__text h1 {
+          font-size: 1.4rem;
+        }
+      }
+    </style>
   </head>
   <body>
     <div id="navigation"></div>
 
     <main>
-      <header class="hero" role="banner" aria-label="Coaches hero">
+      <section class="hero hero--mini">
         <div class="container hero__content">
-          <h1>Coaches</h1>
-          <p class="hero__text">
-            Coaches teach fundamental skills, sportsmanship, and teamwork.
-          </p>
-          <div>
-            <a
-              class="btn btn--primary"
-              href="https://www.ayso779.org/Default.aspx?tabid=738572"
-              target="_blank"
-              rel="noopener"
-              >Volunteer Today</a
-            >
+          <img
+            src="../assets/images/logos/ayso779crest.png"
+            alt="AYSO 779 Crest"
+            class="hero__logo"
+          />
+          <div class="hero__text">
+            <h1>Coaches</h1>
+            <p style="margin: 0.25rem 0 0; color: #a1a1a1; font-size: 1.15rem">
+              Coaches teach fundamental skills, sportsmanship, and teamwork.
+            </p>
+            <div style="margin-top: 0.5rem">
+              <a
+                class="btn btn--primary"
+                href="https://www.ayso779.org/Default.aspx?tabid=738572"
+                target="_blank"
+                rel="noopener"
+                >Volunteer Today</a
+              >
+            </div>
           </div>
         </div>
-      </header>
+      </section>
 
       <section class="section" aria-labelledby="coaching-info">
         <div class="container">
           <h2 id="coaching-info" class="section__title">About Coaching</h2>
           <p>
-            We provide training and support — no prior experience required.
-            Coaches focus on fun, player development, and safety.
+            AYSO coaching is built for everyday people -
+            <strong>NO EXPERIENCE NEEDED</strong> - because our Region gives you
+            all the training, tools, and support to grow into an amazing coach.
+            You won’t be alone at any point; from age-appropriate AYSO courses
+            to on-field guidance and a community of volunteers, we walk with you
+            every step of the journey. Coaching becomes a chance to bond with
+            your child, create joyful memories, and help kids develop
+            confidence, teamwork, and a love of the game. AYSO’s nationally
+            recognized training is designed specifically for volunteers with
+            little or no soccer background, so if you bring enthusiasm and a
+            willingness to learn, we can turn you into a certified, capable
+            coach who truly brings out the best in kids.
           </p>
         </div>
       </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="grid" style="margin-bottom: 1.25rem">
+            <a class="card" href="certifications.html" title="Certifications">
+              <h3>Certifications</h3>
+              <p>
+                Required courses, background checks, and how to get certified.
+              </p>
+            </a>
+
+            <a class="card" href="practice.html" title="Practice">
+              <h3>Practice</h3>
+              <p>Practice planning, templates, and age-appropriate drills.</p>
+            </a>
+          </div>
+
+          <div
+            class="grid"
+            style="
+              grid-template-columns: 1fr 1fr;
+              gap: 1.5rem;
+              align-items: start;
+            "
+          >
+            <div class="panel">
+              <h3>Supplies</h3>
+              <p><strong>Standard Gear (Provided by AYSO)</strong></p>
+              <ul>
+                <li>Cones / Markers (12)</li>
+                <li>Extra Balls</li>
+                <li>Pinnies</li>
+                <li>First-Aid Kit</li>
+                <li>Ball Bag</li>
+                <li>
+                  Player Registration Forms (must have at all practices &amp;
+                  games) - <strong class="must-print">COACHES PRINT OUT</strong>
+                </li>
+              </ul>
+
+              <p><strong>Coach-Provided Suggested Items</strong></p>
+              <ul>
+                <li>Stopwatch / Timer</li>
+                <li>Trash Bags</li>
+                <li>Dry-Erase Board + Marker</li>
+                <li>Whistle</li>
+                <li>Clipboard / Practice Plan</li>
+                <li>Ball Pump + Needles</li>
+              </ul>
+            </div>
+
+            <div class="panel">
+              <h3>Coach Conduct</h3>
+              <ul>
+                <li>
+                  <strong>POSITIVE COACHING</strong> - Bring encouragement,
+                  patience, and praise to every player. Help them grow, try new
+                  things, and feel proud of their effort.
+                </li>
+                <li>
+                  <strong>BE PREPARED &amp; ORGANIZED</strong> - Have a plan for
+                  each practice, bring the right equipment, and keep rosters and
+                  registration forms handy.
+                </li>
+                <li>
+                  <strong>POSITIVE SIDELINE CONDUCT</strong> - Set the tone.
+                  Keep comments supportive, stay calm, and model the behavior we
+                  want our players and parents to follow.
+                </li>
+                <li>
+                  <strong>RESPECT THE REFEREES</strong> - Our refs—youth and
+                  adult—deserve kindness and support. Their calls stand. We
+                  teach our players to play on, not argue.
+                </li>
+                <li>
+                  <strong>ZERO TOLERANCE POLICY</strong> - No yelling at refs,
+                  no negative comments toward players, coaches, or parents. We
+                  protect the fun and safety of the game.
+                </li>
+                <li>
+                  <strong>GOOD COMMUNICATION</strong> - Keep parents and your
+                  division coordinator in the loop about schedules, changes, and
+                  expectations. Clear communication makes the season smoother
+                  for everyone.
+                </li>
+                <li>
+                  <strong>EXPECTATIONS FOR YOU, PLAYERS &amp; PARENTS</strong> -
+                  Set simple, shared expectations early: effort, respect,
+                  teamwork, and positivity from all sides.
+                </li>
+                <li>
+                  <strong>ALWAYS HAVE PLAYER FORMS</strong> - Bring player
+                  registration and emergency forms to every practice and game.
+                  Safety first.
+                </li>
+                <li>
+                  <strong>GET YOUR PARENTS INVOLVED</strong> - Ask for help!
+                  Team parents, snack schedules, field setup, cleanup—AYSO works
+                  best when everyone pitches in.
+                </li>
+                <li>
+                  <strong>REMEMBER: THE KIDS ARE HERE TO HAVE FUN!</strong> -
+                  Winning is optional. Joy, confidence, friendships, and a love
+                  for the game are the real goals.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Practice moved to separate page (linked above) -->
     </main>
 
     <footer class="footer">

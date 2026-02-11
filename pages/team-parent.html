@@ -9,28 +9,72 @@
       content="Team Parent role: help with communication, snacks, and coordination."
     />
     <link rel="stylesheet" href="../assets/style.css" />
+    <style>
+      .hero--mini {
+        padding: 0.25rem 0 0.5rem 0;
+      }
+      .hero {
+        padding-top: calc(var(--top-nav-offset, 72px) + 8px);
+      }
+      .hero--mini .hero__content {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .hero--mini .hero__text {
+        display: block;
+      }
+      .hero--mini .hero__text h1 {
+        font-size: 1.9rem;
+        margin: 0;
+      }
+      .hero--mini .hero__logo {
+        margin-right: 8px;
+        width: 216px;
+        height: auto;
+      }
+      @media (max-width: 900px) {
+        .hero--mini .hero__content {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+        .hero--mini .hero__text {
+          margin-top: 0.5rem;
+        }
+        .hero--mini .hero__text h1 {
+          font-size: 1.4rem;
+        }
+      }
+    </style>
   </head>
   <body>
     <div id="navigation"></div>
 
     <main>
-      <header class="hero" role="banner" aria-label="Team Parent hero">
+      <section class="hero hero--mini">
         <div class="container hero__content">
-          <h1>Team Parent</h1>
-          <p class="hero__text">
-            Team Parents keep the team running smoothly for the coaches
-          </p>
-          <div>
-            <a
-              class="btn btn--primary"
-              href="https://www.ayso779.org/Default.aspx?tabid=738572"
-              target="_blank"
-              rel="noopener"
-              >Volunteer Today</a
-            >
-          </div>
+          <img
+            src="../assets/images/logos/ayso779crest.png"
+            alt="AYSO 779 Crest"
+            class="hero__logo"
+          />
+          <div class="hero__text">
+            <h1>Team Parent</h1>
+            <p style="margin: 0.25rem 0 0; color: #a1a1a1; font-size: 1.15rem">
+              Team Parents keep the team running smoothly for the coaches.
+            </p>
+              <div style="margin-top:0.5rem">
+                <a
+                  class="btn btn--primary"
+                  href="https://www.ayso779.org/Default.aspx?tabid=738572"
+                  target="_blank"
+                  rel="noopener"
+                  >Volunteer Today</a
+                >
+              </div>
         </div>
-      </header>
+      </section>
 
       <section class="section" aria-labelledby="roles-heading">
         <div class="container">
@@ -64,10 +108,10 @@
               the 8U Referee certification or higher.
             </p>
             <p>
-              This is a huge help to the coach—teams referee their own games, so
-              having trained parents or older siblings (12+) ready to step in
-              keeps things running smoothly and lets the coach focus on the
-              players.
+              This is a huge help to the coach. Teams will referee their own
+              games, so having trained parents or older siblings (12+) ready to
+              step in keeps things running smoothly and lets the coach focus on
+              the players.
             </p>
           </div>
 

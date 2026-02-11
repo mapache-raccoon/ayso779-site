@@ -985,6 +985,27 @@ p {
   color: var(--neutral-700);
 }
 
+/* Flat panels used for non-interactive content (no border, no shadow) */
+.panel {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: var(--space-5);
+  box-shadow: none;
+}
+.panel h3 {
+  margin-bottom: var(--space-2);
+}
+.panel p,
+.panel ul {
+  color: var(--neutral-700);
+}
+
+.must-print {
+  color: #c62828; /* red */
+  font-weight: 700;
+}
+
 /* ===============================
    Callout Row
    =============================== */
