@@ -9,29 +9,65 @@
       content="Required coach and volunteer certifications for AYSO Region 779."
     />
     <link rel="stylesheet" href="../assets/style.css" />
+    <style>
+      .hero--mini {
+        padding: 0.25rem 0 0.5rem 0;
+      }
+      .hero {
+        padding-top: calc(var(--top-nav-offset, 72px) + 8px);
+      }
+      .hero--mini .hero__content {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .hero--mini .hero__text {
+        display: block;
+      }
+      .hero--mini .hero__text h1 {
+        font-size: 1.9rem;
+        margin: 0;
+      }
+      .hero--mini .hero__logo {
+        margin-right: 8px;
+        width: 216px;
+        height: auto;
+      }
+      @media (max-width: 900px) {
+        .hero--mini .hero__content {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+        .hero--mini .hero__text {
+          margin-top: 0.5rem;
+        }
+        .hero--mini .hero__text h1 {
+          font-size: 1.4rem;
+        }
+      }
+    </style>
   </head>
   <body>
     <div id="navigation"></div>
 
     <main>
-      <header class="hero" role="banner" aria-label="Certifications hero">
+      <section class="hero hero--mini">
         <div class="container hero__content">
-          <h1>Certifications</h1>
-          <p class="hero__text">
-            Required courses, background checks, and steps to get certified as a
-            coach or referee.
-          </p>
-          <div>
-            <a
-              class="btn btn--primary"
-              href="https://www.ayso779.org/Default.aspx?tabid=738572"
-              target="_blank"
-              rel="noopener"
-              >Volunteer Today</a
-            >
+          <img
+            src="../assets/images/logos/ayso779crest.png"
+            alt="AYSO 779 Crest"
+            class="hero__logo"
+          />
+          <div class="hero__text">
+            <h1>Certifications</h1>
+            <p style="margin: 0.25rem 0 0; color: #a1a1a1; font-size: 1.15rem">
+              Required courses, background checks, and steps to get certified as
+              a coach or referee.
+            </p>
           </div>
         </div>
-      </header>
+      </section>
 
       <section class="section">
         <div class="container">
