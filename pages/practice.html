@@ -16,31 +16,247 @@
     <main>
       <header class="hero" role="banner" aria-label="Practice hero">
         <div class="container hero__content">
-          <h1>Practice</h1>
+          <h1>Practice Guidelines – Spring Season</h1>
           <p class="hero__text">
-            Practice planning, templates, and age-appropriate drills for
-            coaches.
+            Rules, field notes, and restricted locations for spring practice
+            scheduling.
           </p>
-          <div>
-            <a
-              class="btn btn--primary"
-              href="https://www.ayso779.org/Default.aspx?tabid=738572"
-              target="_blank"
-              rel="noopener"
-              >Volunteer Today</a
-            >
-          </div>
         </div>
       </header>
 
       <section class="section">
         <div class="container">
-          <h2 class="section__title">Getting Started</h2>
+          <h2 class="section__title">General Rules</h2>
+          <ul>
+            <li>
+              Coaches select their own practice days, times, and locations.
+            </li>
+            <style>
+              /* Expandable card styles for practice page */
+              .expand-card {
+                border-radius: 8px;
+                border: 1px solid rgba(0, 0, 0, 0.06);
+                padding: 0;
+                overflow: hidden;
+                background: #fff;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+                margin: 0 0 1rem 0;
+              }
+              .expand-card summary {
+                list-style: none;
+                cursor: pointer;
+                padding: 0.75rem 1rem;
+                font-weight: 700;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+              }
+              .expand-card summary::-webkit-details-marker {
+                display: none;
+              }
+              .expand-card summary::after {
+                content: "+";
+                font-weight: 700;
+              }
+              .expand-card[open] summary::after {
+                content: "−";
+              }
+              .expand-card .card-content {
+                padding: 0.75rem 1rem;
+                border-top: 1px solid rgba(0, 0, 0, 0.04);
+                text-align: left;
+              }
+              .expand-card img.ayala-photo {
+                width: 320px;
+                max-width: 100%;
+                height: auto;
+                border-radius: 6px;
+                margin-top: 0.5rem;
+                display: block;
+              }
+              /* Lightbox overlay styles */
+              .lightbox-link img {
+                cursor: zoom-in;
+              }
+              .lightbox-overlay {
+                position: fixed;
+                inset: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: rgba(0, 0, 0, 0.7);
+                z-index: 9999;
+              }
+              .lightbox-overlay .lightbox-inner {
+                position: relative;
+                max-width: 95vw;
+                max-height: 95vh;
+                padding: 8px;
+              }
+              .lightbox-overlay img {
+                display: block;
+                max-width: 100%;
+                max-height: 100%;
+                border-radius: 6px;
+              }
+              .lightbox-close {
+                position: absolute;
+                top: -8px;
+                right: -8px;
+                background: rgba(255, 255, 255, 0.9);
+                border: none;
+                border-radius: 50%;
+                width: 36px;
+                height: 36px;
+                font-size: 18px;
+                cursor: pointer;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+              }
+              /* Tighter spacing for headings, paragraphs and lists inside cards */
+              .expand-card .card-content p {
+                margin: 0.25rem 0;
+              }
+              .expand-card .card-content ul {
+                margin-top: 0.25rem;
+                margin-bottom: 0.5rem;
+                padding-left: 1.1rem;
+              }
+              /* Desktop: place Ayala Park and Not Practicing cards side-by-side */
+              .card-row {
+                display: block;
+                margin-bottom: 2rem;
+              }
+              @media (min-width: 900px) {
+                .card-row {
+                  display: grid;
+                  grid-template-columns: 1fr 1fr;
+                  gap: 1rem;
+                  align-items: start;
+                }
+                .card-row .expand-card {
+                  margin-bottom: 0;
+                }
+              }
+              /* Reduce H4 spacing: top cut by half, bottom cut by 60% */
+              .section h4 {
+                margin-top: 0.3rem;
+                margin-bottom: 0.1rem;
+              }
+            </style>
+            <li>Teams may hold up to 2 practices per week.</li>
+            <li>
+              8U and younger are limited to 2 total hours of practice per week.
+            </li>
+          </ul>
+
+          <div class="card-row">
+            <details class="expand-card">
+              <summary>Ayala Park – Chino (Wednesdays Only)</summary>
+              <div class="card-content">
+                <p>
+                  We are guests at Ayala Park, and space is limited. Please be
+                  courteous to all teams using the area and work together to
+                  make the limited field options work for everyone. A little
+                  flexibility and communication go a long way in helping every
+                  team get the practice time they need.
+                </p>
+
+                <p><strong>Fields:</strong> 8 &amp; 9</p>
+                <a
+                  class="lightbox-link"
+                  href="https://www.ayso779.org/Portals/14638/Images/spring2026/photo_2026-02-12_23-01-47.jpg"
+                  data-src="https://www.ayso779.org/Portals/14638/Images/spring2026/photo_2026-02-12_23-01-47.jpg"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <img
+                    class="ayala-photo"
+                    src="https://www.ayso779.org/Portals/14638/Images/spring2026/photo_2026-02-12_23-01-47.jpg"
+                    alt="Ayala Park photo"
+                  />
+                </a>
+
+                <p><strong>Available Times:</strong></p>
+                <ul>
+                  <li>5:00–6:00 PM</li>
+                  <li>6:00–7:00 PM</li>
+                  <li>7:00–8:00 PM</li>
+                </ul>
+
+                <h4>Division Notes</h4>
+                <ul>
+                  <li>
+                    10U–14U: Contact your division coordinator for field
+                    assignment.
+                  </li>
+                  <li>
+                    8U and below: May use the grass areas surrounding Fields 8
+                    &amp; 9.
+                  </li>
+                </ul>
+
+                <h4>Helpful Tip</h4>
+                <p>
+                  Ayala Park can be a great option for your team until Daylight
+                  Saving Time begins. After that, you’ll have more flexibility
+                  to choose an alternate location, day, and time that works best
+                  for your group.
+                </p>
+              </div>
+            </details>
+
+            <details class="expand-card">
+              <summary>Not Practicing at Ayala Park</summary>
+              <div class="card-content">
+                <p>
+                  If you are not utilizing Ayala Park, practicing within Chino
+                  Hills is essential. Please ensure:
+                </p>
+                <ul>
+                  <li>Your practice location has restroom facilities.</li>
+                  <li>You are mindful that lighting is limited until March.</li>
+                  <li>
+                    You are not practicing at any of the restricted locations
+                    listed below.
+                  </li>
+                </ul>
+                <h3>Restricted Locations (Spring Season)</h3>
+                <p>
+                  The following fields and parks may <strong>NOT</strong> be
+                  used for practices during the spring:
+                </p>
+                <ul>
+                  <li>Community Park</li>
+                  <li>Grand Avenue Park</li>
+                  <li>Ayala High School</li>
+                  <li>Canyon Hills Jr. High</li>
+                  <li>Chaparral Elementary</li>
+                  <li>Chino Hills High School</li>
+                  <li>Country Springs Elementary</li>
+                  <li>Eagle Canyon Elementary</li>
+                  <li>English Springs Park</li>
+                  <li>Fairfield Park</li>
+                  <li>Glenmeade Elementary</li>
+                  <li>Hunters Hill Park</li>
+                  <li>Litel Elementary</li>
+                  <li>Los Serranos Elementary</li>
+                  <li>Oakridge Elementary</li>
+                  <li>Townsend Jr. High</li>
+                </ul>
+              </div>
+            </details>
+          </div>
+          <!-- Restricted locations moved into the 'Not Practicing at Ayala Park' card -->
+
+          <h2 class="section__title">Coaches' Corner</h2>
           <p>
-            Use these simple drills and a short practice plan to keep sessions
-            focused and fun. More detailed age-specific plans will be added
-            here.
+            Quick resources for coaches: practice templates, age-appropriate
+            drills, and useful links to help plan efficient, fun sessions.
           </p>
+          <ul>
+            <li>Practice templates for 6U–14U</li>
+            <li>Warm-up and skill-building drills</li>
+          </ul>
         </div>
       </section>
     </main>
@@ -52,5 +268,30 @@
     </footer>
 
     <script src="../assets/scripts/main.js"></script>
+    <script>
+      // Minimal lightbox: open image in overlay when .lightbox-link clicked
+      document.addEventListener("click", function (e) {
+        var link = e.target.closest && e.target.closest(".lightbox-link");
+        if (!link) return;
+        e.preventDefault();
+        var src = link.dataset.src || link.href;
+        var overlay = document.createElement("div");
+        overlay.className = "lightbox-overlay";
+        overlay.innerHTML =
+          '<div class="lightbox-inner"><img src="' +
+          src +
+          '" alt="" /><button class="lightbox-close" aria-label="Close">×</button></div>';
+        document.body.appendChild(overlay);
+        // close handlers
+        overlay
+          .querySelector(".lightbox-close")
+          .addEventListener("click", function () {
+            overlay.remove();
+          });
+        overlay.addEventListener("click", function (ev) {
+          if (ev.target === overlay) overlay.remove();
+        });
+      });
+    </script>
   </body>
 </html>
