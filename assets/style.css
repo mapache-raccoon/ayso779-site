@@ -168,6 +168,16 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+/* Make certain links look like typical, clickable hyperlinks */
+.typical-link {
+  color: #0066cc;
+  text-decoration: underline;
+}
+.typical-link:hover,
+.typical-link:focus {
+  color: #004080;
+}
 h1,
 h2,
 h3 {
