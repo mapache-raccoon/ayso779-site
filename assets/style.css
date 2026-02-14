@@ -1357,3 +1357,123 @@ p {
     transform: rotate(0deg);
   }
 }
+
+/* ===============================
+   Contact / Rules Page Specifics
+   =============================== */
+
+/* Ensure the hero doesn't get hidden behind the fixed nav */
+/* We add the nav height to the top padding */
+.hero.hero--mini {
+  padding-top: calc(var(--top-nav-offset, 104px) + 1.5rem);
+}
+
+.rules-container {
+  max-width: 900px;
+  margin: 1rem auto;
+  padding: 1rem;
+}
+
+.meta {
+  color: #444;
+  font-size: 0.95rem;
+}
+
+.contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.contact-list li {
+  background: var(--surface-alt);
+  border: 1px solid var(--neutral-200);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.contact-list li:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--green-300);
+}
+
+.contact-role {
+  font-weight: 700;
+  color: var(--neutral-800);
+  font-size: 1.1rem;
+}
+
+/* Transform the email links into modern buttons */
+.contact-list a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-green);
+  color: var(--primary-white);
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  font-weight: 500;
+  margin-top: auto; /* Push to bottom if height varies */
+  transition: background-color 0.2s;
+  box-shadow: var(--shadow-sm);
+}
+
+.contact-list a:hover {
+  background-color: var(--green-400);
+  text-decoration: none;
+}
+
+/* Enhanced hero--mini styles for Contact page */
+.hero--mini .hero__content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.hero--mini .hero__text {
+  display: block;
+}
+
+.hero--mini .hero__text h1 {
+  font-size: 1.9rem;
+  margin: 0;
+}
+
+.hero--mini .hero__logo {
+  margin-right: 8px;
+  width: 216px;
+  height: auto;
+}
+
+@media (max-width: 900px) {
+  .hero--mini .hero__content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero--mini .hero__text {
+    margin-top: 0.5rem;
+  }
+
+  .hero--mini .hero__text h1 {
+    font-size: 1.4rem;
+  }
+}
+
+.hero-subtitle {
+  margin: 0.25rem 0 0;
+  color: #a1a1a1;
+  font-size: 1.15rem;
+}
