@@ -9,35 +9,303 @@
       content="Volunteer to referee matches for AYSO Region 779."
     />
     <link rel="stylesheet" href="../assets/style.css" />
+    <style>
+      .hero--mini {
+        padding: 0.25rem 0 0.5rem 0;
+      }
+      .hero {
+        padding-top: calc(var(--top-nav-offset, 72px) + 8px);
+      }
+      .hero--mini .hero__content {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .hero--mini .hero__text {
+        display: block;
+      }
+      .hero--mini .hero__text h1 {
+        font-size: 1.9rem;
+        margin: 0;
+      }
+      .hero--mini .hero__logo {
+        margin-right: 8px;
+        width: 216px;
+        height: auto;
+      }
+      @media (max-width: 900px) {
+        .hero--mini .hero__content {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+        .hero--mini .hero__text {
+          margin-top: 0.5rem;
+        }
+        .hero--mini .hero__text h1 {
+          font-size: 1.4rem;
+        }
+      }
+    </style>
   </head>
   <body>
     <div id="navigation"></div>
 
     <main>
-      <header class="hero" role="banner" aria-label="Referees hero">
+      <header class="hero hero--mini" role="banner" aria-label="Referees hero">
         <div class="container hero__content">
-          <h1>Referees</h1>
-          <p class="hero__text">
-            Referees ensure fair play and safety on the field.
-          </p>
-          <div>
-            <a
-              class="btn btn--primary"
-              href="https://www.ayso779.org/Default.aspx?tabid=738572"
-              target="_blank"
-              rel="noopener"
-              >Volunteer Today</a
-            >
+          <img
+            src="../assets/images/logos/ayso779crest.png"
+            alt="AYSO 779 Crest"
+            class="hero__logo"
+          />
+          <div class="hero__text">
+            <h1>Become an AYSO Referee</h1>
+            <p style="margin: 0.25rem 0 0; color: #a1a1a1; font-size: 1.15rem">
+              Referees are essential to the AYSO experience.
+            </p>
           </div>
         </div>
       </header>
 
-      <section class="section" aria-labelledby="ref-info">
+      <section class="section">
         <div class="container">
-          <h2 id="ref-info" class="section__title">About Refereeing</h2>
           <p>
-            Referees receive training and are vital to every game. Opportunities
-            available for new and experienced referees.
+            Referees are essential to the AYSO experience — and you don’t need
+            prior soccer experience to get started. AYSO provides all the
+            training you need, and many volunteers discover that refereeing is
+            one of the most fun, rewarding ways to support their child and the
+            community. Whether you’re a parent, a teen volunteer, or a returning
+            referee, you’ll make a real impact every time you step on the field.
+          </p>
+          <p>
+            Referees help create a safe, fair, and positive environment where
+            kids can grow, build confidence, and fall in love with the game.
+            You’re supporting players, staying close to the action, and helping
+            shape the kind of soccer experience that keeps kids coming back
+            season after season.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <h2 class="section__title">Keeping the Game Safe, Fair, and Fun</h2>
+          <p>
+            Referees are at the heart of every AYSO game. We simply can’t play
+            without them — but beyond necessity, the role is genuinely
+            meaningful. You’re the steady presence who helps ensure that every
+            match is safe, respectful, and development‑focused.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <h2 class="section__title">Why Become an AYSO Referee?</h2>
+
+          <h3>We Need You</h3>
+          <p>
+            Every game requires a referee. When parents and community members
+            step into this role, it keeps our program running smoothly and
+            ensures every team gets the chance to play.
+          </p>
+
+          <h3>It’s Fun and Incredibly Rewarding</h3>
+          <p>
+            Working with kids, watching them grow, and being part of their
+            soccer journey is one of the best parts of volunteering. Many
+            referees find they enjoy it even more than they expected.
+          </p>
+
+          <h3>You’re the Guardian of the Game</h3>
+          <p>
+            Referees are the independent officials who manage the match. Your
+            authority extends to:
+          </p>
+          <ul>
+            <li>Players</li>
+            <li>Substitutes</li>
+            <li>Coaches and team officials</li>
+            <li>Spectators</li>
+            <li>Assistant referees</li>
+          </ul>
+          <p>
+            Your presence helps maintain a positive, respectful environment
+            where kids can focus on playing and learning.
+          </p>
+
+          <h3>Safety Comes First</h3>
+          <p>
+            The referee’s top priority is player safety. While all sports carry
+            some risk, referees help minimize it by monitoring:
+          </p>
+          <ul>
+            <li>Field conditions</li>
+            <li>Equipment</li>
+            <li>Player behavior</li>
+            <li>Spectator conduct</li>
+          </ul>
+          <p>
+            A safe game is a fun game — and kids stay in the sport longer when
+            they feel protected and supported.
+          </p>
+
+          <h3>Fairness and Flow</h3>
+          <p>Referees enforce the Laws of the Game in a way that keeps play:</p>
+          <ul>
+            <li>Safe</li>
+            <li>Fair</li>
+            <li>Fun</li>
+          </ul>
+          <p>
+            Good referees interfere as little as possible, calling only what
+            they clearly see and avoiding “doubtful or trifling” offenses. This
+            helps the game flow and keeps the focus on the players.
+          </p>
+
+          <h3>Understanding What “Fun” Looks Like</h3>
+          <p>
+            Fun looks different at each age group. Referees learn how to adjust
+            their approach so the game stays development‑appropriate — from the
+            joyful chaos of 6U to the more structured play of older divisions.
+          </p>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="steps-referee">
+        <div class="container">
+          <h2 id="steps-referee" class="section__title">
+            Steps to Becoming an AYSO Referee
+          </h2>
+          <ol>
+            <li>
+              <strong>Register as an AYSO Volunteer</strong>
+              <ul>
+                <li>Go to ayso779.org</li>
+                <li>
+                  Log in, or click <em>Register Now</em> to create an account
+                </li>
+                <li>Click <em>Volunteer</em> in the left menu</li>
+                <li>Select <em>Find Volunteer Roles</em></li>
+                <li>
+                  Under Volunteer Registration, click
+                  <em>+ Select → View Roles</em>
+                </li>
+                <li>
+                  Choose <em>Referee</em> (and any other roles you’d like)
+                </li>
+                <li>Complete the E‑Signature process</li>
+                <li>Follow the prompts to finish your account setup</li>
+              </ul>
+              <p class="muted">
+                Note: Access to AYSOU (the training platform) becomes available
+                the next morning.
+              </p>
+            </li>
+
+            <li>
+              <strong>Complete All Safe Haven Courses</strong>
+              <p>All volunteers must complete:</p>
+              <ul>
+                <li>AYSO’s Safe Haven</li>
+                <li>CDC Concussion Awareness</li>
+                <li>Sudden Cardiac Arrest</li>
+                <li>SafeSport (required annually for volunteers age 18+)</li>
+              </ul>
+              <p>How to access courses:</p>
+              <ul>
+                <li>Log in to My Account → Volunteer → click <em>AYSOU</em></li>
+                <li>Go to Training Library → Safe Haven Courses</li>
+                <li>Complete all modules</li>
+                <li>Save or print your certificates</li>
+              </ul>
+            </li>
+
+            <li>
+              <strong>Complete Referee Training</strong>
+              <p>
+                You can complete your referee certification in one of two ways:
+              </p>
+              <h4>Option A: Online + In‑Person (Most Common)</h4>
+              <p><em>Regional Referee Online Companion Course</em></p>
+              <p>
+                <strong>Step 1 — Register for the Classroom Session</strong>
+              </p>
+              <ul>
+                <li>Log in to AYSOU</li>
+                <li>
+                  Go to In‑Person Courses → Referee Instructor Led Courses
+                </li>
+                <li>
+                  Select <em>Regional Referee Online Companion Course</em>
+                </li>
+                <li>Click <em>Sessions</em> and register for a date</li>
+              </ul>
+              <p><strong>Step 2 — Complete the Online Module</strong></p>
+              <ul>
+                <li>Go to Online Courses → Regional Referee Training Course</li>
+                <li>Complete the online portion before attending the class</li>
+              </ul>
+              <p><strong>Step 3 — Attend the Classroom Session</strong></p>
+              <ul>
+                <li>Attend the in‑person session you registered for</li>
+                <li>Bring your Safe Haven and Concussion certificates</li>
+              </ul>
+
+              <h4>Option B: Full In‑Person Regional Referee Course</h4>
+              <p>An 8‑hour course offered in Chino Hills and nearby regions.</p>
+              <ul>
+                <li>Log in to AYSOU</li>
+                <li>Go to Training Event</li>
+                <li>
+                  Search for <em>Regional Referee – Full In‑Person Course</em>
+                </li>
+                <li>Choose a date and location, enroll, and attend</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="ref-faq">
+        <div class="container">
+          <h2 id="ref-faq" class="section__title">
+            Frequently Asked Questions
+          </h2>
+          <h3>Is there an age requirement?</h3>
+          <p>
+            Yes. Referees must be at least 12 years old. Youth referees may
+            officiate games one age division below their own age.
+          </p>
+
+          <h3>Do I need to pre‑register for a course?</h3>
+          <p>Yes — you must register in AYSOU to receive credit.</p>
+
+          <h3>What should I bring to the course?</h3>
+          <ul>
+            <li>Safe Haven, Concussion, and Regional Referee certificates</li>
+            <li>Pen/pencil and paper</li>
+            <li>All course materials are provided</li>
+          </ul>
+
+          <h3>What if I arrive late?</h3>
+          <p>
+            Punctuality is important. Late arrivals may be asked to attend
+            another session.
+          </p>
+
+          <h3>I’m a USSF referee. Can I referee AYSO games?</h3>
+          <p>
+            Yes — after completing the USSF‑AYSO crossover process.
+            <a href="#">Link to crossover form/resource</a>
+          </p>
+
+          <h3>Need Help?</h3>
+          <p>
+            Email the Referee Team at
+            <a href="mailto:ref@ayso779.org">ref@ayso779.org</a> — we’re here to
+            support you.
           </p>
         </div>
       </section>
