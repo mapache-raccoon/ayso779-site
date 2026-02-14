@@ -9,20 +9,164 @@
       content="Practice planning and drill ideas for AYSO Region 779 coaches."
     />
     <link rel="stylesheet" href="../assets/style.css" />
+    <style>
+      .hero--mini {
+        padding: 0.25rem 0 0.5rem 0;
+      }
+      /* Division Nuggets (card layout, global) */
+      .quick-guides {
+        margin-top: 0.6rem;
+      }
+      .quick-guides__intro {
+        margin-bottom: 0.5rem;
+        color: #333;
+        font-size: 0.98rem;
+      }
+      .quick-guides-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.5rem 0.15rem;
+        justify-content: center;
+      }
+      @media (min-width: 900px) {
+        .quick-guides-grid {
+          grid-template-columns: repeat(3, minmax(0, 360px));
+        }
+      }
+      .guide-card {
+        border-radius: 6px;
+        border: 1px solid rgba(0,0,0,0.05);
+        padding: 0.5rem;
+        background: #fff;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        min-height: 72px;
+        max-width: 360px;
+        width: 100%;
+        text-align: center;
+      }
+      .guide-card h3 {
+        margin: 0 0 0.25rem 0;
+        font-size: 0.98rem;
+        line-height: 1.1;
+        width: 100%;
+      }
+      .guide-card p {
+        margin: 0 0 0.45rem 0;
+        color: #555;
+        font-size: 0.95rem;
+      }
+      .view-btn {
+        display: inline-flex;
+        align-items: center;
+        width: fit-content;
+        gap: 0.4rem;
+        background: #0b7a49;
+        color: #fff;
+        text-decoration: none;
+        font-weight: 600;
+        padding: 0.18rem 0.42rem;
+        border-radius: 6px;
+        border: none;
+        cursor: pointer;
+        font-size: 0.88rem;
+      }
+      .view-btn:hover {
+        background: #0a6d42;
+      }
+      .view-btn:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(11,122,73,0.18);
+      }
+      .hero {
+        padding-top: calc(var(--top-nav-offset, 72px) + 8px);
+      }
+      .hero--mini .hero__content {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .hero--mini .hero__text {
+        display: block;
+      }
+      .hero--mini .hero__text h1 {
+        font-size: 1.9rem;
+        margin: 0;
+      }
+      .hero--mini .hero__logo {
+        margin-right: 8px;
+        width: 216px;
+        height: auto;
+      }
+      @media (max-width: 900px) {
+        .hero--mini .hero__content {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+        .hero--mini .hero__text {
+          margin-top: 0.5rem;
+        }
+        .hero--mini .hero__text h1 {
+          font-size: 1.4rem;
+        }
+        /* Compact Division Nuggets mobile styles */
+        .quick-guides {
+          margin-top: 0.6rem;
+        }
+        .quick-guides__intro {
+          margin-bottom: 0.5rem;
+          color: #333;
+        }
+        .quick-guides-grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 0.5rem 0.15rem;
+        }
+        .guide-card {
+          border-radius: 6px;
+          border: 1px solid rgba(0,0,0,0.05);
+          padding: 0.35rem;
+          background: #fff;
+          box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+          min-height: 52px;
+          align-items: center;
+          text-align: center;
+        }
+        .guide-card h3 {
+          margin: 0 0 0.15rem 0;
+          font-size: 0.9rem;
+        }
+        .view-btn {
+          padding: 0.18rem 0.34rem;
+          font-size: 0.88rem;
+        }
+      }
+    </style>
   </head>
   <body>
     <div id="navigation"></div>
 
     <main>
-      <header class="hero" role="banner" aria-label="Practice hero">
+      <section class="hero hero--mini">
         <div class="container hero__content">
-          <h1>Practice Guidelines – Spring Season</h1>
-          <p class="hero__text">
-            Rules, field notes, and restricted locations for spring practice
-            scheduling.
-          </p>
+          <img
+            src="../assets/images/logos/ayso779crest.png"
+            alt="AYSO 779 Crest"
+            class="hero__logo"
+          />
+          <div class="hero__text">
+            <h1>Practice Guidelines – Spring Season</h1>
+            <p style="margin: 0.25rem 0 0; color: #a1a1a1; font-size: 1.15rem">
+              Rules, field notes, and restricted locations for spring practice
+              scheduling.
+            </p>
+          </div>
         </div>
-      </header>
+      </section>
 
       <section class="section">
         <div class="container">
@@ -142,6 +286,17 @@
                 margin-top: 0.3rem;
                 margin-bottom: 0.1rem;
               }
+              /* Text link styling */
+              .text-link {
+                color: var(--green-400);
+                text-decoration: underline;
+                font-weight: 500;
+                transition: color 0.2s;
+              }
+              .text-link:hover {
+                color: var(--green-300);
+                text-decoration: none;
+              }
             </style>
             <li>Teams may hold up to 2 practices per week.</li>
             <li>
@@ -253,10 +408,117 @@
             Quick resources for coaches: practice templates, age-appropriate
             drills, and useful links to help plan efficient, fun sessions.
           </p>
+          <h3>MOJO Sports Coach Help</h3>
+          <style>
+             .mojo-resources h4 { margin-top: 1rem; margin-bottom: 0.5rem; color: #2e7d32; }
+             .mojo-resources h5 { margin-top: 0.75rem; margin-bottom: 0.25rem; font-size: 1rem; color: #333; }
+             .mojo-resources ul { margin-bottom: 1rem; }
+             .mojo-resources p { margin-bottom: 0.5rem; font-style: italic; color: #555; }
+          </style>
+          <div class="mojo-resources">
+            <p>Organized articles and drills from MOJO Sport to help you plan clear, scannable sessions.</p>
+
+            <h4>Warm-Up & Practice Basics</h4>
+            <p>Essential reading for setting up a successful practice environment.</p>
+            <ul>
+                <li><a class="text-link" href="https://mojo.sport/coachs-corner/how-to-coach-soccer/" target="_blank" rel="noopener">MOJO Sport: How to Coach Soccer</a></li>
+                <li><a class="text-link" href="https://mojo.sport/coachs-corner/the-right-way-to-warm-up-in-youth-soccer/" target="_blank" rel="noopener">The Right Way to Warm Up in Youth Soccer</a></li>
+                <li><a class="text-link" href="https://mojo.sport/coachs-corner/7-essentials-soccer-practice/" target="_blank" rel="noopener">7 Essentials Soccer Practice</a></li>
+                <li><a class="text-link" href="https://mojo.sport/coachs-corner/icebreakers-dont-have-to-be-cringey/" target="_blank" rel="noopener">Icebreakers Don’t Have to Be Cringey</a></li>
+                <li><a class="text-link" href="https://mojo.sport/coachs-corner/how-much-water-should-kids-drink/" target="_blank" rel="noopener">How Much Water Should Kids Drink?</a></li>
+                <li><a class="text-link" href="https://mojo.sport/coachs-corner/the-rules-of-youth-soccer-explained/" target="_blank" rel="noopener">The Rules of Youth Soccer Explained</a></li>
+                <li><a class="text-link" href="https://mojo.sport/coachs-corner/soccer-positions-explained/" target="_blank" rel="noopener">Soccer Positions Explained</a></li>
+            </ul>
+
+            <h4>Age-Specific Drills</h4>
+            <p>Tailored activities to match the developmental stage of your team.</p>
+            
+            <h5>U6 Drills</h5>
+            <ul>
+                <li><a class="text-link" href="https://mojo.sport/coachs-corner/10-best-u6-soccer-drills/" target="_blank" rel="noopener">10 Best U6 Soccer Drills</a></li>
+                <li><a class="text-link" href="https://mojo.sport/coachs-corner/10-best-beginner-soccer-drills-to-improve-footwork/" target="_blank" rel="noopener">10 Best Beginner Soccer Drills to Improve Footwork</a></li>
+                <li><a class="text-link" href="https://mojo.sport/coachs-corner/10-best-soccer-dribbling-drills-for-u6-u8-and-u10/" target="_blank" rel="noopener">10 Best Soccer Dribbling Drills for U6, U8, and U10</a></li>
+            </ul>
+
+            <h5>U8 Drills</h5>
+            <ul>
+                <li><a class="text-link" href="https://mojo.sport/coachs-corner/10-best-u8-soccer-drills/" target="_blank" rel="noopener">10 Best U8 Soccer Drills</a></li>
+                <li><a class="text-link" href="https://mojo.sport/coachs-corner/10-best-soccer-passing-drills-for-u8-u10-and-u12/" target="_blank" rel="noopener">10 Best Soccer Passing Drills for U8, U10, and U12</a></li>
+                <li><a class="text-link" href="https://mojo.sport/coachs-corner/10-best-soccer-dribbling-drills-for-u6-u8-and-u10/" target="_blank" rel="noopener">10 Best Soccer Dribbling Drills for U6, U8, and U10</a></li>
+            </ul>
+
+            <h5>U10 Drills</h5>
+            <ul>
+                <li><a class="text-link" href="https://mojo.sport/coachs-corner/10-best-u10-soccer-drills/" target="_blank" rel="noopener">10 Best U10 Soccer Drills</a></li>
+                <li><a class="text-link" href="https://mojo.sport/coachs-corner/10-best-soccer-passing-drills-for-u8-u10-and-u12/" target="_blank" rel="noopener">10 Best Soccer Passing Drills for U8, U10, and U12</a></li>
+                <li><a class="text-link" href="https://mojo.sport/coachs-corner/10-best-soccer-dribbling-drills-for-u6-u8-and-u10/" target="_blank" rel="noopener">10 Best Soccer Dribbling Drills for U6, U8, and U10</a></li>
+            </ul>
+
+            <h5>U12 Drills</h5>
+            <ul>
+                <li><a class="text-link" href="https://mojo.sport/coachs-corner/10-best-u12-soccer-drills/" target="_blank" rel="noopener">10 Best U12 Soccer Drills</a></li>
+                <li><a class="text-link" href="https://mojo.sport/coachs-corner/10-best-soccer-passing-drills-for-u8-u10-and-u12/" target="_blank" rel="noopener">10 Best Soccer Passing Drills for U8, U10, and U12</a></li>
+            </ul>
+
+            <h4>Skill-Focused Drills (All Ages)</h4>
+            <p>Great options for mixing specific technical work into your practice.</p>
+            <ul>
+                <li><a class="text-link" href="https://mojo.sport/coachs-corner/10-best-soccer-drills-to-improve-footwork/" target="_blank" rel="noopener">10 Best Soccer Drills to Improve Footwork</a></li>
+                <li><a class="text-link" href="https://mojo.sport/coachs-corner/10-best-soccer-shooting-drills-for-kids/" target="_blank" rel="noopener">10 Best Soccer Shooting Drills for Kids</a></li>
+                <li><a class="text-link" href="https://mojo.sport/coachs-corner/10-best-soccer-defending-drills-for-kids/" target="_blank" rel="noopener">10 Best Soccer Defending Drills for Kids</a></li>
+                <li><a class="text-link" href="https://mojo.sport/coachs-corner/10-best-soccer-attacking-drills-for-kids/" target="_blank" rel="noopener">10 Best Soccer Attacking Drills for Kids</a></li>
+                <li><a class="text-link" href="https://mojo.sport/coachs-corner/10-most-popular-soccer-drills-on-mojo/" target="_blank" rel="noopener">10 Most Popular Soccer Drills on MOJO</a></li>
+                <li><a class="text-link" href="https://mojo.sport/coachs-corner/6-soccer-skills-kids-love/" target="_blank" rel="noopener">6 Soccer Skills Kids Love</a></li>
+                <li><a class="text-link" href="https://mojo.sport/coachs-corner/how-to-take-a-corner-kick/" target="_blank" rel="noopener">How to Take a Corner Kick</a></li>
+                <li><a class="text-link" href="https://mojo.sport/coachs-corner/9-essential-goalkeeping-skills/" target="_blank" rel="noopener">9 Essential Goalkeeping Skills</a></li>
+            </ul>
+          </div>
+
+          <h3>AYSO Coach Help</h3>
           <ul>
-            <li>Practice templates for 6U–14U</li>
-            <li>Warm-up and skill-building drills</li>
+            <li>
+              <a
+                class="text-link"
+                href="https://www.aysovolunteers.org/wp-content/uploads/2021/10/2017SessionPlanPrint.pdf"
+                target="_blank"
+                rel="noopener"
+                >Session Plan Print</a
+              > - How to structure a complete AYSO practice from warm‑up through scrimmage
+            </li>
           </ul>
+          <h4 style="margin-top: 2rem; margin-bottom: 0.5rem;">Division Nuggets</h4>
+          <p class="quick-guides__intro">These half-page guides give coaches and parents a fast reference for each age group. Click View to open the PDF in your browser.</p>
+
+          <div class="quick-guides">
+            <div class="quick-guides-grid">
+              <div class="guide-card">
+                <h3>6U Nuggets</h3>
+                <a class="view-btn" href="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/ayso/6UHalfPage.pdf" target="_blank" rel="noopener" aria-label="Open 6U Nuggets PDF in new tab">View PDF</a>
+              </div>
+
+              <div class="guide-card">
+                <h3>8U Nuggets</h3>
+                <a class="view-btn" href="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/ayso/8UHalfPage.pdf" target="_blank" rel="noopener" aria-label="Open 8U Nuggets PDF in new tab">View PDF</a>
+              </div>
+
+              <div class="guide-card">
+                <h3>10U Nuggets</h3>
+                <a class="view-btn" href="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/ayso/10UHalfPage.pdf" target="_blank" rel="noopener" aria-label="Open 10U Nuggets PDF in new tab">View PDF</a>
+              </div>
+
+              <div class="guide-card">
+                <h3>12U Nuggets</h3>
+                <a class="view-btn" href="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/ayso/12UHalfPage-1.pdf" target="_blank" rel="noopener" aria-label="Open 12U Nuggets PDF in new tab">View PDF</a>
+              </div>
+
+              <div class="guide-card">
+                <h3>14U Nuggets</h3>
+                <a class="view-btn" href="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/ayso/14UhalfPage.pdf" target="_blank" rel="noopener" aria-label="Open 14U Nuggets PDF in new tab">View PDF</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
         </div>
       </section>
     </main>
