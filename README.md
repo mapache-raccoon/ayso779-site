@@ -5,9 +5,9 @@ Welcome to the official public-facing site for AYSO Region 779, serving the Chin
 ## 📁 Repo Structure
 
 - `/assets` — Logos, stylesheets, scripts
-- `/pages` — Individual HTML pages
 - `/includes` — Shared components (nav, footer)
 - `index.html` — Homepage
+- `*.html` — Individual HTML pages
 
 ## 🌐 Live Site
 
