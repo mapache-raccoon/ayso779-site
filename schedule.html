@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Schedules — AYSO Region 779</title>
+    <meta name="description" content="Game schedules for AYSO Region 779." />
+    <link rel="stylesheet" href="assets/style.css" />
+    <style>
+      /* Hero styles copied from referees.html */
+      .hero--mini {
+        padding: 0.25rem 0 0.5rem 0;
+      }
+      .hero {
+        padding-top: calc(var(--top-nav-offset, 72px) + 8px);
+      }
+      .hero--mini .hero__content {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .hero--mini .hero__text {
+        display: block;
+      }
+      .hero--mini .hero__text h1 {
+        font-size: 1.9rem;
+        margin: 0;
+      }
+      .hero--mini .hero__logo {
+        margin-right: 8px;
+        width: 216px;
+        height: auto;
+      }
+      @media (max-width: 900px) {
+        .hero--mini .hero__content {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+        .hero--mini .hero__text {
+          margin-top: 0.5rem;
+        }
+        .hero--mini .hero__text h1 {
+          font-size: 1.4rem;
+        }
+      }
+
+      /* Specific Schedule Styles */
+      .filters-section {
+        background-color: #f8f9fa;
+        padding: 1.5rem;
+        border-radius: 8px;
+        margin-bottom: 2rem;
+        border: 1px solid #e9ecef;
+      }
+
+      .filters-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+      }
+
+      .filter-group h4 {
+        margin-top: 0;
+        margin-bottom: 0.75rem;
+        font-size: 1.1rem;
+        color: #333;
+      }
+
+      .checkbox-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        max-height: 200px;
+        overflow-y: auto;
+        padding-right: 0.5rem;
+      }
+
+      .checkbox-label {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+        font-size: 0.95rem;
+      }
+
+      .schedule-date-header {
+        background-color: #0047b3; /* AYSO Blue roughly */
+        color: white;
+        padding: 0.5rem 1rem;
+        margin-top: 2rem;
+        margin-bottom: 0;
+        border-radius: 6px 6px 0 0;
+      }
+
+      .schedule-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 1rem;
+      }
+
+      .schedule-table th,
+      .schedule-table td {
+        padding: 0.75rem 1rem;
+        border: 1px solid #dee2e6;
+        text-align: left;
+      }
+
+      .schedule-table th {
+        background-color: #f1f3f5;
+        font-weight: 600;
+        color: #495057;
+      }
+
+      .schedule-table tr:nth-child(even) {
+        background-color: #fcfcfc;
+      }
+
+      .table-responsive {
+        overflow-x: auto;
+        border: 1px solid #dee2e6;
+        border-top: none;
+        border-radius: 0 0 6px 6px;
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 0.25em 0.6em;
+        font-size: 0.85em;
+        font-weight: 600;
+        line-height: 1;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: baseline;
+        border-radius: 10rem;
+        background-color: #6c757d;
+        color: white;
+      }
+      .badge--10u {
+        background-color: #17a2b8;
+      }
+      .badge--12u {
+        background-color: #28a745;
+      }
+      .badge--14u {
+        background-color: #ffc107;
+        color: #212529;
+      }
+      .badge--6u {
+        background-color: #6610f2;
+      }
+      .badge--8u {
+        background-color: #fd7e14;
+      }
+
+      .btn-sm {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="navigation"></div>
+
+    <main>
+      <header class="hero hero--mini" role="banner" aria-label="Schedules hero">
+        <div class="container hero__content">
+          <img
+            src="assets/images/logos/ayso779crest.png"
+            alt="AYSO 779 Crest"
+            class="hero__logo"
+          />
+          <div class="hero__text">
+            <h1>Game Schedules</h1>
+            <p style="margin: 0.25rem 0 0; color: #a1a1a1; font-size: 1.15rem">
+              Information for all divisions and teams.
+            </p>
+          </div>
+        </div>
+      </header>
+
+      <section class="section">
+        <div class="container">
+          <div class="filters-section">
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 1rem;
+              "
+            >
+              <h3 style="margin: 0">Filter Schedules</h3>
+              <button id="clear-filters" class="btn btn--secondary btn-sm">
+                Clear All
+              </button>
+            </div>
+
+            <div class="filters-container">
+              <div class="filter-group">
+                <h4>By Division</h4>
+                <div id="division-filters" class="checkbox-list">
+                  <!-- JS will populate -->
+                  Loading...
+                </div>
+              </div>
+
+              <div class="filter-group">
+                <h4>By Team</h4>
+                <div id="team-filters" class="checkbox-list">
+                  <!-- JS will populate -->
+                  Loading...
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="schedule-container">
+            <!-- Schedule content will be injected here -->
+            <p style="text-align: center; color: #666">
+              Loading schedule data...
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer (matches site) -->
+    <footer class="footer">
+      <div class="container footer__inner">
+        <p>© <span id="year"></span> AYSO Region 779</p>
+        <nav class="footer__nav">
+          <a href="contact.html">Contact</a>
+        </nav>
+      </div>
+    </footer>
+
+    <script src="assets/scripts/main.js"></script>
+    <script src="assets/scripts/schedule.js"></script>
+  </body>
+</html>
