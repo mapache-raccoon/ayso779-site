@@ -85,7 +85,7 @@
       }
 
       .schedule-date-header {
-        background-color: #0047b3; /* AYSO Blue roughly */
+        background-color: var(--primary-green);
         color: white;
         padding: 0.5rem 1rem;
         margin-top: 2rem;
@@ -156,6 +156,112 @@
       .btn-sm {
         padding: 0.25rem 0.5rem;
         font-size: 0.875rem;
+      }
+
+      /* Game Note styling (Tear Down warning) */
+      .game-note {
+        display: inline-block;
+        color: #c53030;
+        font-weight: 700;
+        font-size: 0.85em;
+        margin-top: 4px;
+      }
+
+      /* Mobile Optimizations */
+      @media (max-width: 768px) {
+        .filters-section {
+          padding: 1rem;
+        }
+
+        .filters-container {
+          grid-template-columns: 1fr; /* Stack filters vertically */
+          gap: 1.5rem;
+        }
+
+        .schedule-date-header {
+          font-size: 1.1rem;
+          padding: 0.5rem;
+          text-align: center;
+        }
+
+        /* Card Layout for Mobile */
+        .schedule-table thead {
+          display: none; /* Hide table headers */
+        }
+
+        .schedule-table,
+        .schedule-table tbody,
+        .schedule-table td {
+          display: block;
+          width: 100%;
+        }
+
+        .schedule-table tr {
+          display: block;
+          margin-bottom: 1rem;
+          background: #fff;
+          border: 1px solid #ddd;
+          border-radius: 8px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+          overflow: hidden;
+        }
+
+        .schedule-table td {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0.75rem 1rem;
+          border-bottom: 1px solid #eee;
+          text-align: right;
+          font-size: 0.95rem;
+        }
+
+        .schedule-table td:last-child {
+          border-bottom: none;
+        }
+
+        .schedule-table td::before {
+          content: attr(data-label);
+          font-weight: 600;
+          color: #555;
+          text-align: left;
+          padding-right: 1rem;
+          /* Ensure label doesn't shrink */
+          flex-shrink: 0;
+        }
+
+        /* Specific styling for Division badge in card view */
+        .schedule-table td[data-label="Division"] {
+          justify-content: space-between;
+        }
+
+        /* Highlight time row slightly */
+        .schedule-table td[data-label="Time"] {
+          background-color: #f8f9fa;
+          font-weight: 600;
+          color: #0047b3;
+        }
+
+        /* Adjust badge size */
+        .badge {
+          font-size: 0.85em;
+          padding: 0.3em 0.6em;
+        }
+
+        /* Location cell content wrapper */
+        .location-content {
+          text-align: right;
+          flex: 1; /* Allow it to take up space */
+          padding-left: 1rem; /* Space from label */
+        }
+
+        .game-note {
+          display: block;
+          color: #c53030;
+          font-weight: 700;
+          font-size: 0.85em;
+          margin-top: 4px;
+        }
       }
     </style>
   </head>
