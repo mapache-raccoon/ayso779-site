@@ -19,6 +19,24 @@ document.addEventListener('DOMContentLoaded', () => {
    // Global map of last game IDs
    let globalLastGames = new Set();
 
+   // Click-to-reveal full team name when nickname is shown
+   if (scheduleContainer) {
+      scheduleContainer.addEventListener('click', (e) => {
+         const btn = e.target.closest('.team-nickname');
+         if (!btn) return;
+         const isShowingNickname = !btn.dataset.showing || btn.dataset.showing === 'nickname';
+         if (isShowingNickname) {
+            btn.textContent = btn.dataset.fullname;
+            btn.dataset.showing = 'fullname';
+            btn.title = 'Click to show nickname';
+         } else {
+            btn.textContent = btn.dataset.nickname;
+            btn.dataset.showing = 'nickname';
+            btn.title = btn.dataset.fullname;
+         }
+      });
+   }
+
    // Load data
    const scheduleUrl = 'assets/data/schedule.json?v=' + new Date().getTime();
 
@@ -54,6 +72,8 @@ document.addEventListener('DOMContentLoaded', () => {
                endTime: game["End Time"],
                homeTeam: homeTeam,
                awayTeam: String(game["Away Team"] || ""),
+               homeTeamNickname: game["Home Team Nickname"] || "",
+               awayTeamNickname: game["Away Team Nickname"] || "",
                location: game.Location,
                field: game.Field
             };
@@ -154,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
                const [y, m, d] = date.split('-').map(Number);
                const dateObj = new Date(y, m - 1, d);
                labelText = dateObj.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' });
-            } catch (e) {}
+            } catch (e) { }
 
             const label = document.createElement('label');
             label.className = 'checkbox-label';
@@ -290,7 +310,7 @@ document.addEventListener('DOMContentLoaded', () => {
                const [y, m, d] = date.split('-').map(Number);
                const dateObj = new Date(y, m - 1, d);
                dateStr = dateObj.toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-            } catch (e) {}
+            } catch (e) { }
 
             html += `<h3 class="schedule-date-header">${dateStr}</h3>`;
             html += `<div class="table-responsive"><table class="schedule-table">
@@ -323,8 +343,8 @@ document.addEventListener('DOMContentLoaded', () => {
                html += `<tr>
                   <td data-label="Time" style="white-space:nowrap;">${timeDisplay}</td>
                   <td data-label="Division"><span class="badge badge--${divisionCode}">${game.division}</span></td>
-                  <td data-label="Home">${game.homeTeam}</td>
-                  <td data-label="Away">${game.awayTeam}</td>
+                  <td data-label="Home">${formatTeamDisplay(game.homeTeam, game.homeTeamNickname, 'home')}</td>
+                  <td data-label="Away">${formatTeamDisplay(game.awayTeam, game.awayTeamNickname, 'away')}</td>
                   <td data-label="Location"><div class="location-content">${locationContent}</div></td>
                </tr>`;
             });
@@ -336,5 +356,12 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       scheduleContainer.innerHTML = html;
+   }
+
+   function formatTeamDisplay(teamName, nickname, role) {
+      if (nickname && nickname.trim()) {
+         return `<button class="team-nickname team-nickname--${role}" data-fullname="${teamName}" data-nickname="${nickname}" data-showing="nickname" title="${teamName}">${nickname}</button>`;
+      }
+      return teamName;
    }
 });

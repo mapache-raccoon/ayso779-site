@@ -158,6 +158,33 @@
         font-size: 0.875rem;
       }
 
+      /* Team nickname - click to toggle between nickname and full team name */
+      .team-nickname {
+        display: inline-block;
+        border: none;
+        padding: 0.2em 0.65em;
+        border-radius: 999px;
+        font: inherit;
+        font-size: 0.9em;
+        font-weight: 600;
+        cursor: pointer;
+        line-height: 1.4;
+        transition: opacity 0.15s;
+      }
+      .team-nickname:hover {
+        opacity: 0.8;
+      }
+      .team-nickname--home {
+        background-color: #1a5c2a;
+        color: #fff;
+        border: 2px solid #222;
+      }
+      .team-nickname--away {
+        background-color: #fff;
+        color: #1a5c2a;
+        border: 2px solid #222;
+      }
+
       /* Game Note styling (Tear Down warning) */
       .game-note {
         display: inline-block;
