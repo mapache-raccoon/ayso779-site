@@ -983,6 +983,70 @@ p {
   margin-bottom: var(--space-5);
 }
 
+.welcome-section .section__title {
+  margin-bottom: var(--space-4);
+}
+
+.welcome-feature {
+  max-width: 860px;
+  padding: clamp(1.5rem, 2vw, 2.25rem);
+  border: 1px solid rgba(11, 61, 46, 0.12);
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 249, 0.96)),
+    radial-gradient(circle at top right, rgba(26, 138, 109, 0.12), transparent 34%);
+  box-shadow: 0 18px 40px rgba(11, 61, 46, 0.08);
+}
+
+.welcome-lead {
+  margin: 0;
+  color: var(--neutral-700);
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.welcome-lead + .welcome-lead {
+  margin-top: 1.1rem;
+}
+
+.welcome-lead strong {
+  color: var(--primary-green);
+}
+
+.welcome-lead--intro {
+  font-size: 1.12rem;
+  line-height: 1.85;
+}
+
+.welcome-lead--intro strong {
+  display: block;
+  margin-bottom: 0.65rem;
+  font-size: clamp(1.2rem, 2vw, 1.55rem);
+  line-height: 1.3;
+}
+
+.welcome-lead--centered,
+.welcome-lead--closing {
+  padding-left: 1rem;
+  border-left: 4px solid rgba(20, 114, 89, 0.24);
+}
+
+@media (max-width: 640px) {
+  .welcome-feature {
+    padding: 1.25rem;
+  }
+
+  .welcome-lead {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .welcome-lead--centered,
+  .welcome-lead--closing {
+    padding-left: 0.85rem;
+  }
+}
+
 /* ===============================
    Grid & Cards
    =============================== */

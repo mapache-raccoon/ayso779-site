@@ -264,6 +264,21 @@ function setupAnnouncements() {
    const toggle = document.getElementById('ann-toggle');
    if (!toggle) return;
 
+   const items = annList.querySelectorAll('details');
+   const canExpand = items.length >= 4;
+
+   if (!canExpand) {
+      annList.classList.remove('show-all');
+      toggle.style.display = 'none';
+      toggle.disabled = true;
+      toggle.setAttribute('aria-hidden', 'true');
+      return;
+   }
+
+   toggle.style.display = '';
+   toggle.disabled = false;
+   toggle.removeAttribute('aria-hidden');
+
    // Ensure initial aria state matches the visual state
    toggle.setAttribute('aria-expanded', 'false');
 
