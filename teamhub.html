@@ -1,0 +1,986 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Team Hub — AYSO Region 779</title>
+    <meta
+      name="description"
+      content="Team Hub for AYSO Region 779 with uniform selection and upcoming team tools."
+    />
+    <link rel="stylesheet" href="assets/style.css" />
+    <style>
+      .hero--mini {
+        padding: 0.25rem 0 0.5rem 0;
+      }
+      .hero {
+        padding-top: calc(var(--top-nav-offset, 72px) + 8px);
+      }
+      .hero--mini .hero__content {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .hero--mini .hero__text {
+        display: block;
+      }
+      .hero--mini .hero__text h1 {
+        font-size: 1.9rem;
+        margin: 0;
+      }
+      .hero--mini .hero__logo {
+        margin-right: 8px;
+        width: 216px;
+        height: auto;
+      }
+
+      .teamhub-intro-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .teamhub-board {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+        align-items: start;
+      }
+
+      .teamhub-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .selection-card {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .selection-card p {
+        margin-bottom: 0;
+      }
+
+      .table-wrap {
+        overflow-x: auto;
+        border: 1px solid var(--neutral-200);
+        border-radius: var(--radius-md);
+        background: #fff;
+        max-width: 760px;
+      }
+
+      .uniform-table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 0;
+      }
+
+      .uniform-table th,
+      .uniform-table td {
+        padding: 0.85rem 0.8rem;
+        border-bottom: 1px solid var(--neutral-200);
+        text-align: left;
+        vertical-align: top;
+      }
+
+      .uniform-table th {
+        background: #f3f8f5;
+        color: var(--neutral-700);
+        font-size: 0.8rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .uniform-table tbody tr:last-child td {
+        border-bottom: 0;
+      }
+
+      .uniform-table .col-order {
+        width: 64px;
+        text-align: center;
+        font-weight: 700;
+      }
+
+      .uniform-table .col-team {
+        width: 100px;
+        font-weight: 700;
+      }
+
+      .team-select {
+        width: 100%;
+        min-width: 200px;
+        padding: 0.65rem 0.75rem;
+        border-radius: 10px;
+        border: 1px solid var(--neutral-300);
+        background: var(--primary-white);
+        color: var(--neutral-800);
+        font: inherit;
+      }
+
+      .status-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        border-radius: 999px;
+        padding: 0.25rem 0.65rem;
+        font-size: 0.78rem;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+
+      .status-pill--green {
+        background: #e8f6ef;
+        color: #0b3d2e;
+        border: 1px solid #cce7da;
+      }
+
+      .status-pill--amber {
+        background: #fff6e8;
+        color: #8a5a00;
+        border: 1px solid #f0dab0;
+      }
+
+      .rule-list {
+        margin: 0;
+        padding-left: 1.15rem;
+      }
+
+      .rule-list li + li {
+        margin-top: 0.35rem;
+      }
+
+      .section-note {
+        background: #f8faf9;
+        border: 1px solid #d8e6df;
+        border-radius: var(--radius-lg);
+        padding: var(--space-5);
+      }
+
+      .photo-slider {
+        margin-top: 1rem;
+      }
+
+      .photo-slider__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin-bottom: 0.65rem;
+      }
+
+      .photo-slider__header p {
+        margin: 0;
+        color: var(--neutral-700);
+      }
+
+      .photo-slider__controls {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .photo-slider__btn {
+        appearance: none;
+        border: 1px solid #d8e6df;
+        background: #fff;
+        color: var(--primary-green);
+        border-radius: 999px;
+        padding: 0.45rem 0.75rem;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .photo-slider__btn:hover,
+      .photo-slider__btn:focus {
+        background: #f3f8f5;
+        outline: none;
+      }
+
+      .photo-slider__viewport {
+        overflow: hidden;
+        border: 1px solid #d8e6df;
+        border-radius: var(--radius-lg);
+        background: #fff;
+      }
+
+      .photo-slider__track {
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: minmax(312px, 1fr);
+        gap: 0.75rem;
+        padding: 0.75rem;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: thin;
+      }
+
+      .photo-slider__track::-webkit-scrollbar {
+        height: 10px;
+      }
+
+      .photo-slider__track::-webkit-scrollbar-thumb {
+        background: #cfded6;
+        border-radius: 999px;
+      }
+
+      .photo-slide {
+        scroll-snap-align: start;
+        border-radius: 14px;
+        overflow: hidden;
+        background: #f8faf9;
+        border: 1px solid #e2ebe6;
+        cursor: pointer;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease,
+          border-color 0.2s ease;
+      }
+
+      .photo-slide:hover,
+      .photo-slide:focus-within {
+        box-shadow: 0 8px 24px rgba(11, 61, 46, 0.12);
+        border-color: #b8cfc5;
+      }
+
+      .photo-slide img {
+        width: 100%;
+        aspect-ratio: 800 / 546;
+        object-fit: cover;
+        display: block;
+      }
+
+      .photo-slide figcaption {
+        padding: 0.55rem 0.7rem 0.65rem;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--neutral-800);
+      }
+
+      .photo-modal {
+        position: fixed;
+        inset: 0;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        background: rgba(15, 17, 17, 0.72);
+        z-index: 1000;
+      }
+
+      .photo-modal.is-open {
+        display: flex;
+      }
+
+      .photo-modal__dialog {
+        width: min(920px, 100%);
+        max-height: 90vh;
+        background: #fff;
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+      }
+
+      .photo-modal__bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.9rem 1rem;
+        border-bottom: 1px solid #e2ebe6;
+      }
+
+      .photo-modal__title {
+        margin: 0;
+        font-size: 1rem;
+      }
+
+      .photo-modal__close {
+        appearance: none;
+        border: 1px solid #d8e6df;
+        background: #fff;
+        color: var(--primary-green);
+        border-radius: 999px;
+        padding: 0.45rem 0.8rem;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .photo-modal__body {
+        background: #f8faf9;
+      }
+
+      .photo-modal__body img {
+        width: 100%;
+        height: auto;
+        max-height: calc(90vh - 58px);
+        object-fit: contain;
+        display: block;
+      }
+
+      .bucket-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.75rem;
+      }
+
+      .bucket-shell {
+        padding: 0.25rem 0 0;
+      }
+
+      .bucket-shell__header {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .bucket-card {
+        padding: var(--space-4);
+      }
+
+      .bucket-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+      }
+
+      .bucket-list li + li {
+        margin-top: 0;
+      }
+
+      .bucket-list li {
+        margin: 0;
+        padding: 0.3rem 0.6rem;
+        border: 1px solid #d8e6df;
+        border-radius: 999px;
+        background: #fff;
+        color: var(--neutral-800);
+        font-size: 0.88rem;
+        font-weight: 600;
+      }
+
+      .bucket-note {
+        color: var(--neutral-700);
+        margin-bottom: 0;
+      }
+
+      .option-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin: 0.75rem 0 0;
+      }
+
+      .option-chip {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.35rem 0.7rem;
+        border: 1px solid #d8e6df;
+        border-radius: 999px;
+        background: #f8faf9;
+        color: var(--neutral-800);
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+
+      .option-chip--selected {
+        color: #c62828;
+        text-decoration: line-through;
+        border-color: #ef9a9a;
+        background: #fff5f5;
+      }
+
+      .selection-placeholder {
+        color: var(--neutral-500);
+        font-style: italic;
+      }
+
+      .pill {
+        display: inline-block;
+        background: #eef7f3;
+        color: #0b3d2e;
+        border: 1px solid #d4e7df;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        padding: 0.2rem 0.6rem;
+        margin-bottom: 0.55rem;
+      }
+
+      .card--coming-soon {
+        border-style: dashed;
+        background: #fafcfb;
+      }
+
+      @media (max-width: 900px) {
+        .hero--mini .hero__content {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+        .hero--mini .hero__text {
+          margin-top: 0.5rem;
+        }
+        .hero--mini .hero__text h1 {
+          font-size: 1.4rem;
+        }
+
+        .teamhub-intro-grid,
+        .teamhub-board,
+        .teamhub-grid,
+        .bucket-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .photo-slider__header {
+          align-items: flex-start;
+        }
+
+        .photo-slider__track {
+          grid-auto-columns: 78vw;
+          padding: 0.6rem;
+          gap: 0.6rem;
+        }
+
+        .photo-slider__btn {
+          padding: 0.5rem 0.9rem;
+        }
+      }
+
+      @media (max-width: 520px) {
+        .photo-slider__track {
+          grid-auto-columns: 84vw;
+        }
+
+        .photo-slide figcaption {
+          font-size: 0.85rem;
+        }
+
+        .photo-modal {
+          padding: 0.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="navigation"></div>
+
+    <main>
+      <section class="hero hero--mini">
+        <div class="container hero__content">
+          <img
+            src="assets/images/logos/ayso779crest.png"
+            alt="AYSO 779 Crest"
+            class="hero__logo"
+          />
+          <div class="hero__text">
+            <h1>Team Hub</h1>
+            <p style="margin: 0.25rem 0 0; color: #a1a1a1; font-size: 1.15rem">
+              Uniform selection and team tools in one place for coaches and team
+              families.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="uniforms-heading">
+        <div class="container">
+          <h2 id="uniforms-heading" class="section__title">
+            Uniform Selection
+          </h2>
+          <div class="teamhub-intro-grid" style="margin-top: 1rem">
+            <article class="card section-note">
+              <span class="pill">Coach Certification</span>
+              <h3>Selection is gated by green status</h3>
+              <p>
+                A coach must have every certification complete before a uniform
+                can be selected. If the coach already showed as green when they
+                signed up, it goes by when you signed up to coach.
+              </p>
+            </article>
+
+            <article class="card section-note">
+              <span class="pill">Player Size</span>
+              <h3>Distribute smallest to largest</h3>
+              <p>
+                If any uniform sizing problems arise, contact the coordinator
+                immediately so corrections can be made as soon as possible.
+              </p>
+            </article>
+
+            <article class="card section-note">
+              <span class="pill">Sizing Issues</span>
+              <h3>Reach out immediately</h3>
+              <p>
+                If there are any issues with sizing, contact the coordinator
+                right away so the team can be corrected before uniforms are
+                finalized.
+              </p>
+            </article>
+          </div>
+
+          <section
+            class="photo-slider"
+            aria-labelledby="uniform-slider-heading"
+          >
+            <div class="photo-slider__header">
+              <div>
+                <h3 id="uniform-slider-heading" style="margin-bottom: 0.2rem">
+                  Uniform Preview
+                </h3>
+                <p>Swipe or use the arrows to browse the uniform options.</p>
+              </div>
+              <div class="photo-slider__controls">
+                <button
+                  class="photo-slider__btn"
+                  type="button"
+                  data-slider-prev
+                >
+                  Prev
+                </button>
+                <button
+                  class="photo-slider__btn"
+                  type="button"
+                  data-slider-next
+                >
+                  Next
+                </button>
+              </div>
+            </div>
+            <div class="photo-slider__viewport">
+              <div class="photo-slider__track" id="uniform-slider-track"></div>
+            </div>
+          </section>
+
+          <div class="teamhub-board" style="margin-top: 1rem">
+            <article
+              class="card selection-card"
+              aria-labelledby="girls-table-heading"
+            >
+              <span class="pill">Girls 8U</span>
+              <p>Selection options:</p>
+              <div class="option-list" aria-label="Girls uniform options">
+                <span class="option-chip">Argentina</span>
+                <span class="option-chip">Australia</span>
+                <span class="option-chip">Brazil</span>
+                <span class="option-chip">Colombia</span>
+                <span class="option-chip">France</span>
+                <span class="option-chip">Mexico</span>
+                <span class="option-chip">New Zealand</span>
+                <span class="option-chip">Nigeria</span>
+                <span class="option-chip">Norway</span>
+                <span class="option-chip">Portugal</span>
+                <span class="option-chip">Spain</span>
+                <span class="option-chip">USA</span>
+              </div>
+              <div class="table-wrap">
+                <table class="uniform-table">
+                  <thead>
+                    <tr>
+                      <th scope="col" class="col-order">Order</th>
+                      <th scope="col" class="col-team">Team #</th>
+                      <th scope="col">Team Selected</th>
+                    </tr>
+                  </thead>
+                  <tbody id="girls-table-body"></tbody>
+                </table>
+              </div>
+            </article>
+
+            <article
+              class="card selection-card"
+              aria-labelledby="boys-table-heading"
+            >
+              <span class="pill">Boys 8U</span>
+              <p>Selection options:</p>
+              <div class="option-list" aria-label="Boys uniform options">
+                <span class="option-chip">Argentina</span>
+                <span class="option-chip">Australia</span>
+                <span class="option-chip">Brazil</span>
+                <span class="option-chip">Colombia</span>
+                <span class="option-chip">Croatia</span>
+                <span class="option-chip">England</span>
+                <span class="option-chip">France</span>
+                <span class="option-chip">Mexico</span>
+                <span class="option-chip">Netherlands</span>
+                <span class="option-chip">New Zealand</span>
+                <span class="option-chip">Nigeria</span>
+                <span class="option-chip">Norway</span>
+                <span class="option-chip">Portugal</span>
+                <span class="option-chip">Senegal</span>
+                <span class="option-chip option-chip--selected">Spain</span>
+                <span class="option-chip">USA</span>
+              </div>
+              <div class="table-wrap">
+                <table class="uniform-table">
+                  <thead>
+                    <tr>
+                      <th scope="col" class="col-order">Order</th>
+                      <th scope="col" class="col-team">Team #</th>
+                      <th scope="col">Team Selected</th>
+                    </tr>
+                  </thead>
+                  <tbody id="boys-table-body"></tbody>
+                </table>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="bucket-heading">
+        <div class="container bucket-shell">
+          <div class="bucket-shell__header">
+            <h2 id="bucket-heading" class="section__title">
+              Still Has Requirements Missing
+            </h2>
+            <p class="bucket-note">Check with Ravi or Martin.</p>
+          </div>
+
+          <div class="bucket-grid" style="margin-top: 0.75rem">
+            <article class="card section-note bucket-card">
+              <span class="pill">Girls 8U</span>
+              <ul class="bucket-list" id="girls-bucket-list"></ul>
+            </article>
+
+            <article class="card section-note bucket-card">
+              <span class="pill">Boys 8U</span>
+              <ul class="bucket-list" id="boys-bucket-list"></ul>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="photo-modal" id="photo-modal" aria-hidden="true">
+      <div
+        class="photo-modal__dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="photo-modal-title"
+      >
+        <div class="photo-modal__bar">
+          <h3 class="photo-modal__title" id="photo-modal-title">
+            Uniform Preview
+          </h3>
+          <button class="photo-modal__close" type="button" data-modal-close>
+            Close
+          </button>
+        </div>
+        <div class="photo-modal__body">
+          <img id="photo-modal-image" alt="" />
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container footer__inner">
+        <p>© <span id="year"></span> AYSO Region 779</p>
+        <nav class="footer__nav">
+          <a href="/contact.html">Contact</a>
+        </nav>
+      </div>
+    </footer>
+
+    <script>
+      const uniformSlides = [
+        {
+          name: "Argentina",
+          src: "https://dt5602vnjxv0c.cloudfront.net/portals/14638/images/fall2026/uniforms/argentina.png",
+        },
+        {
+          name: "Australia",
+          src: "https://dt5602vnjxv0c.cloudfront.net/portals/14638/images/fall2026/uniforms/australia.png",
+        },
+        {
+          name: "Brazil",
+          src: "https://dt5602vnjxv0c.cloudfront.net/portals/14638/images/fall2026/uniforms/brazil.png",
+        },
+        {
+          name: "Colombia",
+          src: "https://dt5602vnjxv0c.cloudfront.net/portals/14638/images/fall2026/uniforms/colombia.png",
+        },
+        {
+          name: "Croatia",
+          src: "https://www.ayso779.org/Portals/14638/Images/fall2026/uniforms/croatia.png",
+        },
+        {
+          name: "England",
+          src: "https://dt5602vnjxv0c.cloudfront.net/portals/14638/images/fall2026/uniforms/england.png",
+        },
+        {
+          name: "France",
+          src: "https://www.ayso779.org/Portals/14638/Images/fall2026/uniforms/france.png",
+        },
+        {
+          name: "Mexico",
+          src: "https://dt5602vnjxv0c.cloudfront.net/portals/14638/images/fall2026/uniforms/mexico.png",
+        },
+        {
+          name: "Netherlands",
+          src: "https://dt5602vnjxv0c.cloudfront.net/portals/14638/images/fall2026/uniforms/netherlands.png",
+        },
+        {
+          name: "New Zealand",
+          src: "https://dt5602vnjxv0c.cloudfront.net/portals/14638/images/fall2026/uniforms/newzealand.png",
+        },
+        {
+          name: "Nigeria",
+          src: "https://dt5602vnjxv0c.cloudfront.net/portals/14638/images/fall2026/uniforms/nigeria.png",
+        },
+        {
+          name: "Portugal",
+          src: "https://dt5602vnjxv0c.cloudfront.net/portals/14638/images/fall2026/uniforms/portugal.png",
+        },
+        {
+          name: "Senegal",
+          src: "https://dt5602vnjxv0c.cloudfront.net/portals/14638/images/fall2026/uniforms/senegal.png",
+        },
+        {
+          name: "Spain",
+          src: "https://dt5602vnjxv0c.cloudfront.net/portals/14638/images/fall2026/uniforms/spain.png",
+        },
+        {
+          name: "USA",
+          src: "https://dt5602vnjxv0c.cloudfront.net/portals/14638/images/fall2026/uniforms/usa.png",
+        },
+      ];
+
+      const allBoysTeams = [
+        8101, 8102, 8103, 8104, 8105, 8106, 8107, 8108, 8109, 8110, 8111, 8112,
+        8113, 8114, 8115, 8116,
+      ];
+
+      const allGirlsTeams = [
+        8201, 8202, 8203, 8204, 8205, 8206, 8207, 8208, 8209, 8210, 8211, 8212,
+      ];
+
+      const boysTeams = [8107, 8106, 8116, 8104, 8114];
+
+      const girlsTeams = [8206, 8208, 8211, 8209, 8202, 8205, 8210];
+
+      const boysOptions = [
+        "Argentina",
+        "Australia",
+        "Brazil",
+        "Colombia",
+        "Croatia",
+        "England",
+        "France",
+        "Mexico",
+        "Netherlands",
+        "New Zealand",
+        "Nigeria",
+        "Norway",
+        "Portugal",
+        "Senegal",
+        "Spain",
+        "USA",
+      ];
+
+      const girlsOptions = [
+        "Argentina",
+        "Australia",
+        "Brazil",
+        "Colombia",
+        "France",
+        "Mexico",
+        "New Zealand",
+        "Nigeria",
+        "Norway",
+        "Portugal",
+        "Spain",
+        "USA",
+      ];
+
+      function renderOptions(options) {
+        return [
+          '<option value="">Select uniform</option>',
+          ...options.map(
+            (option) => `<option value="${option}">${option}</option>`,
+          ),
+        ].join("");
+      }
+
+      function renderRows(teams, options, prefix) {
+        return teams
+          .map(
+            (teamNumber, index) => `
+              <tr>
+                <td class="col-order">${index + 1}</td>
+                <td class="col-team">${teamNumber}</td>
+                <td class="selection-placeholder">${
+                  prefix === "boys" && teamNumber === 8107
+                    ? "Spain"
+                    : "Yet to make choice"
+                }</td>
+              </tr>
+            `,
+          )
+          .join("");
+      }
+
+      function renderBucketItems(teams) {
+        return teams.map((teamNumber) => `<li>${teamNumber}</li>`).join("");
+      }
+
+      function renderSlider(slides) {
+        return slides
+          .map(
+            (slide, index) => `
+              <figure class="photo-slide" tabindex="0" data-slide-index="${index}" data-slide-name="${slide.name}" data-slide-src="${slide.src}">
+                <img src="${slide.src}" alt="${slide.name} uniform" />
+                <figcaption>${slide.name}</figcaption>
+              </figure>
+            `,
+          )
+          .join("");
+      }
+
+      const uniformSliderTrack = document.getElementById(
+        "uniform-slider-track",
+      );
+      const photoModal = document.getElementById("photo-modal");
+      const photoModalImage = document.getElementById("photo-modal-image");
+      const photoModalTitle = document.getElementById("photo-modal-title");
+      const photoModalClose = document.querySelector("[data-modal-close]");
+      const boysTableBody = document.getElementById("boys-table-body");
+      const girlsTableBody = document.getElementById("girls-table-body");
+      const boysBucketList = document.getElementById("boys-bucket-list");
+      const girlsBucketList = document.getElementById("girls-bucket-list");
+      const sliderPrevButton = document.querySelector("[data-slider-prev]");
+      const sliderNextButton = document.querySelector("[data-slider-next]");
+
+      function openPhotoModal(slideElement) {
+        if (
+          !photoModal ||
+          !photoModalImage ||
+          !photoModalTitle ||
+          !slideElement
+        ) {
+          return;
+        }
+
+        const slideImage = slideElement.querySelector("img");
+        const slideName = slideElement.dataset.slideName || "Uniform Preview";
+
+        photoModalImage.src =
+          slideElement.dataset.slideSrc || slideImage?.src || "";
+        photoModalImage.alt = slideImage?.alt || slideName;
+        photoModalTitle.textContent = slideName;
+        photoModal.classList.add("is-open");
+        photoModal.setAttribute("aria-hidden", "false");
+      }
+
+      function closePhotoModal() {
+        if (!photoModal || !photoModalImage) {
+          return;
+        }
+
+        photoModal.classList.remove("is-open");
+        photoModal.setAttribute("aria-hidden", "true");
+        photoModalImage.src = "";
+      }
+
+      if (uniformSliderTrack) {
+        uniformSliderTrack.innerHTML = renderSlider(uniformSlides);
+
+        uniformSliderTrack.addEventListener("click", (event) => {
+          const slide = event.target.closest(".photo-slide");
+          if (!slide || !uniformSliderTrack.contains(slide)) {
+            return;
+          }
+
+          openPhotoModal(slide);
+        });
+
+        uniformSliderTrack.addEventListener("keydown", (event) => {
+          if (event.key !== "Enter" && event.key !== " ") {
+            return;
+          }
+
+          const slide = event.target.closest(".photo-slide");
+          if (!slide || !uniformSliderTrack.contains(slide)) {
+            return;
+          }
+
+          event.preventDefault();
+          openPhotoModal(slide);
+        });
+      }
+
+      if (photoModalClose) {
+        photoModalClose.addEventListener("click", closePhotoModal);
+      }
+
+      if (photoModal) {
+        photoModal.addEventListener("click", (event) => {
+          if (event.target === photoModal) {
+            closePhotoModal();
+          }
+        });
+      }
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          closePhotoModal();
+        }
+      });
+
+      if (sliderPrevButton && uniformSliderTrack) {
+        sliderPrevButton.addEventListener("click", () => {
+          uniformSliderTrack.scrollBy({
+            left: -uniformSliderTrack.clientWidth * 0.75,
+            behavior: "smooth",
+          });
+        });
+      }
+
+      if (sliderNextButton && uniformSliderTrack) {
+        sliderNextButton.addEventListener("click", () => {
+          uniformSliderTrack.scrollBy({
+            left: uniformSliderTrack.clientWidth * 0.75,
+            behavior: "smooth",
+          });
+        });
+      }
+
+      const boysBucketTeams = allBoysTeams.filter(
+        (teamNumber) => !boysTeams.includes(teamNumber),
+      );
+
+      const girlsBucketTeams = allGirlsTeams.filter(
+        (teamNumber) => !girlsTeams.includes(teamNumber),
+      );
+
+      if (boysTableBody) {
+        boysTableBody.innerHTML = renderRows(boysTeams, boysOptions, "boys");
+      }
+
+      if (girlsTableBody) {
+        girlsTableBody.innerHTML = renderRows(
+          girlsTeams,
+          girlsOptions,
+          "girls",
+        );
+      }
+
+      if (boysBucketList) {
+        boysBucketList.innerHTML = renderBucketItems(boysBucketTeams);
+      }
+
+      if (girlsBucketList) {
+        girlsBucketList.innerHTML = renderBucketItems(girlsBucketTeams);
+      }
+    </script>
+
+    <script src="assets/scripts/main.js"></script>
+  </body>
+</html>
