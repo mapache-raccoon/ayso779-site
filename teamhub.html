@@ -590,18 +590,18 @@
               <span class="pill">Girls 8U</span>
               <p>Selection options:</p>
               <div class="option-list" aria-label="Girls uniform options">
-                <span class="option-chip">Argentina</span>
+                <span class="option-chip option-chip--selected">Argentina</span>
                 <span class="option-chip">Australia</span>
-                <span class="option-chip">Brazil</span>
-                <span class="option-chip">Colombia</span>
+                <span class="option-chip option-chip--selected">Brazil</span>
+                <span class="option-chip option-chip--selected">Colombia</span>
                 <span class="option-chip">France</span>
-                <span class="option-chip">Mexico</span>
+                <span class="option-chip option-chip--selected">Mexico</span>
                 <span class="option-chip">New Zealand</span>
-                <span class="option-chip">Nigeria</span>
-                <span class="option-chip">Norway</span>
-                <span class="option-chip">Portugal</span>
-                <span class="option-chip">Spain</span>
-                <span class="option-chip">USA</span>
+                <span class="option-chip option-chip--selected">Nigeria</span>
+                <span class="option-chip option-chip--selected">Norway</span>
+                <span class="option-chip option-chip--selected">Portugal</span>
+                <span class="option-chip option-chip--selected">Spain</span>
+                <span class="option-chip option-chip--selected">USA</span>
               </div>
               <div class="table-wrap">
                 <table class="uniform-table">
@@ -785,9 +785,24 @@
         8201, 8202, 8203, 8204, 8205, 8206, 8207, 8208, 8209, 8210, 8211, 8212,
       ];
 
-      const boysTeams = [8107, 8106, 8116, 8104, 8114];
+      const boysTeams = [
+        8107, 8106, 8116, 8104, 8114, 8102, 8109, 8112, 8105, 8115, 8110,
+      ];
 
       const girlsTeams = [8206, 8208, 8211, 8209, 8202, 8205, 8210, 8203, 8212];
+
+      const selectedUniforms = {
+        8107: "Spain",
+        8206: "USA",
+        8208: "Spain",
+        8211: "Norway",
+        8209: "Mexico",
+        8202: "Portugal",
+        8205: "Brazil",
+        8210: "Argentina",
+        8203: "Colombia",
+        8212: "Nigeria",
+      };
 
       const boysOptions = [
         "Argentina",
@@ -840,9 +855,7 @@
                 <td class="col-order">${index + 1}</td>
                 <td class="col-team">${teamNumber}</td>
                 <td class="selection-placeholder">${
-                  prefix === "boys" && teamNumber === 8107
-                    ? "Spain"
-                    : "Yet to make choice"
+                  selectedUniforms[teamNumber] || "Yet to make choice"
                 }</td>
               </tr>
             `,
