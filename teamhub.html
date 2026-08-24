@@ -47,6 +47,34 @@
         align-items: start;
       }
 
+      .picture-day-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .picture-day-columns {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 2rem;
+      }
+
+      .picture-day-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .picture-day-list li {
+        padding: 0.35rem 0;
+        border-bottom: 1px solid #e2ebe6;
+        color: var(--neutral-800);
+      }
+
+      .picture-day-list li:last-child {
+        border-bottom: none;
+      }
+
       .teamhub-grid {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -506,9 +534,97 @@
           <div class="hero__text">
             <h1>Team Hub</h1>
             <p style="margin: 0.25rem 0 0; color: #a1a1a1; font-size: 1.15rem">
-              Uniform selection and team tools in one place for coaches and team
-              families.
+              Team tools in one place for coaches and team families.
             </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="picture-day-heading">
+        <div class="container">
+          <h2 id="picture-day-heading" class="section__title">Picture Day</h2>
+
+          <div class="picture-day-grid" style="margin-top: 1rem">
+            <article class="card section-note">
+              <span class="pill">Locations</span>
+              <h3>Chino Hills Community Park</h3>
+              <p>
+                <a
+                  href="https://maps.google.com/?q=Chino+Hills+Community+Park+3280+Eucalyptus+Ave+Chino+Hills+CA+91709"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style="
+                    color: var(--primary-green);
+                    text-decoration: underline;
+                  "
+                >
+                  3280 Eucalyptus Ave, Chino Hills, CA 91709
+                </a>
+              </p>
+            </article>
+
+            <article class="card section-note">
+              <span class="pill">Arrival</span>
+              <h3>Arrive 10-15 minutes before your scheduled time.</h3>
+              <p>
+                Have your banner ready to go. Have the picture form filled out
+                too please.
+              </p>
+            </article>
+
+            <article class="card section-note">
+              <span class="pill">Uniforms</span>
+              <h3>Uniform Fit Reminder </h3>
+              <p> 
+Some players may find their uniforms a bit large. If that happens, simple adjustments like tying the shirt back or securing the shorts can help for picture day</p>
+            </article>
+          </div>
+
+          <div class="card section-note" style="margin-top: 1rem">
+            <h3 style="margin: 0 0 1rem; font-size: 1.5rem">
+              📸 8U Team Picture Times
+            </h3>
+            <div class="picture-day-columns">
+              <div>
+                <h4 style="margin: 0 0 0.75rem">🟦 Boys</h4>
+                <ul class="picture-day-list">
+                  <li><strong>8:50 AM</strong> — 8101</li>
+                  <li><strong>8:50 AM</strong> — 8102</li>
+                  <li><strong>9:00 AM</strong> — 8103</li>
+                  <li><strong>9:00 AM</strong> — 8104</li>
+                  <li><strong>9:10 AM</strong> — 8105</li>
+                  <li><strong>9:10 AM</strong> — 8106</li>
+                  <li><strong>9:10 AM</strong> — 8108</li>
+                  <li><strong>9:20 AM</strong> — 8109</li>
+                  <li><strong>9:20 AM</strong> — 8110</li>
+                  <li><strong>9:30 AM</strong> — 8111</li>
+                  <li><strong>9:30 AM</strong> — 8112</li>
+                  <li><strong>9:30 AM</strong> — 8113</li>
+                  <li><strong>9:40 AM</strong> — 8114</li>
+                  <li><strong>9:40 AM</strong> — 8115</li>
+                  <li><strong>9:40 AM</strong> — 8116</li>
+                  <li><strong>9:40 AM</strong> — 8107</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 style="margin: 0 0 0.75rem">🟪 Girls</h4>
+                <ul class="picture-day-list">
+                  <li><strong>8:50 AM</strong> — 8201</li>
+                  <li><strong>9:00 AM</strong> — 8202</li>
+                  <li><strong>9:00 AM</strong> — 8203</li>
+                  <li><strong>9:00 AM</strong> — 8204</li>
+                  <li><strong>9:10 AM</strong> — 8205</li>
+                  <li><strong>9:10 AM</strong> — 8206</li>
+                  <li><strong>9:20 AM</strong> — 8208</li>
+                  <li><strong>9:20 AM</strong> — 8209</li>
+                  <li><strong>9:20 AM</strong> — 8210</li>
+                  <li><strong>9:30 AM</strong> — 8211</li>
+                  <li><strong>9:30 AM</strong> — 8212</li>
+                  <li><strong>9:40 AM</strong> — 8207</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -542,8 +658,9 @@
               <span class="pill">Sizing Issues</span>
               <h3>Reach out immediately</h3>
               <p>
-                If there are any issues with sizing, <em>extreme</em> sizing problems, contact the coordinator
-                right away so the team can be corrected as soon as possible.
+                If there are any issues with sizing, <em>extreme</em> sizing
+                problems, contact the coordinator right away so the team can be
+                corrected as soon as possible.
               </p>
             </article>
           </div>
