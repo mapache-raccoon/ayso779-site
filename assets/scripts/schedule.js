@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
    }
 
    // Load data
-   const scheduleUrl = 'assets/data/schedule.json?v=' + new Date().getTime();
+   const scheduleUrl = 'assets/data/8uScheduleFall2026.json?v=' + new Date().getTime();
 
    fetch(scheduleUrl)
       .then(async response => {
@@ -126,8 +126,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
    function extractFilters(data) {
       uniqueDivisions = new Set();
-      uniqueDates = new Set();
       const teamsMap = new Map();
+      uniqueDates = new Set();
 
       data.forEach(game => {
          if (game.division) uniqueDivisions.add(game.division);
@@ -314,7 +314,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             html += `<h3 class="schedule-date-header">${dateStr}</h3>`;
             html += `<div class="table-responsive"><table class="schedule-table">
-               <thead><tr><th>Time</th><th>Division</th><th>Home</th><th>Away</th><th>Location</th></tr></thead>
+               <thead><tr><th>Time</th><th>Division</th><th>Home Team</th><th>Away Team</th><th>Location</th></tr></thead>
                <tbody>`;
 
             weekData.dates[date].sort((a, b) => {
@@ -336,6 +336,12 @@ document.addEventListener('DOMContentLoaded', () => {
                const divisionCode = String(game.division).split(' ')[0].toLowerCase().replace(/[^a-z0-9]/g, '');
 
                let locationContent = `${game.location} - ${game.field}`;
+               const startMinutes = game.startTime
+                  ? game.startTime.split(':').map(Number).reduce((hours, minutes) => hours * 60 + minutes)
+                  : null;
+               if (startMinutes === 8 * 60) {
+                  locationContent += '<br><span class="game-note">First Game - Please Help with Field Setup</span>';
+               }
                if (globalLastGames.has(game.id)) {
                   locationContent += '<br><span class="game-note">Last Game - Please Help with Field Tear&#8209;Down</span>';
                }
@@ -343,8 +349,8 @@ document.addEventListener('DOMContentLoaded', () => {
                html += `<tr>
                   <td data-label="Time" style="white-space:nowrap;">${timeDisplay}</td>
                   <td data-label="Division"><span class="badge badge--${divisionCode}">${game.division}</span></td>
-                  <td data-label="Home">${formatTeamDisplay(game.homeTeam, game.homeTeamNickname, 'home')}</td>
-                  <td data-label="Away">${formatTeamDisplay(game.awayTeam, game.awayTeamNickname, 'away')}</td>
+                  <td data-label="Home Team" class="team-home-cell"><span class="team-referee-note"><img class="whistle-icon" src="assets/images/icons/coaching.png" alt="Provides referee" title="Provides referee">Provides Referee</span><span class="team-name">${formatTeamDisplay(game.homeTeam, game.homeTeamNickname, 'home')}</span></td>
+                  <td data-label="Away Team" class="team-away-cell"><span class="team-name">${formatTeamDisplay(game.awayTeam, game.awayTeamNickname, 'away')}</span></td>
                   <td data-label="Location"><div class="location-content">${locationContent}</div></td>
                </tr>`;
             });

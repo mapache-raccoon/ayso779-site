@@ -214,39 +214,8 @@ p {
   padding-inline: var(--space-5);
 }
 
-.section.weather-section {
-  margin-top: 0;
-  padding-top: 0;
-  padding-bottom: 0;
-}
-
-.hero + .weather-section .container {
-  margin-top: 0;
-}
-
-.hero + .weather-section {
-  margin-top: 0;
-}
-
 .hero__preview-alert {
   margin-bottom: 0;
-}
-
-.weather-section + .section {
-  padding-top: 0.75rem;
-}
-
-.weather-section .container {
-  max-width: none;
-  padding-inline: 0;
-}
-
-.weatherwidget-io {
-  display: block;
-  margin-top: 0;
-  width: 100%;
-  min-height: 150px;
-  overflow: hidden;
 }
 
 /* Get Involved section styles */
