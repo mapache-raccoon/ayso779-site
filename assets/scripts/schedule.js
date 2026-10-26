@@ -16,7 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
    let selectedTeams = new Set();
    let selectedDates = new Set();
 
-   // Global map of last game IDs
+   // Global sets of first and last game IDs for each field and date
+   let globalFirstGames = new Set();
    let globalLastGames = new Set();
 
    // Click-to-reveal full team name when nickname is shown
@@ -79,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
             };
          });
 
-         calculateGlobalLastGames(scheduleData);
+         calculateGlobalBoundaryGames(scheduleData);
          extractFilters(scheduleData);
          renderFilters();
          renderSchedule(scheduleData);
@@ -91,7 +92,8 @@ document.addEventListener('DOMContentLoaded', () => {
          }
       });
 
-   function calculateGlobalLastGames(data) {
+   function calculateGlobalBoundaryGames(data) {
+      globalFirstGames = new Set();
       globalLastGames = new Set();
       const gamesByDate = {};
 
@@ -102,24 +104,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
       Object.keys(gamesByDate).forEach(date => {
          const games = gamesByDate[date];
+         const firstByField = {};
          const lastByField = {};
+         const timeToMins = (t) => {
+            if (!t) return 0;
+            const [h, m] = t.split(':').map(Number);
+            return h * 60 + m;
+         };
 
          games.forEach(game => {
             const key = `${game.location}_${game.field}`;
+            if (!firstByField[key] || timeToMins(game.startTime) < timeToMins(firstByField[key].startTime)) {
+               firstByField[key] = game;
+            }
             if (!lastByField[key]) {
                lastByField[key] = game;
-            } else {
-               const timeToMins = (t) => {
-                  if (!t) return 0;
-                  const [h, m] = t.split(':').map(Number);
-                  return h * 60 + m;
-               };
-               if (timeToMins(game.startTime) > timeToMins(lastByField[key].startTime)) {
-                  lastByField[key] = game;
-               }
+            } else if (timeToMins(game.startTime) > timeToMins(lastByField[key].startTime)) {
+               lastByField[key] = game;
             }
          });
 
+         Object.values(firstByField).forEach(g => globalFirstGames.add(g.id));
          Object.values(lastByField).forEach(g => globalLastGames.add(g.id));
       });
    }
@@ -336,10 +341,7 @@ document.addEventListener('DOMContentLoaded', () => {
                const divisionCode = String(game.division).split(' ')[0].toLowerCase().replace(/[^a-z0-9]/g, '');
 
                let locationContent = `${game.location} - ${game.field}`;
-               const startMinutes = game.startTime
-                  ? game.startTime.split(':').map(Number).reduce((hours, minutes) => hours * 60 + minutes)
-                  : null;
-               if (startMinutes === 8 * 60) {
+               if (globalFirstGames.has(game.id)) {
                   locationContent += '<br><span class="game-note">First Game - Please Help with Field Setup</span>';
                }
                if (globalLastGames.has(game.id)) {
@@ -349,7 +351,7 @@ document.addEventListener('DOMContentLoaded', () => {
                html += `<tr>
                   <td data-label="Time" style="white-space:nowrap;">${timeDisplay}</td>
                   <td data-label="Division"><span class="badge badge--${divisionCode}">${game.division}</span></td>
-                  <td data-label="Home Team" class="team-home-cell"><span class="team-referee-note"><img class="whistle-icon" src="assets/images/icons/coaching.png" alt="Provides referee" title="Provides referee">Provides Referee</span><span class="team-name">${formatTeamDisplay(game.homeTeam, game.homeTeamNickname, 'home')}</span></td>
+                  <td data-label="Home Team" class="team-home-cell"><span class="team-referee-note"><img class="referee-icon" src="assets/images/icons/football-referee.png" alt="" title="Provides referee">Provides Referee</span><span class="team-name">${formatTeamDisplay(game.homeTeam, game.homeTeamNickname, 'home')}</span></td>
                   <td data-label="Away Team" class="team-away-cell"><span class="team-name">${formatTeamDisplay(game.awayTeam, game.awayTeamNickname, 'away')}</span></td>
                   <td data-label="Location"><div class="location-content">${locationContent}</div></td>
                </tr>`;
